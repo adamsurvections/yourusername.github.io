@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survections Ltd &#8212; M&amp;E Surveys, EPC &amp; Floor Plans, London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brand:#1c2fcc;--brand-h:#1527b8;--brand-light:#ebeeff;--brand-mid:#3a50e8;
+  --g900:#08090f;--g800:#1d1d1f;--g600:#515154;--g400:#86868b;
+  --g200:#d2d2d7;--g100:#e8e8ed;--g50:#f5f5f7;--white:#ffffff;
+  --green:#30d158;--amber:#ff9f0a;--red:#ff3b30;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--white);color:var(--g800);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* CURSOR */
+#cur,#cur-r{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cur{width:10px;height:10px;background:var(--brand);border-radius:50%;transition:width .18s,height .18s}
+#cur-r{width:32px;height:32px;border:1.5px solid rgba(28,47,204,.35);border-radius:50%;z-index:9998;transition:width .12s,height .12s}
+@media(max-width:768px){#cur,#cur-r{display:none}body{cursor:auto}}
+@media(min-width:769px){body{cursor:none}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(8,9,15,0);transition:background .35s,box-shadow .35s}
+nav.solid{background:rgba(8,9,15,.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo img{width:52px;height:52px;border-radius:8px;object-fit:cover;border:1.5px solid rgba(255,255,255,.2);transition:transform .2s;display:block}
+.nav-logo:hover img{transform:scale(1.07) rotate(-3deg)}
+.nav-logo-text .name{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;line-height:1}
+.nav-logo-text .tag{font-size:9px;font-weight:400;color:rgba(255,255,255,.38);letter-spacing:.1em;text-transform:uppercase;line-height:1;margin-top:2px}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0 auto}
+.nav-links a{font-size:12px;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--brand);transition:width .25s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:12px;font-weight:600;background:var(--brand);color:#fff;border:none;border-radius:980px;padding:8px 18px;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--brand-h);transform:scale(1.04);box-shadow:0 4px 20px rgba(28,47,204,.45)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:60px;left:0;right:0;background:rgba(8,9,15,.97);backdrop-filter:blur(20px);z-index:199;padding:0 24px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.mobile-menu.open{max-height:440px;padding:20px 24px 32px}
+.mobile-menu a{display:block;font-size:16px;color:rgba(255,255,255,.75);text-decoration:none;padding:12px 0;border-bottom:.5px solid rgba(255,255,255,.06);transition:color .2s}
+.mobile-menu a:hover{color:#fff}
+.mobile-menu a:last-child{border-bottom:none;margin-top:16px;background:var(--brand);color:#fff;text-align:center;padding:12px;border-radius:980px}
+
+/* HERO */
+.hero{height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--g900);padding:80px 24px 120px;position:relative;overflow:hidden}
+.h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(28,47,204,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(28,47,204,.07) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;animation:gridIn 2.5s ease forwards;opacity:0}
+@keyframes gridIn{to{opacity:1}}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px)}
+.o1{width:650px;height:650px;background:rgba(28,47,204,.22);top:-180px;left:-180px;animation:drift 18s ease-in-out infinite}
+.o2{width:500px;height:500px;background:rgba(28,47,204,.14);bottom:-80px;right:-80px;animation:drift 14s ease-in-out infinite;animation-delay:-6s}
+.o3{width:300px;height:300px;background:rgba(255,159,10,.05);top:40%;left:35%;animation:drift 20s ease-in-out infinite;animation-delay:-12s}
+@keyframes drift{0%,100%{transform:translate(0,0)}40%{transform:translate(24px,-16px)}70%{transform:translate(-14px,20px)}}
+.hero-brand{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:28px;opacity:0;animation:fadeUp .8s .15s forwards;position:relative}
+.hero-brand img{width:80px;height:80px;border-radius:12px;object-fit:cover;box-shadow:0 16px 48px rgba(0,0,0,.4);animation:logoPulse 3.5s ease 1.8s infinite;display:block}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 0 0 rgba(28,47,204,.45),0 16px 48px rgba(0,0,0,.4)}55%{box-shadow:0 0 0 18px rgba(28,47,204,0),0 16px 48px rgba(0,0,0,.4)}}
+.hero-brand-name{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px;opacity:0;animation:fadeUp .8s .35s forwards;position:relative}
+.hero-title{
+  font-size:clamp(34px,6vw,78px);font-weight:700;letter-spacing:-.03em;
+  line-height:1.05;color:#fff;margin-bottom:16px;
+  opacity:0;animation:fadeUp .9s .55s forwards;
+  position:relative;max-width:860px;
+}
+/* Line 1 — clean bright white, easy to read */
+.hero-title .line1{
+  display:block;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+/* subtle sweep shimmer on line 1 — doesn't obscure text */
+.hero-title .line1::after{
+  content:'';
+  position:absolute;
+  top:0;left:-120%;
+  width:60%;height:100%;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.18) 50%,
+    rgba(255,255,255,0) 80%,
+    transparent 100%
+  );
+  animation:shimmerLine 4s ease-in-out 1.8s infinite;
+  pointer-events:none;
+  border-radius:4px;
+}
+/* Line 2 — brand blue gradient, bold and clear */
+.hero-title em{
+  font-style:normal;
+  display:block;
+  background:linear-gradient(135deg,#7b8fff 0%,#4a5fff 35%,#1c2fcc 65%,#5b6fff 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  position:relative;
+  overflow:hidden;
+  animation:shimmerGrad 3s ease-in-out 2.4s infinite;
+}
+/* shimmer overlay on line 2 */
+.hero-title em::after{
+  content:'';
+  position:absolute;
+  top:0;left:-120%;
+  width:60%;height:100%;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.22) 50%,
+    rgba(255,255,255,0) 80%,
+    transparent 100%
+  );
+  animation:shimmerLine 4s ease-in-out 2.4s infinite;
+  pointer-events:none;
+}
+@keyframes shimmerLine{
+  0%{left:-120%}
+  40%{left:160%}
+  100%{left:160%}
+}
+@keyframes shimmerGrad{
+  0%,100%{background-position:0% center}
+  50%{background-position:100% center}
+}
+.hero-sub{font-size:clamp(14px,1.8vw,18px);font-weight:300;color:rgba(255,255,255,.45);line-height:1.72;max-width:520px;margin-bottom:32px;opacity:0;animation:fadeUp .9s .75s forwards;position:relative}
+.hero-acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .9s .95s forwards;position:relative}
+.btn-primary{background:var(--brand);color:#fff;border:none;border-radius:980px;padding:13px 28px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;font-family:var(--font)}
+.btn-primary:hover{background:var(--brand-h);transform:scale(1.05);box-shadow:0 8px 32px rgba(28,47,204,.5)}
+.btn-outline{background:rgba(255,255,255,.07);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2);border-radius:980px;padding:13px 28px;font-size:15px;font-weight:400;cursor:pointer;text-decoration:none;transition:all .2s;font-family:var(--font)}
+.btn-outline:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.35)}
+.h-bar{position:absolute;bottom:0;left:0;right:0;display:flex;border-top:.5px solid rgba(255,255,255,.07);opacity:0;animation:fadeUp .9s 1.15s forwards}
+.hs{flex:1;padding:16px 0;text-align:center;border-right:.5px solid rgba(255,255,255,.07);transition:background .3s;cursor:default}
+.hs:last-child{border-right:none}
+.hs:hover{background:rgba(255,255,255,.03)}
+.hs-n{font-size:22px;font-weight:700;letter-spacing:-.03em;color:#fff;transition:color .3s}
+.hs:hover .hs-n{color:#7b8fff}
+.hs-l{font-size:10px;color:rgba(255,255,255,.28);margin-top:3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* MARQUEE */
+.marquee{background:var(--g50);overflow:hidden;padding:11px 0;border-bottom:1px solid var(--g100)}
+.m-inner{display:flex;gap:44px;width:max-content;animation:mq 40s linear infinite}
+.marquee:hover .m-inner{animation-play-state:paused}
+.mi{font-size:11px;color:var(--g400);white-space:nowrap;display:flex;align-items:center;gap:6px;transition:color .2s;cursor:default}
+.mi:hover{color:var(--brand)}
+.mi::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--brand);flex-shrink:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* SHARED */
+.sec{padding:80px 24px}
+.bg-white{background:var(--white)}
+.bg-tinted{background:var(--g50)}
+.bg-dark{background:var(--g900)}
+.mw{max-width:1100px;margin:0 auto}
+.mw-sm{max-width:820px;margin:0 auto}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;display:block}
+.sec-h{font-size:clamp(26px,4vw,44px);font-weight:700;letter-spacing:-.025em;line-height:1.08;color:var(--g800);margin-bottom:12px}
+.sec-h.wh{color:#fff}
+.sec-p{font-size:15px;font-weight:300;color:var(--g600);line-height:1.75}
+.sec-p.wh{color:rgba(255,255,255,.42)}
+
+/* CLIENTS */
+.clients{background:var(--g50);padding:40px 24px;border-bottom:1px solid var(--g100)}
+.clients-lbl{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g400);text-align:center;margin-bottom:18px}
+.clients-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;max-width:960px;margin:0 auto}
+.cpill{background:var(--white);border:1px solid var(--g200);border-radius:980px;padding:7px 15px;font-size:11px;font-weight:500;color:var(--g600);white-space:nowrap;transition:transform .2s,box-shadow .2s,border-color .2s,color .2s;cursor:default}
+.cpill:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08);border-color:var(--brand);color:var(--brand)}
+.cpill.gov{background:var(--g900);color:rgba(255,255,255,.7);border-color:transparent}
+.cpill.gov:hover{background:#141624;box-shadow:0 6px 18px rgba(28,47,204,.2);color:rgba(255,255,255,.95)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;max-width:1100px;margin:0 auto}
+.about-sup{font-size:11px;font-weight:600;color:var(--brand);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.about-h{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--g800);margin-bottom:14px}
+.about-p{font-size:15px;font-weight:300;color:var(--g600);line-height:1.78;margin-bottom:12px}
+.usp-box{background:var(--brand-light);border-left:3px solid var(--brand);border-radius:0 8px 8px 0;padding:14px 16px;margin-top:18px;font-size:14px;font-style:italic;color:var(--brand-h);line-height:1.6}
+.cert-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.cp{font-size:11px;font-weight:500;padding:5px 11px;border-radius:980px;border:1px solid var(--g200);color:var(--g600);cursor:default;transition:all .15s}
+.cp:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.cp.dk{background:var(--g800);color:#fff;border-color:transparent}
+.cp.dk:hover{background:var(--brand);box-shadow:0 4px 16px rgba(28,47,204,.3)}
+/* TIMELINE */
+.timeline{margin-top:28px;display:flex;flex-direction:column}
+.tl-item{display:flex;gap:14px;align-items:stretch}
+.tl-left{display:flex;flex-direction:column;align-items:center;width:32px;flex-shrink:0}
+.tl-dot{width:11px;height:11px;border-radius:50%;background:var(--brand);flex-shrink:0;margin-top:3px;border:2px solid var(--brand-light);transition:transform .2s,box-shadow .2s}
+.tl-item:hover .tl-dot{transform:scale(1.3);box-shadow:0 0 0 4px rgba(28,47,204,.15)}
+.tl-line{width:1.5px;background:var(--g100);flex:1;margin:4px 0}
+.tl-item:last-child .tl-line{display:none}
+.tl-right{padding-bottom:22px}
+.tl-org{font-size:13px;font-weight:700;color:var(--g800);margin-bottom:2px}
+.tl-role{font-size:11px;font-weight:500;color:var(--brand);margin-bottom:3px}
+.tl-date{font-size:10px;color:var(--g400)}
+.tl-note{font-size:11px;font-weight:300;color:var(--g600);margin-top:4px;line-height:1.5}
+/* STAT GRID */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.stt{background:var(--g50);padding:22px;cursor:default;transition:all .25s}
+.stt:hover{background:var(--brand-light);transform:scale(1.02)}
+.stt:nth-child(1){border-radius:12px 0 0 0}
+.stt:nth-child(2){border-radius:0 12px 0 0}
+.stt:nth-child(3){border-radius:0 0 0 12px}
+.stt:nth-child(4){border-radius:0 0 12px 0}
+.stt-n{font-size:30px;font-weight:700;letter-spacing:-.03em;color:var(--g800);margin-bottom:4px;transition:color .2s}
+.stt:hover .stt-n{color:var(--brand)}
+.stt-l{font-size:11px;font-weight:300;color:var(--g400);line-height:1.45}
+
+/* SERVICES */
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:1100px;margin:32px auto 0}
+.sc{background:var(--white);padding:34px 30px;position:relative;overflow:hidden;cursor:default;transition:background .22s,transform .28s,box-shadow .28s}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform .38s cubic-bezier(.16,1,.3,1)}
+.sc:hover::before{transform:scaleX(1)}
+.sc:hover{background:#fafbff;transform:translateY(-3px);box-shadow:0 14px 40px rgba(28,47,204,.09)}
+.sc:nth-child(1){border-radius:14px 0 0 0}
+.sc:nth-child(2){border-radius:0 14px 0 0}
+.sc:nth-child(3){border-radius:0 0 0 14px}
+.sc:nth-child(4){border-radius:0 0 14px 0;background:var(--brand)}
+.sc:nth-child(4)::before{background:rgba(255,255,255,.3)}
+.sc:nth-child(4):hover{background:var(--brand-h);transform:translateY(-3px)}
+.sc:nth-child(4) .sc-name{color:#fff}
+.sc:nth-child(4) .sc-desc{color:rgba(255,255,255,.55)}
+.sc:nth-child(4) .sc-price{color:rgba(255,255,255,.6)}
+.sc:nth-child(4) .sc-icon{background:rgba(255,255,255,.15)}
+.sc:nth-child(4) .sc-icon svg{stroke:#fff}
+.sc:nth-child(4) .sc-tag{background:rgba(255,255,255,.15);color:#fff;border:none}
+.sc-icon{width:38px;height:38px;border-radius:9px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:transform .28s}
+.sc:hover .sc-icon{transform:scale(1.12) rotate(-5deg)}
+.sc-icon svg{width:18px;height:18px;stroke:var(--brand);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sc-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--brand-light);color:var(--brand);padding:3px 9px;border-radius:980px;margin-bottom:8px;border:1px solid rgba(28,47,204,.15)}
+.sc-name{font-size:19px;font-weight:700;letter-spacing:-.015em;color:var(--g800);margin-bottom:7px}
+.sc-desc{font-size:13px;font-weight:300;color:var(--g400);line-height:1.65}
+.sc-price{margin-top:16px;font-size:12px;font-weight:600;color:var(--brand)}
+
+/* M&E SECTION */
+.me-bg-fx{position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 80% 40%,rgba(28,47,204,.18) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(28,47,204,.12) 0%,transparent 60%);pointer-events:none}
+.me-split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1100px;margin:40px auto 0}
+.flist{list-style:none}
+.fitem{padding:17px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;gap:13px;align-items:flex-start;transition:padding-left .25s}
+.fitem:hover{padding-left:5px}
+.fitem:last-child{border-bottom:none}
+.fdot{width:6px;height:6px;border-radius:50%;background:var(--brand);flex-shrink:0;margin-top:7px;transition:transform .2s,box-shadow .2s}
+.fitem:hover .fdot{transform:scale(1.5);box-shadow:0 0 0 4px rgba(28,47,204,.2)}
+.ft{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
+.fb{font-size:12px;font-weight:300;color:rgba(255,255,255,.37);line-height:1.65}
+.me-card-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(28,47,204,.2);border-radius:14px;padding:22px;position:sticky;top:80px;transition:border-color .3s}
+.me-card-wrap:hover{border-color:rgba(28,47,204,.4)}
+.me-card{background:#0d1230;border-radius:10px;overflow:hidden;border:1px solid rgba(28,47,204,.25)}
+.me-top{background:linear-gradient(135deg,#0d1a5e,#08113a);padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.me-tt{font-size:11px;font-weight:500;color:rgba(255,255,255,.7)}
+.me-badge{font-size:9px;font-weight:600;color:#7b8fff;background:rgba(28,47,204,.25);padding:2px 9px;border-radius:980px;animation:blink 3s ease-in-out infinite;letter-spacing:.06em;text-transform:uppercase}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
+.me-body{padding:14px 16px}
+.mes{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18);margin:12px 0 6px}
+.mes:first-child{margin-top:0}
+.me-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:background .18s}
+.me-row:hover{background:rgba(255,255,255,.04);padding-left:4px;padding-right:4px}
+.me-row:last-child{border-bottom:none}
+.mek{font-size:11px;font-weight:300;color:rgba(255,255,255,.32)}
+.mev{font-size:11px;font-weight:600;color:rgba(255,255,255,.8)}
+.tg{font-size:9px;font-weight:600;padding:2px 8px;border-radius:980px;background:rgba(48,209,88,.15);color:var(--green)}
+.ta{font-size:9px;font-weight:600;padding:2px 8px;border-radius:980px;background:rgba(255,159,10,.15);color:var(--amber)}
+.tr{font-size:9px;font-weight:600;padding:2px 8px;border-radius:980px;background:rgba(255,59,48,.15);color:var(--red)}
+.data-callout{background:rgba(28,47,204,.12);border:1px solid rgba(28,47,204,.25);border-radius:10px;padding:14px 16px;margin-top:14px;display:flex;gap:10px;align-items:flex-start}
+.dc-icon{width:30px;height:30px;border-radius:7px;background:rgba(28,47,204,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dc-icon svg{width:15px;height:15px;stroke:#7b8fff;fill:none;stroke-width:1.5;stroke-linecap:round}
+.dc-t{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);margin-bottom:2px}
+.dc-b{font-size:10px;font-weight:300;color:rgba(255,255,255,.35);line-height:1.55}
+
+/* AGENTS */
+.agents-split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1100px;margin:40px auto 0}
+.cert-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 20px 56px rgba(0,0,0,.09);border:1px solid var(--g100);transition:transform .3s,box-shadow .3s}
+.cert-card:hover{transform:translateY(-6px);box-shadow:0 32px 72px rgba(0,0,0,.13)}
+.cert-topbar{background:linear-gradient(135deg,#0a1340,#060b28);padding:18px 20px;display:flex;align-items:center;gap:12px}
+.cert-strip{width:6px;height:50px;background:var(--brand);border-radius:3px;flex-shrink:0}
+.cert-ht{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.cert-hs{font-size:10px;color:rgba(255,255,255,.4);font-weight:300}
+.cert-body{padding:16px 20px}
+.crow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--g50);font-size:11px}
+.crow:last-child{border-bottom:none}
+.ck{color:var(--g400);font-weight:300}
+.cv{color:var(--g800);font-weight:500}
+.rbar{margin-top:12px;background:var(--g50);border-radius:6px;height:24px;position:relative;overflow:hidden;display:flex;align-items:center}
+.rfill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--brand),var(--brand-mid));border-radius:6px;width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
+.rfill.ani{width:72%}
+.rl{position:relative;z-index:1;font-size:10px;font-weight:700;color:#fff;margin-left:10px}
+.rrt{position:absolute;right:10px;font-size:10px;color:var(--g600)}
+.alist{list-style:none}
+.ai{padding:16px 0;border-bottom:1px solid var(--g100);display:flex;gap:12px;align-items:flex-start;transition:padding-left .22s}
+.ai:hover{padding-left:5px}
+.ai:last-child{border-bottom:none}
+.adot{width:6px;height:6px;border-radius:50%;background:var(--brand);flex-shrink:0;margin-top:6px;transition:transform .2s,box-shadow .2s}
+.ai:hover .adot{transform:scale(1.5);box-shadow:0 0 0 4px rgba(28,47,204,.15)}
+.at{font-size:14px;font-weight:600;color:var(--g800);margin-bottom:3px}
+.ab{font-size:12px;font-weight:300;color:var(--g400);line-height:1.6}
+
+/* PROCESS */
+.steps{display:flex;max-width:820px;margin:40px auto 0;position:relative}
+.steps::before{content:'';position:absolute;top:20px;left:10%;right:10%;height:1px;background:var(--g200)}
+.step{flex:1;text-align:center;padding:0 18px}
+.step-n{width:42px;height:42px;border-radius:50%;background:var(--g800);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;position:relative;z-index:1;transition:all .28s;cursor:default}
+.step:hover .step-n{background:var(--brand);transform:scale(1.15);box-shadow:0 8px 24px rgba(28,47,204,.35)}
+.step-t{font-size:15px;font-weight:600;color:var(--g800);margin-bottom:5px;transition:color .25s}
+.step:hover .step-t{color:var(--brand)}
+.step-b{font-size:12px;font-weight:300;color:var(--g400);line-height:1.6}
+
+/* PRICING */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:940px;margin:36px auto 0}
+.pcard{border:1px solid var(--g200);border-radius:14px;padding:28px 24px;text-align:left;transition:all .3s;position:relative;overflow:hidden}
+.pcard:hover{box-shadow:0 20px 52px rgba(0,0,0,.1);transform:translateY(-4px);border-color:rgba(28,47,204,.2)}
+.pcard.feat{background:var(--brand);border-color:transparent;transform:scale(1.025)}
+.pcard.feat:hover{transform:scale(1.025) translateY(-4px);box-shadow:0 24px 60px rgba(28,47,204,.4)}
+.pcard.feat .pname,.pcard.feat .pdesc{color:rgba(255,255,255,.5)}
+.pcard.feat .pamount,.pcard.feat .pfl li{color:#fff}
+.pcard.feat .pfl li::before{background:rgba(255,255,255,.5)}
+.feat-badge{position:absolute;top:0;right:0;background:rgba(255,255,255,.2);color:#fff;font-size:9px;font-weight:700;letter-spacing:.1em;padding:5px 12px;border-radius:0 14px 0 10px;text-transform:uppercase}
+.pname{font-size:11px;font-weight:700;color:var(--g400);margin-bottom:6px;letter-spacing:.07em;text-transform:uppercase}
+.pamount{font-size:38px;font-weight:700;letter-spacing:-.04em;color:var(--g800);line-height:1;margin-bottom:4px}
+.pcard.feat .pamount{color:#fff}
+.pfrom{font-size:14px;font-weight:300;vertical-align:top;margin-top:6px;display:inline-block;color:var(--g400)}
+.pdesc{font-size:12px;font-weight:300;color:var(--g400);margin-bottom:18px;line-height:1.55}
+.pfl{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.pfl li{font-size:12px;font-weight:300;color:var(--g600);display:flex;align-items:center;gap:7px}
+.pfl li::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--brand);flex-shrink:0}
+.pbtn{display:block;width:100%;padding:10px;border-radius:980px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font);border:none;text-align:center;text-decoration:none}
+.pbtn-out{background:transparent;border:1px solid var(--g200);color:var(--brand)}
+.pbtn-out:hover{background:var(--brand-light);border-color:var(--brand);transform:scale(1.02)}
+.pbtn-wh{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.pbtn-wh:hover{background:rgba(255,255,255,.25);transform:scale(1.02)}
+
+/* INSURANCE */
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:36px auto 0}
+.ins-card{border:1px solid var(--g100);border-radius:14px;padding:24px 22px;position:relative;overflow:hidden;transition:all .3s;cursor:default}
+.ins-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.ins-card.pi::before{background:linear-gradient(90deg,var(--brand),var(--brand-mid))}
+.ins-card.pl::before{background:linear-gradient(90deg,#0d7a4e,var(--green))}
+.ins-card.dea::before{background:linear-gradient(90deg,#b45309,var(--amber))}
+.ins-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.08);border-color:var(--g200)}
+.ins-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.ins-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:980px}
+.ins-badge.active{background:rgba(48,209,88,.12);color:#0d7a4e}
+.ins-badge.cert{background:rgba(255,159,10,.12);color:#b45309}
+.ins-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ins-icon svg{width:20px;height:20px;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ins-icon.blue{background:var(--brand-light)}
+.ins-icon.blue svg{stroke:var(--brand)}
+.ins-icon.green{background:rgba(48,209,88,.1)}
+.ins-icon.green svg{stroke:#0d7a4e}
+.ins-icon.amber{background:rgba(255,159,10,.1)}
+.ins-icon.amber svg{stroke:#b45309}
+.ins-type{font-size:11px;font-weight:600;color:var(--g400);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.ins-amount{font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--g800);line-height:1;margin-bottom:4px}
+.ins-amount.med{font-size:20px;margin-top:4px;line-height:1.3}
+.ins-insurer{font-size:12px;color:var(--g400);margin-bottom:16px}
+.ins-rows{border-top:1px solid var(--g100);padding-top:12px;display:flex;flex-direction:column;gap:7px}
+.ins-row{display:flex;justify-content:space-between;font-size:11px}
+.ins-row-k{color:var(--g400);font-weight:300}
+.ins-row-v{color:var(--g800);font-weight:500}
+
+/* COMPANY BANNER */
+.co-banner{background:var(--g900);padding:40px 24px}
+.co-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.co-left{display:flex;align-items:center;gap:16px}
+.co-shield{width:48px;height:48px;border-radius:12px;background:rgba(28,47,204,.25);border:1px solid rgba(28,47,204,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.co-shield svg{width:24px;height:24px;stroke:#7b8fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.co-name{font-size:16px;font-weight:700;color:#fff;margin-bottom:2px}
+.co-reg{font-size:11px;color:rgba(255,255,255,.38);font-weight:300}
+.co-badges{display:flex;gap:10px;flex-wrap:wrap}
+.co-pill{font-size:10px;font-weight:500;padding:5px 12px;border-radius:980px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6)}
+.co-pill.hi{background:rgba(28,47,204,.2);border-color:rgba(28,47,204,.3);color:#7b8fff}
+
+/* TRUST */
+.trust{padding:44px 24px;text-align:center;border-top:1px solid var(--g100)}
+.trust-lbl{font-size:10px;font-weight:700;color:var(--g400);letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+.tbadges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tb{background:var(--white);border-radius:9px;padding:10px 15px;border:1px solid var(--g100);font-size:11px;font-weight:500;color:var(--g600);display:flex;align-items:center;gap:7px;transition:all .2s;cursor:default}
+.tb:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.07);border-color:rgba(28,47,204,.25);color:var(--brand)}
+.bdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* CONTACT */
+
+
+
+
+
+
+.ci-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:3px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+footer{background:var(--g900);border-top:1px solid rgba(255,255,255,.05);padding:44px 24px 32px}
+.foot-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:28px}
+.foot-logo{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.foot-logo img{width:32px;height:32px;border-radius:5px;object-fit:cover;border:1px solid rgba(255,255,255,.12);display:block}
+.foot-brand{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.foot-tag{font-size:11px;color:rgba(255,255,255,.28);max-width:200px;line-height:1.6;margin-bottom:12px;font-style:italic}
+.foot-contact a{display:block;font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:5px;transition:color .2s}
+.foot-contact a:hover{color:#fff}
+.foot-links{display:flex;gap:44px;flex-wrap:wrap}
+.fcol h4{font-size:9px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.fcol a{display:block;font-size:11px;font-weight:300;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:7px;transition:color .2s,transform .2s}
+.fcol a:hover{color:#fff;transform:translateX(3px)}
+.foot-bottom{max-width:1100px;margin:24px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.05)}
+.fc{font-size:10px;color:rgba(255,255,255,.2);line-height:1.8;display:block}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-24px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.rv-l.in{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(24px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.rv-r.in{opacity:1;transform:none}
+.stagger > *{opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1)}
+.stagger.in > *:nth-child(1){opacity:1;transform:none;transition-delay:.00s}
+.stagger.in > *:nth-child(2){opacity:1;transform:none;transition-delay:.08s}
+.stagger.in > *:nth-child(3){opacity:1;transform:none;transition-delay:.16s}
+.stagger.in > *:nth-child(4){opacity:1;transform:none;transition-delay:.24s}
+.stagger.in > *:nth-child(5){opacity:1;transform:none;transition-delay:.30s}
+.stagger.in > *:nth-child(6){opacity:1;transform:none;transition-delay:.36s}
+.stagger.in > *:nth-child(n+7){opacity:1;transform:none;transition-delay:.42s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .about-grid,.me-split,.agents-split{grid-template-columns:1fr;gap:36px}
+  .pgrid,.ins-grid{grid-template-columns:1fr}
+  .sgrid{grid-template-columns:1fr}
+  .sc:nth-child(1){border-radius:14px 14px 0 0}
+  .sc:nth-child(2),.sc:nth-child(3){border-radius:0}
+  .sc:nth-child(4){border-radius:0 0 14px 14px}
+  .steps{flex-direction:column;align-items:center}
+  .steps::before{display:none}
+
+  .h-bar{display:none}
+  .hero{padding-bottom:60px}
+  .pcard.feat{transform:none}
+  .co-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* ── CHARTS ──────────────────────────────── */
+.charts-wrap{display:flex;flex-direction:column;gap:24px}
+.chart-card{background:var(--g50);border-radius:12px;padding:20px;border:1px solid var(--g100)}
+.chart-title{font-size:11px;font-weight:700;color:var(--g600);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+/* donut */
+.donut-wrap{display:flex;align-items:center;gap:20px}
+.donut-svg{flex-shrink:0;overflow:visible}
+.donut-ring{fill:none;stroke-width:18;stroke-linecap:butt;transition:stroke-dasharray 1.4s cubic-bezier(.16,1,.3,1)}
+.donut-label-n{font-size:18px;font-weight:700;fill:var(--g800);text-anchor:middle;dominant-baseline:central}
+.donut-label-s{font-size:9px;font-weight:500;fill:var(--g400);text-anchor:middle}
+.donut-legend{display:flex;flex-direction:column;gap:7px;flex:1}
+.dl-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--g600)}
+.dl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dl-pct{margin-left:auto;font-weight:600;color:var(--g800);font-size:11px}
+/* bar chart */
+.bar-chart{display:flex;flex-direction:column;gap:9px}
+.bar-row{display:flex;align-items:center;gap:10px}
+.bar-label{font-size:10px;font-weight:500;color:var(--g600);width:56px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;background:var(--g100);border-radius:4px;height:18px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px;width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:flex-end;padding-right:7px}
+.bar-val{font-size:9px;font-weight:700;color:#fff;white-space:nowrap}
+
+/* ── ASSET REGISTER TABLE ─────────────────── */
+.asset-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(28,47,204,.2);border-radius:14px;overflow:hidden;position:sticky;top:80px}
+.asset-header{background:linear-gradient(135deg,#0d1a5e,#08113a);padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.asset-title{font-size:11px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.04em}
+.asset-badge{font-size:9px;font-weight:700;color:#7b8fff;background:rgba(28,47,204,.25);padding:2px 9px;border-radius:980px;letter-spacing:.06em;text-transform:uppercase;animation:blink 3s ease-in-out infinite}
+.asset-table-wrap{overflow-x:auto}
+.asset-table{width:100%;border-collapse:collapse;font-size:10px}
+.asset-table th{background:rgba(255,255,255,.05);color:rgba(255,255,255,.4);font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.06)}
+.asset-table td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.7);vertical-align:middle;white-space:nowrap}
+.asset-table tr:last-child td{border-bottom:none}
+.asset-table tr{transition:background .15s}
+.asset-table tr:hover td{background:rgba(255,255,255,.04)}
+.rem-bar{width:60px;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:5px}
+.rem-fill{height:100%;border-radius:3px;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
+.act-badge{font-size:8px;font-weight:700;padding:2px 7px;border-radius:980px;letter-spacing:.06em;text-transform:uppercase}
+.act-c{background:rgba(28,47,204,.2);color:#7b8fff}
+.act-rep{background:rgba(255,59,48,.18);color:#ff3b30}
+.act-ri{background:rgba(255,159,10,.18);color:#ff9f0a}
+.act-rm{background:rgba(86,86,86,.3);color:rgba(255,255,255,.5)}
+.asset-footer{background:rgba(255,255,255,.03);padding:12px 16px;display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.06)}
+.af-stat{text-align:center}
+.af-n{font-size:15px;font-weight:700;color:#fff}
+.af-l{font-size:9px;color:rgba(255,255,255,.3);margin-top:1px}
+
+/* ── INSURANCE UPGRADE ──────────────────── */
+.ins-cert{background:var(--white);border:1.5px solid var(--g200);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s}
+.ins-cert:hover{transform:translateY(-4px);box-shadow:0 20px 56px rgba(0,0,0,.12)}
+.ins-cert-top{padding:20px 22px 16px;position:relative}
+.ins-cert-ribbon{position:absolute;top:0;left:0;right:0;height:4px}
+.ins-cert-ribbon.blue{background:linear-gradient(90deg,var(--brand),var(--brand-mid))}
+.ins-cert-ribbon.green{background:linear-gradient(90deg,#0d7a4e,var(--green))}
+.ins-cert-ribbon.amber{background:linear-gradient(90deg,#b45309,var(--amber))}
+.ins-cert-logo{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.ins-cert-issuer{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g400)}
+.ins-cert-verified{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:600;color:#0d7a4e;background:rgba(48,209,88,.1);padding:3px 9px;border-radius:980px}
+.ins-cert-verified::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.ins-cert-amount{font-size:36px;font-weight:800;letter-spacing:-.04em;color:var(--g800);line-height:1;margin-bottom:2px}
+.ins-cert-type{font-size:12px;font-weight:500;color:var(--brand);letter-spacing:.04em;margin-bottom:14px}
+.ins-cert-divider{border:none;border-top:1px dashed var(--g100);margin:0 -22px;padding:0}
+.ins-cert-rows{padding:14px 22px;display:flex;flex-direction:column;gap:8px}
+.ins-cert-row{display:flex;justify-content:space-between;align-items:center;font-size:11px}
+.ins-cert-k{color:var(--g400);font-weight:300}
+.ins-cert-v{color:var(--g800);font-weight:600}
+.ins-cert-foot{background:var(--g50);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--g100)}
+.ins-cert-seal{display:flex;align-items:center;gap:7px}
+.ins-cert-seal svg{width:20px;height:20px;stroke:var(--brand);fill:none;stroke-width:1.5}
+.ins-cert-seal-t{font-size:10px;font-weight:600;color:var(--brand)}
+.ins-cert-fca{font-size:9px;color:var(--g400)}
+/* policy number styled like a serial */
+.ins-serial{font-family:monospace;font-size:11px;background:var(--brand-light);color:var(--brand);padding:2px 8px;border-radius:4px;font-weight:700}
+
+/* ── DASHBOARD ──────────────────────────────── */
+.db-wrap{background:#08090f;border-radius:16px;overflow:hidden;border:1px solid rgba(28,47,204,.2);display:flex;flex-direction:column}
+.db-header{background:linear-gradient(135deg,#0d1a5e,#060c2e);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(28,47,204,.18)}
+.db-header-left{display:flex;align-items:center;gap:8px}
+.db-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.db-title{font-size:12px;font-weight:700;color:#fff;letter-spacing:.04em}
+.db-subtitle{font-size:9px;color:rgba(255,255,255,.28);letter-spacing:.06em}
+.db-header-right{display:flex;align-items:center;gap:6px}
+.db-live-dot{width:6px;height:6px;border-radius:50%;background:#30d158;animation:pulse-dot 2s ease-in-out infinite}
+.db-live-label{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase}
+/* KPI row */
+.db-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);background:#0d1230}
+.db-kpi{padding:16px 18px 14px;cursor:default;transition:background .2s;border-right:1px solid rgba(255,255,255,.05)}
+.db-kpi:last-child{border-right:none}
+.db-kpi:hover{background:#111840}
+.db-kpi-n{font-size:24px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1}
+.db-kpi-l{font-size:9px;color:rgba(255,255,255,.28);margin:4px 0 10px;letter-spacing:.03em}
+.db-kpi-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.db-kpi-fill{height:100%;border-radius:2px;width:0;transition:width 1.8s cubic-bezier(.16,1,.3,1)}
+/* section divider */
+.db-divider{height:1px;background:rgba(255,255,255,.06)}
+/* charts row — equal thirds, no gap between panels */
+.db-charts-row{display:grid;grid-template-columns:1fr 1fr 1fr}
+.db-panel{background:#0d1230;padding:18px 18px 14px;border-right:1px solid rgba(255,255,255,.05)}
+.db-panel:last-child{border-right:none}
+.db-panel.full-width{border-right:none;border-top:1px solid rgba(255,255,255,.05)}
+.db-panel-title{font-size:9px;font-weight:700;color:rgba(255,255,255,.28);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+
+/* ── COLUMN CHART (canvas-style SVG) */
+.db-col-svg-wrap{width:100%;overflow:hidden}
+
+/* ── DONUT */
+.db-donut-wrap{display:flex;align-items:center;gap:16px}
+.db-donut-legend{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.db-dl{display:flex;align-items:center;gap:7px;font-size:10px;color:rgba(255,255,255,.5);white-space:nowrap}
+.db-dl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.db-dl-pct{margin-left:auto;font-weight:700;color:rgba(255,255,255,.85);font-size:10px;padding-left:4px}
+
+/* ── SPARKLINE */
+.db-spark-big{font-size:30px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;margin-top:2px}
+.db-spark-sub{font-size:9px;color:rgba(255,255,255,.28);margin-top:3px}
+.db-spark-axis{display:flex;justify-content:space-between;font-size:8px;color:rgba(255,255,255,.18);margin-top:4px;padding:0 2px}
+.db-trend-badge{font-size:9px;font-weight:600;color:#30d158;background:rgba(48,209,88,.1);padding:3px 9px;border-radius:980px;margin-top:10px;display:inline-block;border:1px solid rgba(48,209,88,.15)}
+
+/* ── HORIZONTAL BAR CHART (fixed layout) */
+.db-hbar-chart{display:flex;flex-direction:column;gap:10px;padding:0 2px}
+.db-hbar-row{display:grid;grid-template-columns:150px 1fr 44px;align-items:center;gap:10px}
+.db-hbar-label{font-size:10px;color:rgba(255,255,255,.45);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.db-hbar-track{background:rgba(255,255,255,.06);border-radius:4px;height:18px;overflow:hidden;position:relative}
+.db-hbar-fill{height:100%;border-radius:4px;width:0;transition:width 1.5s cubic-bezier(.16,1,.3,1)}
+.db-hbar-val{font-size:10px;font-weight:700;color:rgba(255,255,255,.7);text-align:left;white-space:nowrap}
+
+@media(max-width:900px){
+  .db-kpi-row{grid-template-columns:repeat(2,1fr)}
+  .db-charts-row{grid-template-columns:1fr}
+  .db-panel{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
+  .db-hbar-row{grid-template-columns:100px 1fr 40px}
+}
+@media(max-width:600px){
+  .db-hbar-row{grid-template-columns:80px 1fr 36px}
+  .db-hbar-label{font-size:9px}
+}
+
+/* ── DASHBOARD SLIDERS ───────────────────── */
+.db-slider-panel{background:#0a0f28;border-top:1px solid rgba(28,47,204,.18);padding:16px 16px 14px}
+.db-slider-header{font-size:9px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.db-slider-header::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.db-slider-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.db-slider-item{display:flex;flex-direction:column;gap:6px}
+.db-slider-label{font-size:10px;color:rgba(255,255,255,.45);display:flex;justify-content:space-between;align-items:center}
+.db-slider-val{font-size:11px;font-weight:700;color:#fff;min-width:40px;text-align:right}
+.db-range{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:rgba(255,255,255,.1);outline:none;cursor:pointer;transition:background .2s}
+.db-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;background:var(--brand);cursor:pointer;border:2px solid #fff;transition:transform .15s,box-shadow .15s}
+.db-range::-webkit-slider-thumb:hover{transform:scale(1.2);box-shadow:0 0 0 4px rgba(28,47,204,.25)}
+.db-range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--brand);cursor:pointer;border:2px solid #fff}
+/* result readout */
+.db-calc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:12px;border-top:1px solid rgba(255,255,255,.06);padding-top:12px}
+.db-calc-cell{background:rgba(28,47,204,.12);padding:10px 12px;border-radius:8px;text-align:center}
+.db-calc-n{font-size:16px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.db-calc-l{font-size:8px;color:rgba(255,255,255,.35);margin-top:2px;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:768px){.db-slider-grid,.db-calc-row{grid-template-columns:1fr}}
+
+/* ── SURVEYOR CHARACTER ───────────────────── */
+#surveyor{
+  position:fixed;
+  pointer-events:none;
+  z-index:9990;
+  width:80px;
+  height:80px;
+  transform:translate(-50%,-100%);
+  opacity:0;
+  transition:opacity .5s ease;
+  will-change:transform;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.3));
+}
+#surveyor.visible{opacity:1}
+#surveyor svg{width:100%;height:100%;overflow:visible}
+/* wave arm */
+@keyframes surveyorWave{
+  0%,100%{transform:rotate(0deg)}
+  25%{transform:rotate(-28deg)}
+  75%{transform:rotate(8deg)}
+}
+/* bob up-down */
+@keyframes surveyorBob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+/* look left-right */
+@keyframes surveyorLook{
+  0%,40%,100%{transform:translateX(0)}
+  60%,80%{transform:translateX(2px)}
+}
+#surveyor.waving .arm-r{animation:surveyorWave .6s ease-in-out 3}
+#surveyor.bobbing{animation:surveyorBob 1.2s ease-in-out infinite}
+#surveyor .head{animation:surveyorLook 2.8s ease-in-out infinite}
+/* speech bubble */
+#sv-bubble{
+  position:fixed;
+  pointer-events:none;
+  z-index:9991;
+  background:#fff;
+  color:#1d1d1f;
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  font-weight:600;
+  padding:8px 13px;
+  border-radius:12px 12px 12px 3px;
+  box-shadow:0 6px 24px rgba(0,0,0,.2),0 0 0 1px rgba(0,0,0,.06);
+  opacity:0;
+  transform:scale(.8) translateY(4px);
+  transition:opacity .3s ease,transform .3s ease;
+  max-width:200px;
+  white-space:normal;
+  line-height:1.45;
+}
+#sv-bubble.show{opacity:1;transform:scale(1) translateY(0)}
+
+/* ══ M&E ANIMATIONS ══════════════════════════ */
+/* Circuit pulse on section dividers */
+.me-circuit-line{position:relative;overflow:hidden}
+.me-circuit-line::after{content:'';position:absolute;top:50%;left:-100%;width:60px;height:100%;background:linear-gradient(90deg,transparent,rgba(28,47,204,.6),transparent);animation:circuitPulse 4s ease-in-out infinite;transform:translateY(-50%)}
+@keyframes circuitPulse{0%{left:-30%}100%{left:130%}}
+/* Gear spin */
+.me-gear{display:inline-block;animation:gearSpin 8s linear infinite}
+.me-gear-slow{animation:gearSpin 14s linear infinite reverse}
+@keyframes gearSpin{to{transform:rotate(360deg)}}
+/* Electrical bolt flash */
+@keyframes boltFlash{0%,90%,100%{opacity:.15}92%,97%{opacity:1}}
+.bolt-flash{animation:boltFlash 3.5s ease-in-out infinite}
+/* Voltage wave */
+@keyframes voltageWave{0%,100%{stroke-dashoffset:0}50%{stroke-dashoffset:-40}}
+.voltage-line{stroke-dasharray:8 4;animation:voltageWave 2s linear infinite}
+/* Wire glow pulse */
+@keyframes wireGlow{0%,100%{filter:drop-shadow(0 0 2px #1c2fcc)}50%{filter:drop-shadow(0 0 10px #3a50e8) drop-shadow(0 0 20px rgba(28,47,204,.4))}}
+.wire-glow{animation:wireGlow 2.4s ease-in-out infinite}
+
+/* ══ M&E HERO CIRCUIT BACKGROUND ══════════ */
+.hero-circuit{position:absolute;inset:0;pointer-events:none;opacity:.12}
+
+/* ══ ME SECTION BADGE ══════════════════════ */
+.me-anim-badge{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.me-gear-wrap{display:flex;gap:6px;align-items:center}
+
+/* ══ CONTACT SECTION REDESIGN ══════════════ */
+.contact-sec{position:relative;overflow:hidden;background:var(--g50)}
+.contact-sec-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+/* Left panel */
+.ct-left{background:var(--g900);padding:64px 52px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.ct-left-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 20% 80%,rgba(28,47,204,.25) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 80% 10%,rgba(28,47,204,.1) 0%,transparent 55%);pointer-events:none}
+.ct-eyebrow{font-size:10px;font-weight:700;color:#7b8fff;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.ct-heading{font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.1;color:#fff;margin-bottom:16px}
+.ct-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:40px}
+.ct-info{display:flex;flex-direction:column;gap:18px;position:relative;z-index:1}
+.ct-info-item{display:flex;align-items:center;gap:14px}
+.ct-info-icon{width:38px;height:38px;border-radius:10px;background:rgba(28,47,204,.2);border:1px solid rgba(28,47,204,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+.ct-info-item:hover .ct-info-icon{background:rgba(28,47,204,.35)}
+.ct-info-icon svg{width:16px;height:16px;stroke:#7b8fff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ct-info-label{font-size:9px;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.ct-info-val{font-size:13px;font-weight:500;color:rgba(255,255,255,.8)}
+.ct-info-val a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .2s}
+.ct-info-val a:hover{color:#fff}
+/* circuit decorations on left */
+.ct-circuit-svg{position:absolute;right:-10px;bottom:20px;opacity:.1;pointer-events:none}
+/* Right panel */
+.ct-right{background:var(--white);padding:64px 52px;display:flex;flex-direction:column;justify-content:center}
+.ct-form-head{margin-bottom:32px}
+.ct-form-title{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--g800);margin-bottom:6px}
+.ct-form-sub{font-size:13px;font-weight:300;color:var(--g400)}
+/* Step tabs */
+.ct-steps{display:flex;gap:0;margin-bottom:28px;background:var(--g50);border-radius:10px;padding:4px}
+.ct-step{flex:1;font-size:11px;font-weight:600;color:var(--g400);padding:8px 0;text-align:center;border-radius:8px;cursor:pointer;transition:all .2s;letter-spacing:.02em}
+.ct-step.active{background:var(--white);color:var(--brand);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+/* Form inputs - clean light style */
+.ct-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.ct-field label{font-size:11px;font-weight:600;color:var(--g600);letter-spacing:.04em}
+.ct-field input,.ct-field textarea,.ct-field select{background:var(--white);border:1.5px solid var(--g200);border-radius:10px;padding:11px 14px;font-size:14px;font-weight:300;color:var(--g800);font-family:var(--font);transition:border-color .2s,box-shadow .2s;outline:none;resize:none;width:100%}
+.ct-field input::placeholder,.ct-field textarea::placeholder{color:var(--g400)}
+.ct-field input:focus,.ct-field textarea:focus,.ct-field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(28,47,204,.08)}
+.ct-field select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.ct-field textarea{min-height:100px}
+.ct-field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-submit{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:13px 28px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font);width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px}
+.ct-submit:hover{background:var(--brand-h);transform:translateY(-1px);box-shadow:0 6px 24px rgba(28,47,204,.35)}
+.ct-submit svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.ct-submit:hover svg{transform:translateX(3px)}
+.ct-success{display:none;text-align:center;padding:24px 0}
+.ct-success.show{display:block}
+.ct-success-icon{width:56px;height:56px;border-radius:50%;background:rgba(48,209,88,.1);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.ct-success-icon svg{width:24px;height:24px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.ct-success-title{font-size:18px;font-weight:700;color:var(--g800);margin-bottom:6px}
+.ct-success-sub{font-size:13px;color:var(--g400)}
+@media(max-width:860px){
+  .contact-sec-inner{grid-template-columns:1fr}
+  .ct-left{padding:40px 28px}
+  .ct-right{padding:40px 28px}
+  .ct-field-row{grid-template-columns:1fr}
+}
+
+/* ══ CHAT WIDGET ════════════════════════════ */
+#chat-btn{position:fixed;bottom:24px;right:24px;z-index:9000;width:52px;height:52px;border-radius:50%;background:var(--brand);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(28,47,204,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
+#chat-btn:hover{transform:scale(1.08);box-shadow:0 8px 32px rgba(28,47,204,.55)}
+#chat-btn svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:opacity .2s,transform .2s}
+#chat-btn .icon-chat{position:absolute}
+#chat-btn .icon-close{position:absolute;opacity:0;transform:rotate(-90deg)}
+#chat-btn.open .icon-chat{opacity:0;transform:rotate(90deg)}
+#chat-btn.open .icon-close{opacity:1;transform:rotate(0deg)}
+/* notification dot */
+#chat-notif{position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:#ff3b30;border:2px solid var(--white);animation:pulse-dot 2s ease-in-out infinite}
+/* panel */
+#chat-panel{position:fixed;bottom:86px;right:24px;z-index:8999;width:320px;background:var(--white);border-radius:16px;box-shadow:0 16px 56px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.08);border:1px solid var(--g100);transform:scale(.92) translateY(16px);transform-origin:bottom right;opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.16,1,.3,1),opacity .28s ease}
+#chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.cp-head{background:var(--brand);border-radius:16px 16px 0 0;padding:16px 18px;display:flex;align-items:center;gap:12px}
+.cp-head-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cp-head-avatar svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.6}
+.cp-head-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:1px}
+.cp-head-status{font-size:10px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:4px}
+.cp-head-status::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green)}
+.cp-body{padding:16px 18px}
+/* chat messages */
+.cp-msg{margin-bottom:10px}
+.cp-msg-bubble{display:inline-block;max-width:85%;background:var(--g50);border-radius:12px 12px 12px 2px;padding:9px 12px;font-size:12px;color:var(--g800);line-height:1.5;border:1px solid var(--g100)}
+.cp-msg.bot .cp-msg-bubble{background:var(--brand-light);border-color:rgba(28,47,204,.1);color:var(--brand-h)}
+.cp-msg-time{font-size:9px;color:var(--g400);margin-top:3px;padding:0 2px}
+/* quick actions */
+.cp-actions{display:flex;flex-direction:column;gap:7px;margin-top:12px}
+.cp-action{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--g200);border-radius:10px;cursor:pointer;transition:all .18s;text-decoration:none;background:var(--white)}
+.cp-action:hover{border-color:var(--brand);background:var(--brand-light);transform:translateX(2px)}
+.cp-action-icon{width:28px;height:28px;border-radius:7px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .18s}
+.cp-action:hover .cp-action-icon{background:var(--brand)}
+.cp-action-icon svg{width:13px;height:13px;stroke:var(--brand);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s}
+.cp-action:hover .cp-action-icon svg{stroke:#fff}
+.cp-action-label{font-size:12px;font-weight:600;color:var(--g800)}
+.cp-action-sub{font-size:10px;color:var(--g400);margin-top:1px}
+.cp-footer{border-top:1px solid var(--g100);padding:10px 18px;text-align:center;font-size:10px;color:var(--g400)}
+@media(max-width:400px){#chat-panel{width:calc(100vw - 32px);right:16px}#chat-btn{right:16px;bottom:16px}}
+
+/* Scroll offset for fixed nav */
+section[id],div[id]{scroll-margin-top:80px}
+
+/* Ensure contact section fills properly on all screens */
+.contact-sec{display:block}
+.contact-sec-inner{width:100%}
+
+/* Fix nav logo text alignment with bigger logo */
+.nav-logo{align-items:center;gap:12px}
+.nav-logo-text{display:flex;flex-direction:column;justify-content:center}
+
+/* Ensure services grid cards are same height */
+.sgrid{align-items:stretch}
+.sc{display:flex;flex-direction:column}
+.sc-desc{flex:1}
+
+/* Fix dashboard KPI row overflow on small screens */
+@media(max-width:540px){
+  .db-kpi-row{grid-template-columns:1fr 1fr}
+  .db-kpi-n{font-size:18px}
+}
+
+/* Chat panel z-index above surveyor */
+#chat-panel{z-index:9100}
+#chat-btn{z-index:9101}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="data:image/jpeg;base64,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aPXP7+UbFE3G2NgxyMNHpj9yCBkoaCqtrqmaSZjAX9oWta0gOAa4EDwG0c/tKbaKop53sfN9I/tcbBua5jACBk4Bwfxyp1sMLYjC2KNsZBBYGjBz48L6IYhnETOc57o8/H8UEfJPT1ZbQyvkEjnteABtxjvgZH3AcLzw0NDLWS0rKibtIKUU7hkY2OH45zg/gpkRxg5DGgjzx8MfuRscbXF7WNDj4kDlBBuitZbM8xyx7Y3wYzy0AOJOM+JDj4rhK23PFS2WSYNhqzI84GA454PPgSMY+I9VOGmpi3aaeLG7fjYPrev3/FcjDEQQYmHdgnLRzzn9/KCKrpKeZ1TI/tmtY33eQNaCcuwRj9pA/au+S1QvMrw97XSStlx5Nwc4HwJJP3le4QxBznCJgLyC47R3iPDK5oPLSUQpp5pGSHEsm8t2jA8f+5XqREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQf/9k=" alt="Survections Ltd">
+    <div class="nav-logo-text">
+      <span class="name">Survections Ltd</span>
+      
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#me">M&amp;E</a></li>
+    <li><a href="#agents">For Agents</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#accreditation">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#me">M&amp;E Consultancy</a>
+  <a href="#agents">For Agents</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#accreditation">Credentials</a>
+  <a href="#contact">Get in touch</a>
+</div>
+
+<section class="hero" id="home">
+  <div class="h-grid"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <!-- M&E circuit animation in hero -->
+  <svg class="hero-circuit" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="80" x2="180" y2="80" stroke="#1c2fcc" stroke-width="1" class="voltage-line"/>
+    <circle cx="180" cy="80" r="4" fill="none" stroke="#1c2fcc" stroke-width="1.5"/>
+    <line x1="180" y1="80" x2="180" y2="160" stroke="#1c2fcc" stroke-width="1"/>
+    <line x1="180" y1="160" x2="350" y2="160" stroke="#1c2fcc" stroke-width="1" class="voltage-line"/>
+    <circle cx="350" cy="160" r="4" fill="none" stroke="#1c2fcc" stroke-width="1.5"/>
+    <line x1="350" y1="160" x2="350" y2="80" stroke="#1c2fcc" stroke-width="1"/>
+    <line x1="350" y1="80" x2="600" y2="80" stroke="#1c2fcc" stroke-width="1" class="voltage-line" style="animation-delay:.8s"/>
+    <circle cx="600" cy="80" r="4" fill="none" stroke="#1c2fcc" stroke-width="1.5"/>
+    <line x1="600" y1="80" x2="600" y2="240" stroke="#1c2fcc" stroke-width="1"/>
+    <line x1="600" y1="240" x2="750" y2="240" stroke="#1c2fcc" stroke-width="1" class="voltage-line" style="animation-delay:1.4s"/>
+    <line x1="100" y1="300" x2="100" y2="420" stroke="#1c2fcc" stroke-width="1"/>
+    <line x1="100" y1="420" x2="500" y2="420" stroke="#1c2fcc" stroke-width="1" class="voltage-line" style="animation-delay:.4s"/>
+    <circle cx="500" cy="420" r="4" fill="none" stroke="#1c2fcc" stroke-width="1.5"/>
+    <line x1="500" y1="420" x2="500" y2="320" stroke="#1c2fcc" stroke-width="1"/>
+    <line x1="500" y1="320" x2="700" y2="320" stroke="#1c2fcc" stroke-width="1" class="voltage-line" style="animation-delay:1.1s"/>
+    <!-- node dots -->
+    <circle cx="100" cy="300" r="3" fill="#1c2fcc" class="bolt-flash"/>
+    <circle cx="350" cy="80" r="3" fill="#3a50e8" class="bolt-flash" style="animation-delay:.6s"/>
+    <circle cx="700" cy="320" r="3" fill="#1c2fcc" class="bolt-flash" style="animation-delay:1.2s"/>
+    <circle cx="750" cy="240" r="3" fill="#3a50e8" class="bolt-flash" style="animation-delay:.3s"/>
+  </svg>
+  <div class="hero-brand">
+    <img src="data:image/jpeg;base64,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aPXP7+UbFE3G2NgxyMNHpj9yCBkoaCqtrqmaSZjAX9oWta0gOAa4EDwG0c/tKbaKop53sfN9I/tcbBua5jACBk4Bwfxyp1sMLYjC2KNsZBBYGjBz48L6IYhnETOc57o8/H8UEfJPT1ZbQyvkEjnteABtxjvgZH3AcLzw0NDLWS0rKibtIKUU7hkY2OH45zg/gpkRxg5DGgjzx8MfuRscbXF7WNDj4kDlBBuitZbM8xyx7Y3wYzy0AOJOM+JDj4rhK23PFS2WSYNhqzI84GA454PPgSMY+I9VOGmpi3aaeLG7fjYPrev3/FcjDEQQYmHdgnLRzzn9/KCKrpKeZ1TI/tmtY33eQNaCcuwRj9pA/au+S1QvMrw97XSStlx5Nwc4HwJJP3le4QxBznCJgLyC47R3iPDK5oPLSUQpp5pGSHEsm8t2jA8f+5XqREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQf/9k=" alt="Survections Ltd">
+    <span class="hero-brand-name">Survections Ltd</span>
+  </div>
+  <p class="hero-eyebrow">Tetra Tech Europe &middot; Transport for London &middot; UK Government Estates &middot; RBKC</p>
+  <h1 class="hero-title"><span class="line1">Where surveying meets</span><em>digital intelligence.</em></h1>
+  <p class="hero-sub">Accredited M&amp;E surveyor and DEA with a proven track record across London&#39;s most demanding public-sector and commercial estates. Structured data, audit-ready reports, and insight you can build decisions around.</p>
+  <div class="hero-acts">
+    <a href="#contact" class="btn-primary">Get in touch</a>
+    <a href="#services" class="btn-outline">Explore services &darr;</a>
+  </div>
+  <div class="h-bar">
+    <div class="hs"><div class="hs-n counter" data-target="600" data-suffix="+">0</div><div class="hs-l">MEP surveys &middot; Transport for London</div></div>
+    <div class="hs"><div class="hs-n counter" data-target="1000" data-suffix="+">0</div><div class="hs-l">Residential properties assessed</div></div>
+    <div class="hs"><div class="hs-n">24h</div><div class="hs-l">EPC certificate delivery</div></div>
+    <div class="hs"><div class="hs-n">IR35</div><div class="hs-l">Outside IR35 available</div></div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="m-inner">
+    <span class="mi">M&amp;E Condition Surveys</span><span class="mi">Asset Register Creation</span><span class="mi">PPM Reports</span><span class="mi">Lifecycle Costing</span><span class="mi">Power BI Dashboards</span><span class="mi">EPC Certificates</span><span class="mi">2D &amp; 3D Floor Plans</span><span class="mi">Landlord Compliance</span><span class="mi">Portfolio Surveys</span><span class="mi">Data-ready Outputs</span><span class="mi">Outside IR35</span><span class="mi">West &amp; Central London</span>
+    <span class="mi">M&amp;E Condition Surveys</span><span class="mi">Asset Register Creation</span><span class="mi">PPM Reports</span><span class="mi">Lifecycle Costing</span><span class="mi">Power BI Dashboards</span><span class="mi">EPC Certificates</span><span class="mi">2D &amp; 3D Floor Plans</span><span class="mi">Landlord Compliance</span><span class="mi">Portfolio Surveys</span><span class="mi">Data-ready Outputs</span><span class="mi">Outside IR35</span><span class="mi">West &amp; Central London</span>
+  </div>
+</div>
+
+<div class="clients rv">
+  <p class="clients-lbl">Clients &amp; organisations Adam has delivered for</p>
+  <div class="clients-row stagger">
+    <span class="cpill gov">Tetra Tech Europe</span>
+    <span class="cpill gov">Transport for London</span>
+    <span class="cpill gov">UK Government Estates</span>
+    <span class="cpill gov">Royal Borough of Kensington &amp; Chelsea</span>
+    <span class="cpill gov">London Borough of Ealing</span>
+    <span class="cpill">Vinci Facilities</span>
+    <span class="cpill">Plowman Craven</span>
+    <span class="cpill">DocTap Ltd</span>
+    <span class="cpill">The Shard</span>
+    <span class="cpill">Canary Wharf</span>
+  </div>
+</div>
+
+<section class="sec bg-white" id="about">
+  <div class="about-grid">
+    <div class="rv-l">
+      <p class="about-sup">Adam Rodrigo &mdash; Founder</p>
+      <h2 class="about-h">A surveyor with a track record you can verify.</h2>
+      <p class="about-p">I&#39;m an M&amp;E surveyor and accredited Domestic Energy Assessor with a background in some of the most demanding property portfolios in London. I don&#39;t just complete surveys &mdash; I structure data so organisations can actually use it to make long-term asset decisions.</p>
+      <p class="about-p">Currently a Consultant M&amp;E Surveyor at Tetra Tech Europe, I&#39;ve delivered over 600 MEP condition surveys for Transport for London and 1,000+ residential assessments for the Royal Borough of Kensington &amp; Chelsea &mdash; all produced to public-sector audit standard.</p>
+      <div class="usp-box">&ldquo;My surveys are built with future data use in mind. Not one-off reports &mdash; structured intelligence that feeds asset registers, Power BI dashboards, and long-term capital planning.&rdquo;</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-org">Tetra Tech Europe</div>
+            <div class="tl-role">Consultant M&amp;E Surveyor &mdash; public sector &amp; commercial estates</div>
+            <div class="tl-date">January 2026 &ndash; Present</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-org">Survections Ltd (Outside IR35)</div>
+            <div class="tl-role">DEA &amp; Stock Condition Surveyor &mdash; RBKC, 1,000+ properties</div>
+            <div class="tl-date">August 2024 &ndash; Present</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-org">Vinci Facilities</div>
+            <div class="tl-role">Building Surveyor &mdash; 600+ MEP surveys across Transport for London</div>
+            <div class="tl-date">October 2023 &ndash; November 2024</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-org">Plowman Craven</div>
+            <div class="tl-role">Junior Surveyor &mdash; The Shard, London Town Hall, Canary Wharf</div>
+            <div class="tl-date">January 2023 &ndash; September 2023</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-org">DocTap Ltd, Hammersmith</div>
+            <div class="tl-role">Property Audit Manager &mdash; multi-site operations &amp; compliance</div>
+            <div class="tl-date">May 2021 &ndash; November 2022</div>
+            <div class="tl-note">Multi-site property operations, facilities fit-out, COSHH &amp; HSE compliance &mdash; the operational foundation for structured site management that underpins Survections today.</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-pills stagger" style="margin-top:24px">
+        <span class="cp dk">Qualified DEA Assessor</span>
+        <span class="cp dk">Elmhurst Accredited</span>
+        <span class="cp">CSCS Card</span>
+        <span class="cp">RICS Standards</span>
+        <span class="cp">HHSRS &amp; Decent Homes</span>
+        <span class="cp">RdSAP</span>
+        <span class="cp">AutoCAD</span>
+        <span class="cp">Power BI</span>
+        <span class="cp">Kykloud</span>
+        <span class="cp">Python</span>
+      </div>
+    </div>
+    <div class="db-wrap rv-r" id="dashboard">
+
+      <!-- Dashboard header -->
+      <div class="db-header">
+        <div class="db-header-left">
+          <div class="db-logo-dot"></div>
+          <span class="db-title">Survections Analytics</span>
+          <span class="db-subtitle">Survey Intelligence Dashboard</span>
+        </div>
+        <div class="db-header-right">
+          <span class="db-live-dot"></span>
+          <span class="db-live-label">Live data</span>
+        </div>
+      </div>
+
+      <!-- KPI row -->
+      <div class="db-kpi-row">
+        <div class="db-kpi" style="--kc:#1c2fcc">
+          <div class="db-kpi-n" data-count="2300" data-suffix="+">0</div>
+          <div class="db-kpi-l">Total surveys delivered</div>
+          <div class="db-kpi-bar"><div class="db-kpi-fill" data-w="96" style="background:#1c2fcc"></div></div>
+        </div>
+        <div class="db-kpi" style="--kc:#30d158">
+          <div class="db-kpi-n" data-count="600" data-suffix="+">0</div>
+          <div class="db-kpi-l">MEP surveys &middot; TfL</div>
+          <div class="db-kpi-bar"><div class="db-kpi-fill" data-w="60" style="background:#30d158"></div></div>
+        </div>
+        <div class="db-kpi" style="--kc:#ff9f0a">
+          <div class="db-kpi-n" data-count="1000" data-suffix="+">0</div>
+          <div class="db-kpi-l">Residential &middot; RBKC</div>
+          <div class="db-kpi-bar"><div class="db-kpi-fill" data-w="100" style="background:#ff9f0a"></div></div>
+        </div>
+        <div class="db-kpi" style="--kc:#7b8fff">
+          <div class="db-kpi-n">24h</div>
+          <div class="db-kpi-l">EPC turnaround</div>
+          <div class="db-kpi-bar"><div class="db-kpi-fill" data-w="100" style="background:#7b8fff"></div></div>
+        </div>
+      </div>
+
+      <div class="db-divider"></div>
+
+      <!-- Main charts row: SVG column chart | donut | sparkline -->
+      <div class="db-charts-row">
+
+        <!-- SVG column chart -->
+        <div class="db-panel">
+          <div class="db-panel-title">Survey output by year</div>
+          <div class="db-col-svg-wrap">
+            <svg id="colChart" width="100%" viewBox="0 0 200 110" preserveAspectRatio="xMidYMid meet">
+              <!-- axis line -->
+              <line x1="0" y1="96" x2="200" y2="96" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+              <!-- gridlines -->
+              <line x1="0" y1="70" x2="200" y2="70" stroke="rgba(255,255,255,.04)" stroke-width="1" stroke-dasharray="3 3"/>
+              <line x1="0" y1="44" x2="200" y2="44" stroke="rgba(255,255,255,.04)" stroke-width="1" stroke-dasharray="3 3"/>
+              <line x1="0" y1="18" x2="200" y2="18" stroke="rgba(255,255,255,.04)" stroke-width="1" stroke-dasharray="3 3"/>
+              <!-- 2021: M&E=small, EPC=tiny -->
+              <rect class="cbar" data-y="84" data-h="12" x="6"  y="96" width="13" height="0" rx="2" fill="#1c2fcc" opacity=".7"/>
+              <rect class="cbar" data-y="91" data-h="5"  x="21" y="96" width="13" height="0" rx="2" fill="#30d158" opacity=".8"/>
+              <text x="21" y="106" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="7" font-family="Inter,sans-serif">2021</text>
+              <!-- 2022 -->
+              <rect class="cbar" data-y="78" data-h="18" x="46"  y="96" width="13" height="0" rx="2" fill="#1c2fcc" opacity=".75"/>
+              <rect class="cbar" data-y="89" data-h="7"  x="61" y="96" width="13" height="0" rx="2" fill="#30d158" opacity=".8"/>
+              <text x="61" y="106" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="7" font-family="Inter,sans-serif">2022</text>
+              <!-- 2023 -->
+              <rect class="cbar" data-y="63" data-h="33" x="86"  y="96" width="13" height="0" rx="2" fill="#1c2fcc" opacity=".85"/>
+              <rect class="cbar" data-y="75" data-h="21" x="101" y="96" width="13" height="0" rx="2" fill="#30d158" opacity=".85"/>
+              <text x="101" y="106" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="7" font-family="Inter,sans-serif">2023</text>
+              <!-- 2024 -->
+              <rect class="cbar" data-y="42" data-h="54" x="126" y="96" width="13" height="0" rx="2" fill="#1c2fcc"/>
+              <rect class="cbar" data-y="50" data-h="46" x="141" y="96" width="13" height="0" rx="2" fill="#30d158"/>
+              <text x="141" y="106" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="7" font-family="Inter,sans-serif">2024</text>
+              <!-- 2025 -->
+              <rect class="cbar" data-y="18" data-h="78" x="166" y="96" width="13" height="0" rx="2" fill="#3a50e8"/>
+              <rect class="cbar" data-y="34" data-h="62" x="181" y="96" width="13" height="0" rx="2" fill="#22a244"/>
+              <text x="181" y="106" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="7" font-family="Inter,sans-serif">2025</text>
+            </svg>
+          </div>
+          <div style="display:flex;gap:14px;margin-top:6px">
+            <span style="display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,.4)"><span style="width:8px;height:8px;border-radius:2px;background:#3a50e8;display:inline-block;flex-shrink:0"></span>M&amp;E</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,.4)"><span style="width:8px;height:8px;border-radius:2px;background:#30d158;display:inline-block;flex-shrink:0"></span>EPC / Residential</span>
+          </div>
+        </div>
+
+        <!-- Donut -->
+        <div class="db-panel">
+          <div class="db-panel-title">Portfolio mix</div>
+          <div class="db-donut-wrap">
+            <svg width="100" height="100" viewBox="0 0 120 120" style="flex-shrink:0">
+              <circle cx="60" cy="60" r="44" fill="none" stroke="#1a1f3a" stroke-width="20"/>
+              <circle id="d-mep" cx="60" cy="60" r="44" fill="none" stroke="#1c2fcc"
+                stroke-width="20" stroke-dasharray="0 276.5" stroke-dashoffset="0"
+                stroke-linecap="butt" transform="rotate(-90 60 60)"/>
+              <circle id="d-res" cx="60" cy="60" r="44" fill="none" stroke="#30d158"
+                stroke-width="20" stroke-dasharray="0 276.5" stroke-dashoffset="0"
+                stroke-linecap="butt" transform="rotate(-90 60 60)"/>
+              <circle id="d-stk" cx="60" cy="60" r="44" fill="none" stroke="#ff9f0a"
+                stroke-width="20" stroke-dasharray="0 276.5" stroke-dashoffset="0"
+                stroke-linecap="butt" transform="rotate(-90 60 60)"/>
+              <circle id="d-msr" cx="60" cy="60" r="44" fill="none" stroke="#7b8fff"
+                stroke-width="20" stroke-dasharray="0 276.5" stroke-dashoffset="0"
+                stroke-linecap="butt" transform="rotate(-90 60 60)"/>
+              <text id="donut-center-n" x="60" y="55" text-anchor="middle"
+                dominant-baseline="central" fill="#fff" font-size="16" font-weight="700"
+                font-family="Inter,sans-serif">0</text>
+              <text x="60" y="71" text-anchor="middle" fill="rgba(255,255,255,.28)"
+                font-size="8" font-family="Inter,sans-serif">surveys</text>
+            </svg>
+            <div class="db-donut-legend">
+              <div class="db-dl"><div class="db-dl-dot" style="background:#1c2fcc"></div><span>MEP</span><span class="db-dl-pct">38%</span></div>
+              <div class="db-dl"><div class="db-dl-dot" style="background:#30d158"></div><span>Residential</span><span class="db-dl-pct">31%</span></div>
+              <div class="db-dl"><div class="db-dl-dot" style="background:#ff9f0a"></div><span>Stock</span><span class="db-dl-pct">22%</span></div>
+              <div class="db-dl"><div class="db-dl-dot" style="background:#7b8fff"></div><span>Measured</span><span class="db-dl-pct">9%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sparkline -->
+        <div class="db-panel">
+          <div class="db-panel-title">Weekly throughput at peak</div>
+          <div class="db-spark-big">20<span style="font-size:14px;font-weight:400;color:rgba(255,255,255,.35)">&ndash;30</span></div>
+          <div class="db-spark-sub">surveys per week</div>
+          <svg id="sparkline" width="100%" height="48" viewBox="0 0 220 48" style="margin-top:12px;display:block">
+            <defs>
+              <linearGradient id="spark-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1c2fcc" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#1c2fcc" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polyline id="spark-fill" fill="url(#spark-grad)" stroke="none" points=""
+              data-points="10,38 30,32 50,27 70,20 90,16 110,12 130,16 150,10 170,6 190,8 210,4 210,48 10,48"/>
+            <polyline id="spark-line" fill="none" stroke="#3a50e8" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round" points=""
+              data-points="10,38 30,32 50,27 70,20 90,16 110,12 130,16 150,10 170,6 190,8 210,4"/>
+          </svg>
+          <div class="db-spark-axis">
+            <span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span>
+          </div>
+          <div class="db-trend-badge">&#8593; Consistent growth year-on-year</div>
+        </div>
+
+      </div>
+
+      <div class="db-divider"></div>
+
+      <!-- Client coverage: proper grid hbar -->
+      <div class="db-panel full-width" style="padding:18px 18px 16px">
+        <div class="db-panel-title">Client portfolio &middot; survey volume</div>
+        <div class="db-hbar-chart" id="hbarChart">
+          <div class="db-hbar-row">
+            <span class="db-hbar-label">Royal Borough K&amp;C</span>
+            <div class="db-hbar-track"><div class="db-hbar-fill" data-w="90" style="background:linear-gradient(90deg,#1c2fcc,#3a50e8)"></div></div>
+            <span class="db-hbar-val">1,000+</span>
+          </div>
+          <div class="db-hbar-row">
+            <span class="db-hbar-label">Transport for London</span>
+            <div class="db-hbar-track"><div class="db-hbar-fill" data-w="55" style="background:linear-gradient(90deg,#3a50e8,#5b74ff)"></div></div>
+            <span class="db-hbar-val">600+</span>
+          </div>
+          <div class="db-hbar-row">
+            <span class="db-hbar-label">London Bor. Ealing</span>
+            <div class="db-hbar-track"><div class="db-hbar-fill" data-w="55" style="background:linear-gradient(90deg,#30d158,#22a244)"></div></div>
+            <span class="db-hbar-val">600+</span>
+          </div>
+          <div class="db-hbar-row">
+            <span class="db-hbar-label">Plowman Craven</span>
+            <div class="db-hbar-track"><div class="db-hbar-fill" data-w="6" style="background:linear-gradient(90deg,#ff9f0a,#d97706)"></div></div>
+            <span class="db-hbar-val">~60</span>
+          </div>
+          <div class="db-hbar-row">
+            <span class="db-hbar-label">Other / ad-hoc</span>
+            <div class="db-hbar-track"><div class="db-hbar-fill" data-w="4" style="background:linear-gradient(90deg,#7b8fff,#6366f1)"></div></div>
+            <span class="db-hbar-val">~40</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec bg-tinted" id="services">
+  <div class="mw rv">
+    <span class="eyebrow">What we offer</span>
+    <h2 class="sec-h">Two disciplines. One expert.</h2>
+    <p class="sec-p" style="max-width:500px">From a single EPC to a full multi-site M&amp;E condition survey &mdash; every deliverable structured for reuse, not just one-off compliance.</p>
+  </div>
+  <div class="sgrid stagger">
+    <div class="sc">
+      <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="sc-name">EPC Assessment</div>
+      <div style="font-size:10px;font-weight:600;color:var(--brand);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Healthier homes, happier lives.</div>
+      <div class="sc-desc">Accredited domestic energy performance certificates for rentals, sales, and compliance. Lodged same day. Valid 10 years.</div>
+      <div class="sc-price">From &pound;65</div>
+    </div>
+    <div class="sc">
+      <div class="sc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <div class="sc-name">Floor Plans</div>
+      <div class="sc-desc">Professional 2D and 3D floor plans for listings and marketing. Ready for Rightmove, Zoopla, and lettings packs.</div>
+      <div class="sc-price">From &pound;45</div>
+    </div>
+    <div class="sc">
+      <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="sc-name">Compliance Bundle</div>
+      <div class="sc-desc">EPC and floor plan together. One visit, priority booking, combined rate. Best value for landlords and agents.</div>
+      <div class="sc-price">From &pound;95</div>
+    </div>
+    <div class="sc">
+      <div class="sc-tag">Core offering</div>
+      <div class="sc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+      <div class="sc-name">M&amp;E Consultancy</div>
+      <div class="sc-desc">Condition surveys, asset registers, PPM strategies, lifecycle costing, and data-ready outputs built for decisions &mdash; not just filing.</div>
+      <div class="sc-price">Bespoke &mdash; enquire</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bg-dark" id="me" style="position:relative">
+  <div class="me-bg-fx"></div>
+  <div class="mw rv">
+    <div class="me-anim-badge">
+      <div class="me-gear-wrap">
+        <svg class="me-gear" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7b8fff" stroke-width="1.5">
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+        <svg class="me-gear-slow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(123,143,255,.5)" stroke-width="1.5">
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+      </div>
+      <span class="eyebrow" style="color:#7b8fff;margin-bottom:0">M&amp;E Consultancy</span>
+    </div>
+    <h2 class="sec-h wh">Surveying that goes beyond reports &mdash;<br>insight you can act on.</h2>
+    <p class="sec-p wh" style="max-width:500px">Most surveyors compete on price and speed. Survections structures survey data for reuse, comparison, and long-term asset intelligence &mdash; the kind clients actually build strategies around.</p>
+  </div>
+  <div class="me-split">
+    <ul class="flist rv-l">
+      <li class="fitem"><div class="fdot"></div><div><div class="ft">M&amp;E condition surveys</div><div class="fb">Detailed inspection of mechanical and electrical systems &mdash; HVAC, electrical distribution, plumbing, fire. Full written reports produced to Tetra Tech and TfL audit standard.</div></div></li>
+      <li class="fitem"><div class="fdot"></div><div><div class="ft">Asset registers &amp; lifecycle planning</div><div class="fb">M&amp;E asset schedules with condition ratings, remaining useful life, and projected replacement costs. Delivered in Excel, Power BI, or Kykloud.</div></div></li>
+      <li class="fitem"><div class="fdot"></div><div><div class="ft">PPM strategies &amp; cost forecasting</div><div class="fb">Forward maintenance cost models and planned preventative maintenance schedules &mdash; budget-aware, practically written, designed to be actioned.</div></div></li>
+      <li class="fitem"><div class="fdot"></div><div><div class="ft">Portfolio &amp; multi-site surveys</div><div class="fb">Proven high-volume delivery across council and infrastructure portfolios. Scalable with consistent grading and data structure across every site.</div></div></li>
+      <li class="fitem"><div class="fdot"></div><div><div class="ft">Outside IR35 &middot; weekend &amp; ad-hoc</div><div class="fb">Available for contract assignments outside IR35, including weekend and ad-hoc delivery across West and Central London.</div></div></li>
+    </ul>
+    <div class="rv-r">
+      <div class="asset-wrap">
+        <div class="asset-header">
+          <span class="asset-title">M&amp;E Asset Register &mdash; Sample Extract</span>
+          <span class="asset-badge">Live format</span>
+        </div>
+        <div class="asset-table-wrap">
+          <table class="asset-table" id="assetTable">
+            <thead>
+              <tr>
+                <th>Asset</th>
+                <th>Install yr</th>
+                <th>Life exp.</th>
+                <th>REM life</th>
+                <th>Action</th>
+                <th>Qty</th>
+                <th>Cost rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Gas boiler plant</td>
+                <td>2011</td>
+                <td>20 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="30" style="background:#ff9f0a"></div></div>6 yr</td>
+                <td><span class="act-badge act-ri">Repair</span></td>
+                <td>2 no.</td>
+                <td>&pound;1,200/unit</td>
+              </tr>
+              <tr>
+                <td>LTHW pipework</td>
+                <td>2015</td>
+                <td>40 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="75" style="background:#30d158"></div></div>29 yr</td>
+                <td><span class="act-badge act-c">Clean</span></td>
+                <td>1 inst.</td>
+                <td>&pound;450/visit</td>
+              </tr>
+              <tr>
+                <td>Air handling units</td>
+                <td>2008</td>
+                <td>20 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="0" style="background:#ff3b30"></div></div>0 yr</td>
+                <td><span class="act-badge act-rep">Replace</span></td>
+                <td>4 no.</td>
+                <td>&pound;8,500/unit</td>
+              </tr>
+              <tr>
+                <td>Domestic HWS</td>
+                <td>2019</td>
+                <td>15 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="66" style="background:#30d158"></div></div>9 yr</td>
+                <td><span class="act-badge act-c">Clean</span></td>
+                <td>1 no.</td>
+                <td>&pound;280/visit</td>
+              </tr>
+              <tr>
+                <td>Main LV switchboard</td>
+                <td>2005</td>
+                <td>30 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="33" style="background:#ff9f0a"></div></div>10 yr</td>
+                <td><span class="act-badge act-ri">Repair</span></td>
+                <td>1 inst.</td>
+                <td>&pound;3,400</td>
+              </tr>
+              <tr>
+                <td>Emergency lighting</td>
+                <td>2020</td>
+                <td>10 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="50" style="background:#7b8fff"></div></div>5 yr</td>
+                <td><span class="act-badge act-c">Clean</span></td>
+                <td>18 no.</td>
+                <td>&pound;45/unit</td>
+              </tr>
+              <tr>
+                <td>Fire alarm panel</td>
+                <td>2010</td>
+                <td>15 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="0" style="background:#ff3b30"></div></div>0 yr</td>
+                <td><span class="act-badge act-rep">Replace</span></td>
+                <td>1 no.</td>
+                <td>&pound;6,200</td>
+              </tr>
+              <tr>
+                <td>CW pipework (asb.)</td>
+                <td>1972</td>
+                <td>50 yr</td>
+                <td><div class="rem-bar"><div class="rem-fill" data-pct="0" style="background:#ff3b30"></div></div>0 yr</td>
+                <td><span class="act-badge act-rm">Remove</span></td>
+                <td>1 inst.</td>
+                <td>&pound;12,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="asset-footer">
+          <div class="af-stat"><div class="af-n">&pound;54,685</div><div class="af-l">5-yr CAPEX</div></div>
+          <div class="af-stat"><div class="af-n">3</div><div class="af-l">Replace items</div></div>
+          <div class="af-stat"><div class="af-n">4</div><div class="af-l">Clean/repair</div></div>
+          <div class="af-stat"><div class="af-n">1</div><div class="af-l">Remove</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bg-white" id="agents">
+  <div class="mw rv">
+    <span class="eyebrow" style="color:var(--green)">For letting agents</span>
+    <h2 class="sec-h">Built around your workflow.</h2>
+    <p class="sec-p" style="max-width:480px">Fast turnarounds, trade pricing, and zero hassle &mdash; covering West and Central London. You focus on the let, we handle the compliance.</p>
+  </div>
+  <div class="agents-split">
+    <ul class="alist rv-l">
+      <li class="ai"><div class="adot"></div><div><div class="at">24-hour certificate delivery</div><div class="ab">EPC lodged on the national register and emailed the same day as the assessment. Never miss a listing deadline.</div></div></li>
+      <li class="ai"><div class="adot"></div><div><div class="at">Trade account pricing</div><div class="ab">Regular volume? Preferential rates for letting agencies with ongoing requirements. One invoice, one contact.</div></div></li>
+      <li class="ai"><div class="adot"></div><div><div class="at">West &amp; Central London covered</div><div class="ab">Focused coverage with no subcontracting delays, no excuses.</div></div></li>
+      <li class="ai"><div class="adot"></div><div><div class="at">Elmhurst accredited &mdash; audit ready</div><div class="ab">Every certificate compliant, legally valid, produced to RBKC audit standard.</div></div></li>
+      <li class="ai"><div class="adot"></div><div><div class="at">Floor plans in bundle</div><div class="ab">Add a professional 2D floor plan to your EPC order. One visit covers both.</div></div></li>
+    </ul>
+    <div class="rv-r">
+      <div class="cert-card">
+        <div class="cert-topbar">
+          <div class="cert-strip"></div>
+          <div>
+            <div class="cert-ht">Energy Performance Certificate</div>
+            <div class="cert-hs">Elmhurst Energy &middot; Reference 0001-2290-0042-9120</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <div class="crow"><span class="ck">Property</span><span class="cv">14 Example Street, London</span></div>
+          <div class="crow"><span class="ck">Assessor</span><span class="cv">Adam Rodrigo &mdash; Survections Ltd</span></div>
+          <div class="crow"><span class="ck">Valid until</span><span class="cv">March 2035</span></div>
+          <div class="crow"><span class="ck">Lodged</span><span class="cv">24 March 2025</span></div>
+          <div style="margin-top:12px;font-size:10px;color:#86868b;margin-bottom:6px">Energy rating</div>
+          <div class="rbar"><div class="rfill" id="rfill"></div><span class="rl">C &mdash; 72</span><span class="rrt">Current</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bg-tinted" id="how">
+  <div class="mw-sm rv" style="text-align:center">
+    <span class="eyebrow" style="text-align:center">How it works</span>
+    <h2 class="sec-h" style="text-align:center">Book. Survey. Done.</h2>
+    <p class="sec-p" style="text-align:center;margin:0 auto;max-width:400px">Three steps from enquiry to certificate or report. No fuss, no delays.</p>
+  </div>
+  <div class="steps stagger">
+    <div class="step"><div class="step-n">1</div><div class="step-t">Book online</div><div class="step-b">Choose a time. Confirmation within the hour with everything you need.</div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-t">We visit the property</div><div class="step-b">EPC takes 30&ndash;60 min. M&amp;E surveys scoped to site requirements.</div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-t">Receive your deliverable</div><div class="step-b">EPC lodged within 24 hours. M&amp;E reports structured for your asset management system.</div></div>
+  </div>
+</section>
+
+<section class="sec bg-white" id="pricing">
+  <div class="mw-sm rv" style="text-align:center">
+    <span class="eyebrow" style="text-align:center">Transparent pricing</span>
+    <h2 class="sec-h" style="text-align:center">No hidden fees. Ever.</h2>
+  </div>
+  <div class="pgrid stagger">
+    <div class="pcard">
+      <div class="pname">EPC only</div>
+      <div class="pamount"><span class="pfrom">&pound;</span>65</div>
+      <div class="pdesc">Single EPC. Lodged same day. Certificate within 24 hours.</div>
+      <ul class="pfl">
+        <li>Full domestic EPC assessment</li>
+        <li>Lodged on national register</li>
+        <li>Certificate within 24 hours</li>
+        <li>West &amp; Central London</li>
+      </ul>
+      <a href="#contact" class="pbtn pbtn-out">Book now</a>
+    </div>
+    <div class="pcard feat">
+      <div class="feat-badge">Popular</div>
+      <div class="pname">Compliance bundle</div>
+      <div class="pamount"><span class="pfrom">&pound;</span>95</div>
+      <div class="pdesc">EPC + floor plan. Best value for landlords and letting agents.</div>
+      <ul class="pfl">
+        <li>Full EPC assessment</li>
+        <li>Professional 2D floor plan</li>
+        <li>Lodged on national register</li>
+        <li>Certificate within 24 hours</li>
+        <li>Priority booking</li>
+      </ul>
+      <a href="#contact" class="pbtn pbtn-wh">Book now</a>
+    </div>
+    <div class="pcard">
+      <div class="pname">M&amp;E / Trade</div>
+      <div class="pamount" style="font-size:26px;letter-spacing:-.02em;margin-top:6px;line-height:1.2">Portfolio &amp;<br>bespoke</div>
+      <div class="pdesc">Councils, commercial clients, agents. Custom rates, data-ready outputs.</div>
+      <ul class="pfl">
+        <li>M&amp;E condition surveys</li>
+        <li>Asset register creation</li>
+        <li>Power BI / Excel outputs</li>
+        <li>Outside IR35 available</li>
+      </ul>
+      <a href="#contact" class="pbtn pbtn-out">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec bg-tinted" id="accreditation">
+  <div class="mw rv">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <svg class="wire-glow" width="32" height="14" viewBox="0 0 32 14" fill="none">
+        <path d="M1 7 H8 L11 2 L14 12 L17 4 L20 10 L23 7 H31" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="eyebrow" style="margin-bottom:0">Fully insured &amp; accredited</span>
+    </div>
+    <h2 class="sec-h">Every engagement backed by<br>proper professional cover.</h2>
+    <p class="sec-p" style="max-width:520px">Survections Ltd holds current professional indemnity and public liability insurance underwritten by AXA Insurance UK plc, giving clients full confidence on every project.</p>
+  </div>
+  <div class="ins-grid stagger">
+
+    <!-- PI Certificate -->
+    <div class="ins-cert">
+      <div class="ins-cert-ribbon blue"></div>
+      <div class="ins-cert-top">
+        <div class="ins-cert-logo">
+          <span class="ins-cert-issuer">AXA Insurance UK plc</span>
+          <span class="ins-cert-verified">Verified &amp; Active</span>
+        </div>
+        <div class="ins-cert-amount">&pound;250,000</div>
+        <div class="ins-cert-type">Professional Indemnity Insurance</div>
+      </div>
+      <hr class="ins-cert-divider">
+      <div class="ins-cert-rows">
+        <div class="ins-cert-row"><span class="ins-cert-k">Policyholder</span><span class="ins-cert-v">Survections Ltd</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Policy No.</span><span class="ins-cert-v" style="letter-spacing:.05em;color:var(--g400)">Available on request</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Cover period</span><span class="ins-cert-v">03 Sep 2025 &ndash; 02 Sep 2026</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Retroactive date</span><span class="ins-cert-v">03 Sep 2024</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Limit of indemnity</span><span class="ins-cert-v" style="color:var(--brand);font-size:13px">&pound;250,000 each claim</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Occupation</span><span class="ins-cert-v">Surveying practice</span></div>
+      </div>
+      <div class="ins-cert-foot">
+        <div class="ins-cert-seal">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="ins-cert-seal-t">AXA authorised insurer</span>
+        </div>
+        <span class="ins-cert-fca">FCA No. 202312</span>
+      </div>
+    </div>
+
+    <!-- PL Certificate -->
+    <div class="ins-cert">
+      <div class="ins-cert-ribbon green"></div>
+      <div class="ins-cert-top">
+        <div class="ins-cert-logo">
+          <span class="ins-cert-issuer">AXA Insurance UK plc</span>
+          <span class="ins-cert-verified">Verified &amp; Active</span>
+        </div>
+        <div class="ins-cert-amount">&pound;1,000,000</div>
+        <div class="ins-cert-type">Public Liability Insurance</div>
+      </div>
+      <hr class="ins-cert-divider">
+      <div class="ins-cert-rows">
+        <div class="ins-cert-row"><span class="ins-cert-k">Policyholder</span><span class="ins-cert-v">Survections Ltd</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Policy No.</span><span class="ins-cert-v" style="letter-spacing:.05em;color:var(--g400)">Available on request</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Cover period</span><span class="ins-cert-v">03 Sep 2025 &ndash; 02 Sep 2026</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Limit of indemnity</span><span class="ins-cert-v" style="color:#0d7a4e;font-size:13px">&pound;1,000,000 per event</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Occupation</span><span class="ins-cert-v">Surveying practice</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Signed by</span><span class="ins-cert-v">Tara Foley, CEO AXA UK</span></div>
+      </div>
+      <div class="ins-cert-foot">
+        <div class="ins-cert-seal">
+          <svg viewBox="0 0 24 24" style="stroke:#0d7a4e"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="ins-cert-seal-t" style="color:#0d7a4e">AXA authorised insurer</span>
+        </div>
+        <span class="ins-cert-fca">Reg. No. 78950</span>
+      </div>
+    </div>
+
+    <!-- DEA Certificate -->
+    <div class="ins-cert">
+      <div class="ins-cert-ribbon amber"></div>
+      <div class="ins-cert-top">
+        <div class="ins-cert-logo">
+          <span class="ins-cert-issuer">ABBE Quality Accredited</span>
+          <span class="ins-cert-verified" style="background:rgba(255,159,10,.1);color:#b45309">
+            <span style="background:var(--amber);width:6px;height:6px;border-radius:50%;display:inline-block;animation:pulse-dot 2s infinite"></span>
+            Qualified
+          </span>
+        </div>
+        <div class="ins-cert-amount" style="font-size:28px">Adam Rodrigo</div>
+        <div class="ins-cert-type" style="color:#b45309">Domestic Energy Assessor &mdash; DEA</div>
+      </div>
+      <hr class="ins-cert-divider">
+      <div class="ins-cert-rows">
+        <div class="ins-cert-row"><span class="ins-cert-k">Qualification</span><span class="ins-cert-v">Certificate of Unit Achievement</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Reg. No.</span><span class="ins-serial" style="background:rgba(255,159,10,.1);color:#b45309">0000060456</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Issued</span><span class="ins-cert-v">30 January 2025</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Accreditation body</span><span class="ins-cert-v">Elmhurst Energy</span></div>
+        <div class="ins-cert-row"><span class="ins-cert-k">Signed by</span><span class="ins-cert-v">Edith Devoy, CEO ABBE</span></div>
+      </div>
+      <div class="ins-cert-foot">
+        <div class="ins-cert-seal">
+          <svg viewBox="0 0 24 24" style="stroke:#b45309"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <span class="ins-cert-seal-t" style="color:#b45309">ABBE accredited qualification</span>
+        </div>
+        <span class="ins-cert-fca">Unit refs: H/503/8162 &amp; J/504/0924</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="co-banner rv">
+  <div class="co-inner">
+    <div class="co-left">
+      <div class="co-shield"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+      <div>
+        <div class="co-name">Survections Ltd</div>
+        <div class="co-reg">Registered in England &amp; Wales &middot; Company No. 15926055 &middot; VAT registered</div>
+      </div>
+    </div>
+    <div class="co-badges">
+      <span class="co-pill hi">PI Insured &pound;250k</span>
+      <span class="co-pill hi">PL Insured &pound;1m</span>
+      <span class="co-pill">Elmhurst DEA Accredited</span>
+      <span class="co-pill">ABBE Certified</span>
+      <span class="co-pill">AXA Underwritten</span>
+      <span class="co-pill">Outside IR35</span>
+      <span class="co-pill">CSCS &middot; RICS Standards</span>
+    </div>
+  </div>
+</div>
+
+<div class="trust bg-tinted rv">
+  <p class="trust-lbl">Why clients choose Survections</p>
+  <div class="tbadges stagger">
+    <div class="tb"><div class="bdot" style="background:var(--green)"></div>Elmhurst DEA Accredited</div>
+    <div class="tb"><div class="bdot" style="background:var(--brand)"></div>PI Insured &pound;250k &middot; AXA</div>
+    <div class="tb"><div class="bdot" style="background:var(--green)"></div>PL Insured &pound;1m &middot; AXA</div>
+    <div class="tb"><div class="bdot" style="background:var(--brand)"></div>Tetra Tech M&amp;E Surveyor</div>
+    <div class="tb"><div class="bdot" style="background:var(--amber)"></div>TfL &amp; UK Gov track record</div>
+    <div class="tb"><div class="bdot" style="background:#bf5af2"></div>CSCS &middot; RICS Standards</div>
+    <div class="tb"><div class="bdot" style="background:var(--green)"></div>Outside IR35 available</div>
+    <div class="tb"><div class="bdot" style="background:var(--brand)"></div>ABBE Certified DEA</div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT SECTION ═══ -->
+<section class="contact-sec" id="contact">
+  <div class="contact-sec-inner rv">
+
+    <!-- Left info panel -->
+    <div class="ct-left">
+      <div class="ct-left-bg"></div>
+      <!-- Decorative circuit SVG -->
+      <svg class="ct-circuit-svg" width="180" height="200" viewBox="0 0 180 200" fill="none">
+        <line x1="20" y1="0" x2="20" y2="80" stroke="#1c2fcc" stroke-width="1" class="voltage-line"/>
+        <line x1="20" y1="80" x2="100" y2="80" stroke="#1c2fcc" stroke-width="1"/>
+        <circle cx="100" cy="80" r="5" fill="none" stroke="#1c2fcc" stroke-width="1.5" class="bolt-flash"/>
+        <line x1="100" y1="80" x2="100" y2="160" stroke="#1c2fcc" stroke-width="1" class="voltage-line" style="animation-delay:.6s"/>
+        <line x1="100" y1="160" x2="160" y2="160" stroke="#1c2fcc" stroke-width="1"/>
+        <circle cx="160" cy="160" r="4" fill="#1c2fcc" class="bolt-flash" style="animation-delay:.3s"/>
+        <line x1="60" y1="20" x2="140" y2="20" stroke="#3a50e8" stroke-width="1" class="voltage-line" style="animation-delay:.9s"/>
+        <circle cx="60" cy="20" r="3" fill="#3a50e8" class="bolt-flash" style="animation-delay:1.1s"/>
+        <!-- ECG-style wave -->
+        <path d="M10 130 H40 L45 118 L50 145 L55 122 L60 135 H90" stroke="#1c2fcc" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="wire-glow"/>
+      </svg>
+      <div style="position:relative;z-index:1">
+        <p class="ct-eyebrow">Get in touch</p>
+        <h2 class="ct-heading">Let&rsquo;s talk about your project.</h2>
+        <p class="ct-sub">EPC, floor plan, or full M&amp;E survey &mdash; Adam responds within one working day. No automated replies.</p>
+      </div>
+      <div class="ct-info" style="position:relative;z-index:1">
+        <div class="ct-info-item">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="ct-info-label">Email</div><div class="ct-info-val"><a href="/cdn-cgi/l/email-protection#cdaca9aca08dbeb8bfbba8aeb9a4a2a3bee3aea2a0"><span class="__cf_email__" data-cfemail="48292c2925083b3d3a3e2d2b3c2127263b662b2725">[email&#160;protected]</span></a></div></div>
+        </div>
+        <div class="ct-info-item">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="ct-info-label">Phone</div><div class="ct-info-val"><a href="tel:07483341559">07483 341 559</a></div></div>
+        </div>
+        <div class="ct-info-item">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ct-info-label">Coverage</div><div class="ct-info-val">West &amp; Central London</div></div>
+        </div>
+        <div class="ct-info-item">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="ct-info-label">Response time</div><div class="ct-info-val">Within one working day</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="ct-right">
+      <div class="ct-form-head">
+        <div class="ct-form-title">Send a message</div>
+        <div class="ct-form-sub">Fill in your details and Adam will be in touch.</div>
+      </div>
+      <div id="ct-form-body">
+        <form id="contactForm" action="https://formsubmit.co/adam@survections.com" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New enquiry - Survections Ltd">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
+          <div class="ct-field-row">
+            <div class="ct-field"><label for="f-name">Full name *</label><input type="text" id="f-name" name="name" placeholder="John Smith" required></div>
+            <div class="ct-field"><label for="f-email">Email address *</label><input type="email" id="f-email" name="email" placeholder="john@example.com" required></div>
+          </div>
+          <div class="ct-field-row">
+            <div class="ct-field"><label for="f-phone">Phone</label><input type="tel" id="f-phone" name="phone" placeholder="07700 000 000"></div>
+            <div class="ct-field">
+              <label for="f-service">Service *</label>
+              <select id="f-service" name="service" required>
+                <option value="" disabled selected>Select&hellip;</option>
+                <option>EPC Assessment</option>
+                <option>Floor Plan</option>
+                <option>Compliance Bundle (EPC + Floor Plan)</option>
+                <option>M&amp;E Condition Survey</option>
+                <option>Asset Register / Lifecycle Planning</option>
+                <option>PPM Strategy</option>
+                <option>Trade Account Enquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="ct-field"><label for="f-msg">Message *</label><textarea id="f-msg" name="message" placeholder="Tell us about your property, preferred dates, and any specific requirements&hellip;" required></textarea></div>
+          <button type="submit" class="ct-submit">
+            Send message
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </form>
+        <div class="ct-success" id="ctSuccess">
+          <div class="ct-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ct-success-title">Message sent!</div>
+          <div class="ct-success-sub">Adam will respond within one working day.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-logo">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADcANwDASIAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAUHBggCAwQBCf/EAEYQAAEDAwMBBQMHCAYLAAAAAAEAAgMEBREGEiEHEyIxQVEIFGEVFiMyN3GRFzNCdYGxtNMnVGJydqE0VVaGkpWWwdHS8f/EABsBAQACAwEBAAAAAAAAAAAAAAACAwEEBQYH/8QAMhEBAAEDAgIHBwMFAAAAAAAAAAECAxEEMRIhBRMyQVFhcQY0gaGx0fAicpEUI2LB4f/aAAwDAQACEQMRAD8A3LREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQYV1r1XddGaAqL5ZaaiqK8VdLTQsrN3ZZmnZFl20g4G/PHosLr9X9VLfXSUNfqXotSVcX5yCe41LJGcZ5aTkcc/cpj2ofsmk/XFr/joFpz7UoafaR1XkNPfZ4gf1Ri6vRHR1Ovu1W6qsYjPzj7qbtzq4y2l+f3Ub/bLob/zao/8AZfTrzqQDg6w6HDjPN2qPD8V+foazjus/ALONN2m1y22OvqKWnrJnDsjHKHFrA2FpaMM53OJOCeOF3b3sxZtU5m5P8R91FOpmqdm5Xz96j7S7549DsDxPytUf+Ubr3qO5wa3WPQ4knAAu1Rz/AJrRW/0VJQ1FbT020xh8Lg04JYS1xLc/AnH7FHW9rPf6bus/Os8h6hTo9lrVdPFFyf4J1UxOMN+arqH1NtYs1yq6rpreLPW3yktM77LU1M0kbp5A04JO0EA5wfUcK81pB0LAHQi14AH9J9s8P70C3fXlddp402oqtROcS2rdXFTEiIi1ExERAREQEREBERAREQEREBERAREQEREFXe1D9k0n64tf8dAtQPahqahntG6qYyeRrQ9mAHcf6Ixbf+1D9k0n64tf8dAtRPaZbRSe0pqeOofNCHSxh8mQWtHurOcYyvS+y/vNf7Z+sNXVdmPVUIravGfepv8AjK2J0pTWvQugtMXvVLJN92rKeadrj9IISWgNz5DYC4/Aqq9JaOttXqehguNY+O2Md29fM4jbFTsG5x4HeyOBjg5GCVM+0J1Ht2v9S03ydRVdHZ6KEMo4S5oLmkDDiMcd3Ax5L0utp/rblFijs71T9I+Mte3/AG4mqd057WGm3ac11U3W1vMdrvJjqIRFxG1+Hbw0DgA8OH3qm6Csq/f6ce8y/nW/pH1CuCTV1B1H6VQaSr4qht8ssLX0c8j2n3kMB7oPk7YMeHOFWUVroaZ8NRJUTB3bMDGd3LnbhkDjy8z5eeCcKzo+5VbtdRe7VPL1jun4wxcpzPFTsvXojLJL0KtTpZHPI6n2wZcc/pQLdxaR9Eey/IXauxEgb+U+2fXIJzug9Fu4vCdM+/XPVvWexAiIuYtEREBERAREQEREBERAREQEREBERAREQVd7UP2TSfri1/x0C1B9qGlqH+0bqqRkeWl7MHcP6oz4rb72ofsmk/XFr/joFp97TTaaT2nNTR1U7IYXTRCV/iWt91Zk4+5em9l+Wpr/AGz9Ya2p7MMXtr6u06Xp6Kp3bri4vwXN+ihae6D57XOyePDxHxjLvYqmomE1HHvIaGvYCAGgNHOfDGMHj1yPQRWo7pHdbvLVMayKABsdPFkfRxNGGN/AfiSpO2ai+TnR09QO3pxBGWBjwHs7oOAfIZyf7JO4DPj7GmzXR+uneecx+eDTmYnlKVt1G7T9Gathe6dj2klpALnjkNGf/gBz44Cjr5S1FRqOnrooyaepdHLGNzcMyRuZ4+TsqJuNxluUdRUVD4gd8YYxpAZG3vna0eQ5J+JJJ5K77VWUs1vjoKmRjZaepZNSuJzkFwD2fDPBH3FOpqpq6yec7T6T9vuZzGF/9EoZIehdqbK3aT1Pth8Qf0oPRbtrR/oVt/ITa9paf6T7Z4f3oFvAvnfTPv131dCz2IERFzFoiIgIiICIiAiIgIiICIiAiIgIiICJkIgw3rLpKv1toOosNsr6egrHVNNUxT1ERkja6Gdkoy0EEg7MeKxCp0h1hqah1RUX3ptNM/60kmmZXOPGOSZs+CuFFmKpjYwpn5j9Wf8AW3TL/paT+ch0R1aPjd+mR/3Wk/nK5kUusq8WMQpn5kdWsY+V+mWP8LSfzkGiOrQORd+mQP8AhaT+crmROsq8TEKTrem/U28S2alvOo9Fx2qgvNLdJIbbY5ad8joJA8AO7UgZxjwV2ImQozMzuyIiLAIiZCAiIgIiICIiAiIgIiICwDrlFq6bTNCNKi5vY24xOusVqnZDXSUYDt7YHvIAfu2eYJAIBBWfrH9daRtesLZT0dxlraaSlqWVdJVUU5hnppm5Aexw88EjBBBB5Cu09cW7tNVW0fFiqMwpm7alq6LoJqypsestTz11vutNE1t3hMFytgfUQZp5HHl/dcSHnOWuxkqxNVXW5QdctDWqCuqI6Cst91fU07XkRyujEGwuHmW7nY9Mle2g6Z6XptK3rT1cK27w32QvulTcKkyVFW8hrWuc8YwWhrQ3aAG7RhfNHdP7Lp6/G9yXq9326R0vu0NTd7h7w+mgJBLWcANBLRlxBJwMlb1eo085mP8ALujnxUxHynM/9QimpRvSjVWoLpdtJwWrUWs7hqWquc013p7i9zra62MqJI5ZGF4wS0BjWmMk7+D5qwL1rm49P7v1IobtWVFcYaRl80+2dxe57Z/oPd2/2W1IaAPIShZZb+melbRR6ajpaitp36bq5qigqfeQJfp3OdLE92MOjeXnLcDwHPC92s9A6Z1bqGw3y8Ryvq7HP21N2cu1rzuY4NkGO+0PjY4D1arbus01y9maf0znu575j5cvLM7oxRVEeaqNdnUtgremWmbpetb3KWa11zrsLFVH3uqqGNhduJyMta57/PgELJr9Pd7rqrSPTqhvt/sVvqLJLdK6rfMBcp2xujY2AynOx+ZNz3DvcYBHist1voi06uvFou777d7XcLYyeOkntdY2J+2Xb2gOWuz9Rv3LlqHQFmvtptNHcLjdjcLRzRXeKsMdfE4tw53atAyXD6wI2u8woRq7U00Z3jOeXfMzicbcsx+QzwzzdGn9HXW1xXiz1Gub1crTWwD3VtTNmvonHIeWVI7zmnjG4ZaR4lYX0doLiZtc3Gs1Zqe4Ps16rrXSRVlzdLEImRRuaS0jl4Lj3ln2hdFWLS89bcqWtr7rc7iGiqudxq/eKiZjPqs3cBrG5OGtAC9Vg0zZLFFf4qOeXF5uEtfWdpMDtlma1rg3jujDRgKmdTERXGc5x3RHr+d/ezw7Kg0tqHU2qdOdLdJv1Jcrcb7Y5bldbpDIPfKgQhg7KORwO1zjJuc4DdhvGM5WQQVN70V1BqdHM1Jdb3a7jp6ruVM64z9tVUE0LmtP0uA50bw8Y3ZIc3grKanpfpiTRti00H3CnZYGtbaq+CrMVZSuA27mStA5IOCMYI8Qu7THT6w2J9zrHV1zutzuVN7vVXO51nb1LoBnEbXYDWMGScNAGeTlXV6qxMTjbnyxG8zMxOfKPpjYimVE2nqNrCk6KW216gvdS2/1QtVytd0bKWyV9FNVwtlYXeckZeWPHmxzHeZWX9YJ9UW7Wd6ud6vGtrPpmKmgdaLpp4NmpqBzWkzPrIB3njdzkgt2+nis5unSvRV10bpzStW2aWl086Ca2zCcdvH2WMHdjkEDDuMHj0Caw6Y6a1JerhcZrxe7cbpEylu1Pb7kYYbgxoLWslbg/okt7paS04Vsa3TTc4ojGZnPLxmNvDlHnHOYxiUeCrDKqurL9HS11NWtqC63uljqohtEn0eQ9vpnxCxLpgys1f0G018qXq7R1lfaaaWeupqsx1Rfhri7tByCcc+oJWbut9E2zm0xsbBSCn7BscZ27I9u0AemBwFjXT3RFv0LRto6LUd9raCKBlPT01xrWyxU7GHDQwBrceniVzqblEW6oicTmJj5rMTlWOiHXmm6Bay1jJqzUtZdY6K8wwuq7i6VsPu8szYnsaR3XgRt733r1tffdEWXQ2qqXV1/u0d5rbdQ3K3XWrFSyUVQAL4iRuY9rjuwDggEEKybboawUug7nomnlqn22vFWypzMDKPeXPdJh2OOZHY4448VHab6VWK0XK219Xdb/fZLU0C2suteZoqMhu0OjjAa3cG8BxBI8sLdnWWaprmdpmeWN4xyjy/0hwTyZ6ERFyFoiIgIiICIiAiIgIiIOmspmVUQjkLgA9r+6cHIOfH9i8Qs0PYzQdrJ2c0LIXjjJa0Y/wAxwVJogh6mCnpWSRyOlmAijeQWtydjgAcnz8FympaWmqWOd226eUHOctB37x48Dk448fvUo6NjjlzGuyMcjyXySKORzXPjY4sOWkjOD6hBB08NDFLbo5HytkZJIyEOI52nnOD6jj44XJvuNwkFU0VBFQXR8OGBiMg8Zx4E/HPCmuyiyD2TMjkHaPXP7+UbFE3G2NgxyMNHpj9yCBkoaCqtrqmaSZjAX9oWta0gOAa4EDwG0c/tKbaKop53sfN9I/tcbBua5jACBk4Bwfxyp1sMLYjC2KNsZBBYGjBz48L6IYhnETOc57o8/H8UEfJPT1ZbQyvkEjnteABtxjvgZH3AcLzw0NDLWS0rKibtIKUU7hkY2OH45zg/gpkRxg5DGgjzx8MfuRscbXF7WNDj4kDlBBuitZbM8xyx7Y3wYzy0AOJOM+JDj4rhK23PFS2WSYNhqzI84GA454PPgSMY+I9VOGmpi3aaeLG7fjYPrev3/FcjDEQQYmHdgnLRzzn9/KCKrpKeZ1TI/tmtY33eQNaCcuwRj9pA/au+S1QvMrw97XSStlx5Nwc4HwJJP3le4QxBznCJgLyC47R3iPDK5oPLSUQpp5pGSHEsm8t2jA8f+5XqREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQf/9k=" alt="Survections Ltd">
+        <span class="foot-brand">Survections Ltd</span>
+      </div>
+      <div class="foot-tag">M&amp;E consultancy, EPC assessments &amp; floor plans across London.</div>
+      <div class="foot-contact">
+        <a href="/cdn-cgi/l/email-protection#ceafaaafa38ebdbbbcb8abadbaa7a1a0bde0ada1a3"><span class="__cf_email__" data-cfemail="244540454964575156524147504d4b4a570a474b49">[email&#160;protected]</span></a>
+        <a href="tel:07483341559">07483 341 559</a>
+      </div>
+    </div>
+    <div class="foot-links">
+      <div class="fcol">
+        <h4>Services</h4>
+        <a href="#services">EPC Assessments</a>
+        <a href="#services">Floor Plans</a>
+        <a href="#services">Compliance Bundles</a>
+        <a href="#me">M&amp;E Consultancy</a>
+        <a href="#agents">Trade Accounts</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="#about">About Adam</a>
+        <a href="#accreditation">Insurance &amp; Credentials</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <h4>Coverage</h4>
+        <a href="#">West London</a>
+        <a href="#">Central London</a>
+        <a href="#contact">Other areas &mdash; enquire</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span class="fc">Copyright &copy; 2025 Survections Ltd. All rights reserved. Registered in England &amp; Wales &middot; Company No. 15926055.</span>
+    <span class="fc">The information on this website is for general guidance only and does not constitute professional advice. Survections Ltd accepts no liability for reliance on any content herein. All surveys and reports are subject to our standard terms and conditions. Named organisations represent prior professional experience and are not affiliates or endorsers of Survections Ltd.</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// CURSOR
+var cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+if(window.innerWidth>768&&cur){
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px'}requestAnimationFrame(loop)})();
+}
+
+// NAV
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>40)},{passive:true});
+
+// HAMBURGER
+var hbtn=document.getElementById('hamburger'),mmenu=document.getElementById('mobile-menu');
+hbtn.addEventListener('click',function(){hbtn.classList.toggle('open');mmenu.classList.toggle('open')});
+mmenu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbtn.classList.remove('open');mmenu.classList.remove('open')})});
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+// REVEAL
+var revObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}});
+},{threshold:.07});
+document.querySelectorAll('.rv,.rv-l,.rv-r,.stagger').forEach(function(el){revObs.observe(el)});
+
+// COUNTERS
+var cObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var el=e.target,target=+el.dataset.target,suf=el.dataset.suffix||'';
+    var v=0,dur=1600,step=14;
+    var t=setInterval(function(){
+      v+=target/(dur/step);
+      if(v>=target){el.textContent=(target>=1000?(target/1000).toFixed(0)+'k':target)+suf;clearInterval(t)}
+      else{var n=Math.floor(v);el.textContent=(n>=1000?(n/1000).toFixed(1)+'k':n)+suf}
+    },step);
+    cObs.unobserve(el);
+  });
+},{threshold:.3});
+document.querySelectorAll('.counter').forEach(function(el){cObs.observe(el)});
+
+// EPC BAR
+var rfill=document.getElementById('rfill');
+if(rfill){
+  new IntersectionObserver(function(entries){if(entries[0].isIntersecting)rfill.classList.add('ani')},{threshold:.5}).observe(rfill);
+}
+
+// ORB PARALLAX
+document.addEventListener('mousemove',function(e){
+  var x=(e.clientX/window.innerWidth-.5)*28,y=(e.clientY/window.innerHeight-.5)*28;
+  document.querySelectorAll('.orb').forEach(function(o,i){o.style.transform='translate('+(x*(i+1)*.3)+'px,'+(y*(i+1)*.3)+'px)'});
+});
+
+// FORM VALIDATION
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  var name=document.getElementById('f-name').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var service=document.getElementById('f-service').value;
+  var msg=document.getElementById('f-msg').value.trim();
+  if(!name||!email||!service||!msg){e.preventDefault();alert('Please fill in all required fields.')}
+  else{var btn=this.querySelector('.form-submit');btn.textContent='Sending...';btn.disabled=true}
+});
+
+// ── DASHBOARD ANIMATIONS
+var dbObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    dbObs.unobserve(e.target);
+    var db = e.target;
+
+    // KPI counter + fill bars
+    db.querySelectorAll('.db-kpi').forEach(function(kpi,i){
+      var num = kpi.querySelector('.db-kpi-n');
+      var fill = kpi.querySelector('.db-kpi-fill');
+      if(num && num.dataset.count){
+        var target = +num.dataset.count, suf = num.dataset.suffix||'', v = 0;
+        var t = setInterval(function(){
+          v += target/114;
+          if(v>=target){num.textContent=(target>=1000?(target/1000).toFixed(0)+'k':target)+suf;clearInterval(t);}
+          else{var n=Math.floor(v);num.textContent=(n>=1000?(n/1000).toFixed(1)+'k':n)+suf;}
+        },14);
+      }
+      if(fill) setTimeout(function(){fill.style.width=fill.dataset.w+'%';},i*80+50);
+    });
+
+    // SVG column bars: animate height from bottom by adjusting y + height
+    setTimeout(function(){
+      db.querySelectorAll('.cbar').forEach(function(bar,i){
+        setTimeout(function(){
+          bar.setAttribute('y', bar.dataset.y);
+          bar.setAttribute('height', bar.dataset.h);
+        }, i * 60);
+      });
+    }, 200);
+
+    // Donut
+    setTimeout(function(){
+      var circ = 2*Math.PI*44; // r=44, circumference ~276.5
+      var segs = [
+        {id:'d-mep',pct:.38},{id:'d-res',pct:.31},{id:'d-stk',pct:.22},{id:'d-msr',pct:.09}
+      ];
+      var cum = 0;
+      segs.forEach(function(s){
+        var el = document.getElementById(s.id);
+        if(!el) return;
+        el.style.transition = 'stroke-dasharray 1.4s cubic-bezier(.16,1,.3,1)';
+        el.style.strokeDashoffset = -(cum * circ);
+        setTimeout(function(){
+          el.style.strokeDasharray = (s.pct*circ)+' '+circ;
+        },50);
+        cum += s.pct;
+      });
+      // count up
+      var tot=2300,cv=0;
+      var tc=setInterval(function(){
+        cv+=tot/114;
+        if(cv>=tot){document.getElementById('donut-center-n').textContent='2.3k+';clearInterval(tc);}
+        else{var n=Math.floor(cv);document.getElementById('donut-center-n').textContent=n>=1000?(n/1000).toFixed(1)+'k':n;}
+      },14);
+    },300);
+
+    // Sparkline
+    setTimeout(function(){
+      ['spark-line','spark-fill'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(el) el.setAttribute('points',el.dataset.points);
+      });
+    },400);
+
+    // Horizontal bars
+    setTimeout(function(){
+      db.querySelectorAll('.db-hbar-fill').forEach(function(bar,i){
+        setTimeout(function(){ bar.style.width = bar.dataset.w + '%'; }, i * 120);
+      });
+    }, 200);
+
+    // REM life bars in asset table
+    db.querySelectorAll('.rem-fill').forEach(function(bar,i){
+      setTimeout(function(){bar.style.width=bar.dataset.pct+'%';},i*80+300);
+    });
+
+  });
+},{threshold:0.15});
+
+// Observe dashboard wrapper and asset table
+var dbEl = document.getElementById('dashboard');
+if(dbEl) dbObs.observe(dbEl);
+var assetEl = document.getElementById('assetTable');
+if(assetEl) dbObs.observe(assetEl);
+
+
+// ── INTERACTIVE ESTIMATOR SLIDERS
+(function(){
+  var types = ['EPC','EPC + Stocks','M&E Survey'];
+  var baseRates = [65, 95, 280]; // per unit
+  var fpAddon = 45;
+  var dailyCap = [18, 12, 4]; // surveys per day per type
+
+  function update(){
+    var props = +document.getElementById('sl-props').value;
+    var typeIdx = +document.getElementById('sl-type').value;
+    var fp = +document.getElementById('sl-fp').value;
+
+    document.getElementById('sv-props').textContent = props;
+    document.getElementById('sv-type').textContent = types[typeIdx];
+    document.getElementById('sv-fp').textContent = fp ? 'Yes' : 'No';
+
+    // style the range tracks with fill
+    ['sl-props','sl-type','sl-fp'].forEach(function(id){
+      var el = document.getElementById(id);
+      var pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+      el.style.background = 'linear-gradient(90deg, #1c2fcc ' + pct + '%, rgba(255,255,255,.1) ' + pct + '%)';
+    });
+
+    var unitCost = baseRates[typeIdx] + (fp ? fpAddon : 0);
+    var totalCost = props * unitCost;
+    var days = Math.max(1, Math.ceil(props / dailyCap[typeIdx]));
+
+    // bundle saving: compare total vs if bought EPC + floor plan separately
+    var separate = props * (baseRates[0] + (fp ? fpAddon : 0));
+    var saving = typeIdx === 1 ? Math.round((1 - (props * 95) / separate) * 100) : 0;
+
+    // format cost
+    var costStr = totalCost >= 1000
+      ? '\u00a3' + (totalCost/1000).toFixed(1) + 'k'
+      : '\u00a3' + totalCost;
+
+    var timeStr = days === 1 ? '1 day' : days + ' days';
+
+    document.getElementById('calc-cost').textContent = costStr;
+    document.getElementById('calc-time').textContent = timeStr;
+    document.getElementById('calc-save').textContent = typeIdx === 1 ? saving + '%' : 'N/A';
+  }
+
+  ['sl-props','sl-type','sl-fp'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.addEventListener('input', update); }
+  });
+  // init track fill
+  setTimeout(update, 100);
+})();
+
+
+// ── SURVEYOR CHARACTER
+(function(){
+  var sv = document.getElementById('surveyor');
+  var bubble = document.getElementById('sv-bubble');
+  if(!sv) return;
+
+  var mx = window.innerWidth/2, my = window.innerHeight/2;
+  var svx = mx, svy = my;
+  var visible = false;
+  var bobTimer = null, hideTimer = null, quoteTimer = null;
+  var lastShown = 0;
+  var minInterval = 12000; // min 12s between appearances
+  var chasing = false;
+  var chaseStart = 0;
+  var chaseDuration = 0;
+
+  var quotes = [
+    "Let me survey that for you.",
+    "EPC sorted in 24 hours!",
+    "Need an M&E report?",
+    "Certified. Insured. Ready.",
+    "No defects found here.",
+    "Remaining life: excellent.",
+    "That wall looks load-bearing.",
+    "I've got my clipboard.",
+    "Condition rating: A+",
+    "Power BI dashboard incoming.",
+    "Have you booked your EPC?",
+  ];
+
+  document.addEventListener('mousemove', function(e){
+    mx = e.clientX;
+    my = e.clientY;
+  });
+
+  function showSurveyor(duration){
+    if(visible) return;
+    var now = Date.now();
+    if(now - lastShown < minInterval) return;
+    lastShown = now;
+    visible = true;
+    chaseDuration = duration || (4000 + Math.random()*3000);
+    chaseStart = Date.now();
+    chasing = true;
+    sv.classList.add('visible','bobbing');
+    // sometimes wave
+    if(Math.random() > .5){
+      sv.classList.add('waving');
+      setTimeout(function(){ sv.classList.remove('waving'); }, 2000);
+    }
+    // maybe show a speech bubble after 800ms
+    if(Math.random() > .45){
+      quoteTimer = setTimeout(function(){
+        var q = quotes[Math.floor(Math.random()*quotes.length)];
+        bubble.textContent = q;
+        bubble.classList.add('show');
+        setTimeout(function(){ bubble.classList.remove('show'); }, 2200);
+      }, 800);
+    }
+    // hide after duration
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideSurveyor, chaseDuration);
+  }
+
+  function hideSurveyor(){
+    visible = false;
+    chasing = false;
+    sv.classList.remove('visible','bobbing','waving');
+    bubble.classList.remove('show');
+    clearTimeout(quoteTimer);
+  }
+
+  // Smooth follow
+  (function loop(){
+    if(chasing){
+      var ease = 0.055;
+      svx += (mx - svx) * ease;
+      svy += (my - svy) * ease;
+      // position: slightly below and to the right of cursor
+      sv.style.left = (svx + 24) + 'px';
+      sv.style.top  = (svy + 52) + 'px';
+      // also position bubble above surveyor
+      bubble.style.left = (svx + 36) + 'px';
+      bubble.style.top  = (svy - 16) + 'px';
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  // Appear on scroll milestones
+  var scrollTriggers = [0.18, 0.38, 0.58, 0.78];
+  var triggered = {};
+  window.addEventListener('scroll', function(){
+    var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    scrollTriggers.forEach(function(t){
+      if(!triggered[t] && pct >= t){
+        triggered[t] = true;
+        setTimeout(function(){ showSurveyor(5000); }, 400);
+      }
+    });
+  }, {passive:true});
+
+  // First appearance — show quickly so it's noticed
+  setTimeout(function(){ showSurveyor(6000); }, 3000);
+
+  // Random re-appearances during session
+  setInterval(function(){
+    if(!visible && Math.random() > .55){
+      showSurveyor(4500 + Math.random()*3000);
+    }
+  }, 22000);
+})();
+
+
+// ── CHAT WIDGET
+(function(){
+  var btn = document.getElementById('chat-btn');
+  var panel = document.getElementById('chat-panel');
+  var notif = document.getElementById('chat-notif');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    panel.classList.toggle('open');
+    if(notif) notif.style.display = 'none';
+  });
+  // close if clicking outside
+  document.addEventListener('click', function(e){
+    if(!btn.contains(e.target) && !panel.contains(e.target)){
+      btn.classList.remove('open');
+      panel.classList.remove('open');
+    }
+  });
+  // scroll-to-form then close panel
+  var fl = document.getElementById('cp-form-link');
+  if(fl) fl.addEventListener('click', function(e){
+    e.preventDefault();
+    btn.classList.remove('open');
+    panel.classList.remove('open');
+    setTimeout(function(){
+      var target = document.getElementById('contact');
+      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 80);
+  });
+})();
+
+// ── CONTACT FORM
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var n=document.getElementById('f-name').value.trim();
+  var em=document.getElementById('f-email').value.trim();
+  var sv=document.getElementById('f-service').value;
+  var mg=document.getElementById('f-msg').value.trim();
+  if(!n||!em||!sv||!mg){ alert('Please fill in all required fields.'); return; }
+  var submitBtn=this.querySelector('.ct-submit');
+  var form=this;
+  submitBtn.textContent='Sending…';
+  submitBtn.disabled=true;
+  var data=new FormData(form);
+  fetch('https://formsubmit.co/ajax/adam@survections.com',{
+    method:'POST',
+    headers:{'Accept':'application/json','Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams({
+      name:n, email:em,
+      service:sv,
+      phone:document.getElementById('f-phone').value.trim(),
+      message:mg,
+      _subject:'New enquiry — Survections Ltd',
+      _captcha:'false'
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if(d.success==='true'||d.success===true){
+      document.getElementById('ctSuccess').classList.add('show');
+      form.style.display='none';
+    } else {
+      submitBtn.textContent='Send message';
+      submitBtn.disabled=false;
+      alert('Could not send. Please email adam@survections.com directly.');
+    }
+  })
+  .catch(function(){
+    // fallback: submit natively so email still goes
+    form.removeEventListener('submit',arguments.callee);
+    form.submit();
+  });
+});
+
+</script>
+
+<!-- SURVEYOR CHARACTER -->
+<div id="surveyor">
+<svg viewBox="0 0 56 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hard hat -->
+  <ellipse cx="28" cy="16" rx="14" ry="5" fill="#ffcc00"/>
+  <rect x="14" y="14" width="28" height="6" rx="3" fill="#ffcc00"/>
+  <!-- Hat brim -->
+  <rect x="10" y="18" width="36" height="3" rx="1.5" fill="#e6b800"/>
+  <!-- Head -->
+  <g class="head">
+    <ellipse cx="28" cy="26" rx="10" ry="11" fill="#f4c78a"/>
+    <!-- Eyes -->
+    <circle cx="24.5" cy="24" r="1.5" fill="#333"/>
+    <circle cx="31.5" cy="24" r="1.5" fill="#333"/>
+    <!-- Smile -->
+    <path d="M24 29 Q28 32 32 29" stroke="#c0845a" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <!-- Eye shine -->
+    <circle cx="25.2" cy="23.3" r=".5" fill="#fff"/>
+    <circle cx="32.2" cy="23.3" r=".5" fill="#fff"/>
+  </g>
+  <!-- Body / hi-vis vest -->
+  <rect x="18" y="36" width="20" height="22" rx="4" fill="#1c2fcc"/>
+  <!-- Hi-vis stripes -->
+  <rect x="18" y="42" width="20" height="3" rx="1" fill="#ffcc00" opacity=".9"/>
+  <rect x="18" y="49" width="20" height="3" rx="1" fill="#ffcc00" opacity=".9"/>
+  <!-- Left arm (holding clipboard) -->
+  <rect x="10" y="37" width="8" height="3" rx="1.5" fill="#f4c78a"/>
+  <!-- Clipboard -->
+  <rect x="4" y="36" width="9" height="11" rx="2" fill="#fff" stroke="#ccc" stroke-width=".8"/>
+  <rect x="5.5" y="38" width="6" height="1" rx=".5" fill="#888"/>
+  <rect x="5.5" y="40" width="6" height="1" rx=".5" fill="#888"/>
+  <rect x="5.5" y="42" width="4" height="1" rx=".5" fill="#888"/>
+  <rect x="7" y="35" width="3" height="2" rx="1" fill="#bbb"/>
+  <!-- Right arm (waving) -->
+  <g class="arm-r" style="transform-origin:38px 38px">
+    <rect x="38" y="37" width="9" height="3" rx="1.5" fill="#f4c78a"/>
+    <rect x="46" y="34" width="3" height="5" rx="1.5" fill="#f4c78a"/>
+  </g>
+  <!-- Legs -->
+  <rect x="20" y="57" width="7" height="16" rx="3" fill="#1a2060"/>
+  <rect x="29" y="57" width="7" height="16" rx="3" fill="#1a2060"/>
+  <!-- Boots -->
+  <rect x="19" y="70" width="9" height="5" rx="2" fill="#333"/>
+  <rect x="28" y="70" width="9" height="5" rx="2" fill="#333"/>
+  <!-- Theodolite on tripod (tiny, next to character) -->
+  <line x1="50" y1="75" x2="44" y2="55" stroke="#888" stroke-width="1.2"/>
+  <line x1="50" y1="75" x2="56" y2="55" stroke="#888" stroke-width="1.2"/>
+  <line x1="50" y1="75" x2="50" y2="52" stroke="#888" stroke-width="1.2"/>
+  <rect x="46" y="50" width="8" height="5" rx="1.5" fill="#555"/>
+  <circle cx="50" cy="52.5" r="2" fill="#333"/>
+  <rect x="48" y="52" width="4" height="1.2" rx=".6" fill="#aaa"/>
+</svg>
+</div>
+<div id="sv-bubble"></div>
+
+
+<!-- ═══ CHAT WIDGET ═══ -->
+<button id="chat-btn" aria-label="Open contact chat">
+  <div id="chat-notif"></div>
+  <svg class="icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+  <svg class="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+
+<div id="chat-panel">
+  <div class="cp-head">
+    <div class="cp-head-avatar">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <div>
+      <div class="cp-head-name">Adam Rodrigo</div>
+      <div class="cp-head-status">Usually replies within a day</div>
+    </div>
+  </div>
+  <div class="cp-body">
+    <div class="cp-msg bot">
+      <div class="cp-msg-bubble">Hi! I&rsquo;m Adam &mdash; M&amp;E surveyor &amp; accredited DEA. How can I help you today?</div>
+      <div class="cp-msg-time">Survections Ltd</div>
+    </div>
+    <div class="cp-actions">
+      <a href="/cdn-cgi/l/email-protection#630207020e23101611150600170a0c0d104d000c0e5c101601090600175e263320465153210c0c080a0d04" class="cp-action">
+        <div class="cp-action-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div><div class="cp-action-label">Book an EPC</div><div class="cp-action-sub">Accredited, lodged same day</div></div>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#59383d3834192a2c2b2f3c3a2d3036372a773a3634662a2c3b333c3a2d64147c6b6f1c7c6b690a2c2b2f3c207c6b691c37282c302b20" class="cp-action">
+        <div class="cp-action-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+        <div><div class="cp-action-label">M&amp;E Survey enquiry</div><div class="cp-action-sub">Condition surveys &amp; asset registers</div></div>
+      </a>
+      <a href="tel:07483341559" class="cp-action">
+        <div class="cp-action-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><div class="cp-action-label">Call now</div><div class="cp-action-sub">07483 341 559</div></div>
+      </a>
+      <a href="#contact" class="cp-action" id="cp-form-link">
+        <div class="cp-action-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div><div class="cp-action-label">Send a message</div><div class="cp-action-sub">Full enquiry form</div></div>
+      </a>
+    </div>
+  </div>
+  <div class="cp-footer">Survections Ltd &middot; Reg. 15926055</div>
+</div>
+
+<!-- SURVEYOR CHARACTER -->
+<div id="surveyor">
+<svg viewBox="0 0 56 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="28" cy="16" rx="14" ry="5" fill="#ffcc00"/>
+  <rect x="14" y="14" width="28" height="6" rx="3" fill="#ffcc00"/>
+  <rect x="10" y="18" width="36" height="3" rx="1.5" fill="#e6b800"/>
+  <g class="head">
+    <ellipse cx="28" cy="26" rx="10" ry="11" fill="#f4c78a"/>
+    <circle cx="24.5" cy="24" r="1.5" fill="#333"/>
+    <circle cx="31.5" cy="24" r="1.5" fill="#333"/>
+    <path d="M24 29 Q28 32 32 29" stroke="#c0845a" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <circle cx="25.2" cy="23.3" r=".5" fill="#fff"/>
+    <circle cx="32.2" cy="23.3" r=".5" fill="#fff"/>
+  </g>
+  <rect x="18" y="36" width="20" height="22" rx="4" fill="#1c2fcc"/>
+  <rect x="18" y="42" width="20" height="3" rx="1" fill="#ffcc00" opacity=".9"/>
+  <rect x="18" y="49" width="20" height="3" rx="1" fill="#ffcc00" opacity=".9"/>
+  <rect x="10" y="37" width="8" height="3" rx="1.5" fill="#f4c78a"/>
+  <rect x="4" y="36" width="9" height="11" rx="2" fill="#fff" stroke="#ccc" stroke-width=".8"/>
+  <rect x="5.5" y="38" width="6" height="1" rx=".5" fill="#888"/>
+  <rect x="5.5" y="40" width="6" height="1" rx=".5" fill="#888"/>
+  <rect x="5.5" y="42" width="4" height="1" rx=".5" fill="#888"/>
+  <rect x="7" y="35" width="3" height="2" rx="1" fill="#bbb"/>
+  <g class="arm-r" style="transform-origin:38px 38px">
+    <rect x="38" y="37" width="9" height="3" rx="1.5" fill="#f4c78a"/>
+    <rect x="46" y="34" width="3" height="5" rx="1.5" fill="#f4c78a"/>
+  </g>
+  <rect x="20" y="57" width="7" height="16" rx="3" fill="#1a2060"/>
+  <rect x="29" y="57" width="7" height="16" rx="3" fill="#1a2060"/>
+  <rect x="19" y="70" width="9" height="5" rx="2" fill="#333"/>
+  <rect x="28" y="70" width="9" height="5" rx="2" fill="#333"/>
+  <line x1="50" y1="75" x2="44" y2="55" stroke="#888" stroke-width="1.2"/>
+  <line x1="50" y1="75" x2="56" y2="55" stroke="#888" stroke-width="1.2"/>
+  <line x1="50" y1="75" x2="50" y2="52" stroke="#888" stroke-width="1.2"/>
+  <rect x="46" y="50" width="8" height="5" rx="1.5" fill="#555"/>
+  <circle cx="50" cy="52.5" r="2" fill="#333"/>
+  <rect x="48" y="52" width="4" height="1.2" rx=".6" fill="#aaa"/>
+</svg>
+</div>
+<div id="sv-bubble"></div>
+</body>
+</html>
