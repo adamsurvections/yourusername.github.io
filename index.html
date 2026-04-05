@@ -2765,6 +2765,20 @@ section[id],div[id]{scroll-margin-top:64px}
 @media(max-width:480px) { .elec-strip { height: 80px; } .eu-board { width:40px;height:60px; } .eu-motor,.eu-gauge{width:36px;height:36px;} }
 </style>
 
+
+<!-- ═══════════════════════════════════════════
+     SECURITY HEADERS
+═══════════════════════════════════════════ -->
+<!-- Content Security Policy: restrict what can load/execute -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://formsubmit.co https://fonts.googleapis.com https://fonts.gstatic.com /cdn-cgi/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src https://formsubmit.co https://api.web3forms.com; frame-ancestors 'none'; form-action 'self' https://formsubmit.co; base-uri 'self';">
+<!-- Prevent clickjacking -->
+<meta http-equiv="X-Frame-Options" content="DENY">
+<!-- Stop MIME-type sniffing -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<!-- Control referrer information sent to third parties -->
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<!-- Disable browser features not needed on this site -->
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=()">
 </head>
 <body>
 
