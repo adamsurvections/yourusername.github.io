@@ -2486,6 +2486,283 @@ section[id],div[id]{scroll-margin-top:64px}
 /* Client pills */
 .cpill  { font-size: 12px !important; }
 .cpill2 { font-size: 12px !important; }
+
+/* ══════════════════════════════════════════════════════
+   ELECTRICAL / MACHINERY BANNER STRIPS
+   Above hero (pre-hero) + below hero (post-hero)
+══════════════════════════════════════════════════════ */
+
+.elec-strip {
+  background: #060D14;
+  overflow: hidden;
+  position: relative;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+.elec-strip-top { border-bottom: 1px solid rgba(0,196,167,.15); margin-top: 64px; }
+.elec-strip-bot { border-top: 1px solid rgba(0,196,167,.15); }
+
+/* Scrolling inner track */
+.elec-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  animation: elecScroll 40s linear infinite;
+}
+.elec-strip-bot .elec-track { animation-direction: reverse; }
+@keyframes elecScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* Each panel / machine unit */
+.eu {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+  padding: 0 6px;
+}
+
+/* Fuse / distribution board */
+.eu-board {
+  width: 56px; height: 82px;
+  background: rgba(20,36,52,.9);
+  border: 1.5px solid rgba(0,196,167,.35);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 4px;
+  gap: 3px;
+  position: relative;
+  flex-shrink: 0;
+}
+.eu-board::before {
+  content: 'DB';
+  position: absolute;
+  top: 3px; left: 0; right: 0;
+  text-align: center;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: rgba(0,196,167,.6);
+  font-family: 'Courier New', monospace;
+}
+.eu-breaker {
+  height: 7px;
+  border-radius: 2px;
+  background: rgba(0,196,167,.12);
+  border: 1px solid rgba(0,196,167,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  margin-top: 2px;
+}
+.eu-breaker.on  { background: rgba(0,196,167,.3);  border-color: rgba(0,196,167,.7); }
+.eu-breaker.off { background: rgba(232,69,69,.15);  border-color: rgba(232,69,69,.5); }
+.eu-breaker-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+}
+.eu-breaker.on  .eu-breaker-dot { background: #00C4A7; box-shadow: 0 0 4px rgba(0,196,167,.8); }
+.eu-breaker.off .eu-breaker-dot { background: #E84545; }
+
+/* Animated breaker flicker */
+@keyframes breakerFlicker {
+  0%,90%,100% { background: rgba(0,196,167,.3); border-color: rgba(0,196,167,.7); }
+  92%          { background: rgba(0,196,167,.08); border-color: rgba(0,196,167,.2); }
+  94%          { background: rgba(0,196,167,.3); border-color: rgba(0,196,167,.7); }
+}
+.eu-breaker.flicker { animation: breakerFlicker 6s ease-in-out infinite; }
+
+/* Conduit pipe connector */
+.eu-conduit {
+  width: 28px; height: 12px;
+  background: rgba(30,50,70,.8);
+  border: 1px solid rgba(0,196,167,.2);
+  border-radius: 2px;
+  position: relative;
+  flex-shrink: 0;
+}
+.eu-conduit::before,.eu-conduit::after {
+  content: '';
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,196,167,.4);
+}
+.eu-conduit::before { left: 4px; }
+.eu-conduit::after  { right: 4px; }
+
+/* Horizontal pipe run with animated flow */
+.eu-pipe {
+  height: 8px;
+  width: 60px;
+  background: rgba(15,30,45,.9);
+  border-top: 1.5px solid rgba(0,196,167,.35);
+  border-bottom: 1.5px solid rgba(0,196,167,.35);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.eu-pipe::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -40px;
+  width: 40px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,196,167,.4), transparent);
+  animation: pipeFlow 2s linear infinite;
+}
+@keyframes pipeFlow { from{left:-40px} to{left:100%} }
+
+/* Junction box */
+.eu-jbox {
+  width: 22px; height: 22px;
+  background: rgba(20,36,52,.9);
+  border: 1.5px solid rgba(0,196,167,.4);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.eu-jbox svg { width: 12px; height: 12px; }
+
+/* Motor / pump unit */
+.eu-motor {
+  width: 50px; height: 50px;
+  background: rgba(15,28,42,.9);
+  border: 1.5px solid rgba(196,86,42,.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.eu-motor::before {
+  content: '';
+  position: absolute;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(196,86,42,.2);
+}
+.eu-motor-fan {
+  width: 24px; height: 24px;
+  animation: motorSpin 3s linear infinite;
+  transform-origin: center;
+}
+@keyframes motorSpin { to { transform: rotate(360deg); } }
+
+/* Gauge dial */
+.eu-gauge {
+  width: 46px; height: 46px;
+  background: rgba(12,24,36,.95);
+  border: 1.5px solid rgba(212,150,10,.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.eu-gauge svg { width: 32px; height: 32px; }
+@keyframes needleSwing {
+  0%,100% { transform: rotate(-30deg); }
+  50%      { transform: rotate(35deg); }
+}
+.eu-needle { 
+  animation: needleSwing 4s ease-in-out infinite;
+  transform-origin: 16px 22px;
+}
+
+/* Live indicator dot */
+.eu-live {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #00C4A7;
+  box-shadow: 0 0 6px rgba(0,196,167,.8);
+  animation: livePulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+  margin: 0 8px;
+}
+@keyframes livePulse {
+  0%,100% { opacity:1; box-shadow:0 0 6px rgba(0,196,167,.8); }
+  50%      { opacity:.4; box-shadow:0 0 2px rgba(0,196,167,.3); }
+}
+
+/* Warning/caution labels */
+.eu-label {
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(212,150,10,.7);
+  font-family: 'Courier New', monospace;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  padding: 0 3px;
+  flex-shrink: 0;
+}
+
+/* Transformer block */
+.eu-transformer {
+  width: 44px; height: 64px;
+  background: rgba(18,32,48,.9);
+  border: 1.5px solid rgba(212,150,10,.3);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-shrink: 0;
+  padding: 4px;
+  position: relative;
+}
+.eu-transformer::before {
+  content: 'TX';
+  font-size: 6px;
+  font-weight: 800;
+  color: rgba(212,150,10,.6);
+  font-family: 'Courier New', monospace;
+  letter-spacing: .1em;
+}
+.eu-coil {
+  width: 28px; height: 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(212,150,10,.3);
+  background: rgba(212,150,10,.06);
+  position: relative;
+  overflow: hidden;
+}
+.eu-coil::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -30px;
+  width: 30px; height: 100%;
+  background: linear-gradient(90deg,transparent,rgba(212,150,10,.4),transparent);
+  animation: coilFlow 2.5s linear infinite;
+}
+@keyframes coilFlow { from{left:-30px} to{left:100%} }
+
+/* Electrical bolt symbol */
+.eu-bolt {
+  width: 18px; height: 28px;
+  opacity: .5;
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+@keyframes boltFlash {
+  0%,85%,100% { opacity:.5; filter:none; }
+  87%          { opacity:1;  filter:drop-shadow(0 0 4px rgba(0,196,167,.9)); }
+  89%          { opacity:.3; filter:none; }
+  91%          { opacity:.9; filter:drop-shadow(0 0 3px rgba(0,196,167,.7)); }
+}
+.eu-bolt { animation: boltFlash 5s ease-in-out infinite; }
+
+/* Responsive: hide on very small screens */
+@media(max-width:480px) { .elec-strip { height: 80px; } .eu-board { width:40px;height:60px; } .eu-motor,.eu-gauge{width:36px;height:36px;} }
 </style>
 
 </head>
@@ -2615,6 +2892,226 @@ section[id],div[id]{scroll-margin-top:64px}
 <div id="page-home" class="page-section active">
 
 <!-- ══ HERO ══════════════════════════════════════════ -->
+<!-- ── Electrical panel strip ABOVE hero ── -->
+<div class="elec-strip elec-strip-top" aria-hidden="true">
+  <div class="elec-track">
+    <!-- Distribution board 1 -->
+    <div class="eu">
+      <div class="eu-label">HV</div>
+      <div class="eu-board">
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+      </div>
+    </div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe"></div></div>
+    <!-- junction box -->
+    <div class="eu">
+      <div class="eu-jbox">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
+          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- motor -->
+    <div class="eu">
+      <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2" style="width:50px;height:50px;border:1.5px solid rgba(196,86,42,.35);border-radius:50%;background:rgba(15,28,42,.9);padding:10px">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
+        <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
+        <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
+        <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
+      </svg>
+    </div>
+    <!-- live dot -->
+    <div class="eu"><div class="eu-live"></div></div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
+    <!-- transformer -->
+    <div class="eu">
+      <div class="eu-transformer">
+        <div class="eu-coil"></div>
+        <div class="eu-coil"></div>
+      </div>
+    </div>
+    <!-- bolt -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- gauge -->
+    <div class="eu">
+      <div class="eu-gauge">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
+          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
+        </svg>
+      </div>
+    </div>
+    <!-- conduit -->
+    <div class="eu"><div class="eu-conduit"></div></div>
+    <!-- DB 2 -->
+    <div class="eu">
+      <div class="eu-label">MCB</div>
+      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+      </div>
+    </div>
+    <!-- pipe + live -->
+    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
+    <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
+    <!-- motor 2 (slower) -->
+    <div class="eu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="width:44px;height:44px;border:1.5px solid rgba(0,196,167,.3);border-radius:50%;background:rgba(12,24,36,.9);padding:8px;animation:motorSpin 6s linear infinite">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
+        <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
+        <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
+        <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
+      </svg>
+    </div>
+    <!-- spacer pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
+    <!-- bolt 2 -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- jbox 2 -->
+    <div class="eu">
+      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
+          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- label -->
+    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div>
+    <!-- Distribution board 1 -->
+    <div class="eu">
+      <div class="eu-label">HV</div>
+      <div class="eu-board">
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+      </div>
+    </div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe"></div></div>
+    <!-- junction box -->
+    <div class="eu">
+      <div class="eu-jbox">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
+          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- motor -->
+    <div class="eu">
+      <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2" style="width:50px;height:50px;border:1.5px solid rgba(196,86,42,.35);border-radius:50%;background:rgba(15,28,42,.9);padding:10px">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
+        <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
+        <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
+        <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
+      </svg>
+    </div>
+    <!-- live dot -->
+    <div class="eu"><div class="eu-live"></div></div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
+    <!-- transformer -->
+    <div class="eu">
+      <div class="eu-transformer">
+        <div class="eu-coil"></div>
+        <div class="eu-coil"></div>
+      </div>
+    </div>
+    <!-- bolt -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- gauge -->
+    <div class="eu">
+      <div class="eu-gauge">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
+          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
+        </svg>
+      </div>
+    </div>
+    <!-- conduit -->
+    <div class="eu"><div class="eu-conduit"></div></div>
+    <!-- DB 2 -->
+    <div class="eu">
+      <div class="eu-label">MCB</div>
+      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+      </div>
+    </div>
+    <!-- pipe + live -->
+    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
+    <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
+    <!-- motor 2 (slower) -->
+    <div class="eu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="width:44px;height:44px;border:1.5px solid rgba(0,196,167,.3);border-radius:50%;background:rgba(12,24,36,.9);padding:8px;animation:motorSpin 6s linear infinite">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
+        <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
+        <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
+        <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
+      </svg>
+    </div>
+    <!-- spacer pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
+    <!-- bolt 2 -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- jbox 2 -->
+    <div class="eu">
+      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
+          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- label -->
+    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div></div>
+</div>
 <section class="h2-hero">
   <!-- Scan line (plays once on load) -->
   <div class="h2-hero-scan"></div>
@@ -2751,10 +3248,230 @@ section[id],div[id]{scroll-margin-top:64px}
       <div class="h2-stat"><div class="h2-stat-n">2,300<span>+</span></div><div class="h2-stat-l">Surveys delivered</div></div>
       <div class="h2-stat"><div class="h2-stat-n">24<span>h</span></div><div class="h2-stat-l">EPC turnaround</div></div>
       <div class="h2-stat"><div class="h2-stat-n">&pound;1<span>m</span></div><div class="h2-stat-l">Public liability</div></div>
-      <div class="h2-stat"><div class="h2-stat-n">3<span>+</span></div><div class="h2-stat-l">Years in London</div></div>
+      <div class="h2-stat"><div class="h2-stat-n">5<span>+</span></div><div class="h2-stat-l">Years surveying</div></div>
     </div>
   </div>
-</section>
+</section><!-- ── Electrical panel strip BELOW hero ── -->
+<div class="elec-strip elec-strip-bot" aria-hidden="true">
+  <div class="elec-track">
+    <!-- Distribution board 1 -->
+    <div class="eu">
+      <div class="eu-label">HV</div>
+      <div class="eu-board">
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+      </div>
+    </div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe"></div></div>
+    <!-- junction box -->
+    <div class="eu">
+      <div class="eu-jbox">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
+          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- motor -->
+    <div class="eu">
+      <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2" style="width:50px;height:50px;border:1.5px solid rgba(196,86,42,.35);border-radius:50%;background:rgba(15,28,42,.9);padding:10px">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
+        <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
+        <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
+        <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
+      </svg>
+    </div>
+    <!-- live dot -->
+    <div class="eu"><div class="eu-live"></div></div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
+    <!-- transformer -->
+    <div class="eu">
+      <div class="eu-transformer">
+        <div class="eu-coil"></div>
+        <div class="eu-coil"></div>
+      </div>
+    </div>
+    <!-- bolt -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- gauge -->
+    <div class="eu">
+      <div class="eu-gauge">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
+          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
+        </svg>
+      </div>
+    </div>
+    <!-- conduit -->
+    <div class="eu"><div class="eu-conduit"></div></div>
+    <!-- DB 2 -->
+    <div class="eu">
+      <div class="eu-label">MCB</div>
+      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+      </div>
+    </div>
+    <!-- pipe + live -->
+    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
+    <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
+    <!-- motor 2 (slower) -->
+    <div class="eu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="width:44px;height:44px;border:1.5px solid rgba(0,196,167,.3);border-radius:50%;background:rgba(12,24,36,.9);padding:8px;animation:motorSpin 6s linear infinite">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
+        <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
+        <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
+        <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
+      </svg>
+    </div>
+    <!-- spacer pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
+    <!-- bolt 2 -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- jbox 2 -->
+    <div class="eu">
+      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
+          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- label -->
+    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div>
+    <!-- Distribution board 1 -->
+    <div class="eu">
+      <div class="eu-label">HV</div>
+      <div class="eu-board">
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
+      </div>
+    </div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe"></div></div>
+    <!-- junction box -->
+    <div class="eu">
+      <div class="eu-jbox">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
+          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- motor -->
+    <div class="eu">
+      <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2" style="width:50px;height:50px;border:1.5px solid rgba(196,86,42,.35);border-radius:50%;background:rgba(15,28,42,.9);padding:10px">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
+        <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
+        <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
+        <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
+      </svg>
+    </div>
+    <!-- live dot -->
+    <div class="eu"><div class="eu-live"></div></div>
+    <!-- pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
+    <!-- transformer -->
+    <div class="eu">
+      <div class="eu-transformer">
+        <div class="eu-coil"></div>
+        <div class="eu-coil"></div>
+      </div>
+    </div>
+    <!-- bolt -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- gauge -->
+    <div class="eu">
+      <div class="eu-gauge">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
+          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
+        </svg>
+      </div>
+    </div>
+    <!-- conduit -->
+    <div class="eu"><div class="eu-conduit"></div></div>
+    <!-- DB 2 -->
+    <div class="eu">
+      <div class="eu-label">MCB</div>
+      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
+      </div>
+    </div>
+    <!-- pipe + live -->
+    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
+    <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
+    <!-- motor 2 (slower) -->
+    <div class="eu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="width:44px;height:44px;border:1.5px solid rgba(0,196,167,.3);border-radius:50%;background:rgba(12,24,36,.9);padding:8px;animation:motorSpin 6s linear infinite">
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
+        <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
+        <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
+        <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
+      </svg>
+    </div>
+    <!-- spacer pipe -->
+    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
+    <!-- bolt 2 -->
+    <div class="eu">
+      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
+        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- jbox 2 -->
+    <div class="eu">
+      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
+          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
+        </svg>
+      </div>
+    </div>
+    <!-- label -->
+    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div></div>
+</div>
+
 
 <!-- ── Marquee strip ── -->
 <div class="marquee"><div class="marquee-inner">
@@ -3072,7 +3789,7 @@ section[id],div[id]{scroll-margin-top:64px}
       <div class="profile-name">Adam Rodrigo</div>
       <div class="profile-title">M&amp;E Surveyor &amp; Domestic Energy Assessor</div>
       <div class="profile-stats">
-        <div class="pstat"><div class="pstat-n">3+</div><div class="pstat-l">Years experience</div></div>
+        <div class="pstat"><div class="pstat-n">5+</div><div class="pstat-l">Years experience</div></div>
         <div class="pstat"><div class="pstat-n">2,300+</div><div class="pstat-l">Surveys delivered</div></div>
         <div class="pstat"><div class="pstat-n">Grade 4</div><div class="pstat-l">Consultant level</div></div>
       </div>
@@ -3090,8 +3807,8 @@ section[id],div[id]{scroll-margin-top:64px}
 </div>
 <p class="about-sup">Adam Rodrigo &mdash; Founder &amp; Director</p>
       <h2 class="about-h">A surveyor built on track record, not promises.</h2>
-      <p class="about-p">M&amp;E surveyor and accredited DEA with 3+ years across London&rsquo;s most demanding public-sector portfolios. I structure data so organisations can use it for long-term asset decisions.</p>
-      <p class="about-p">With 3+ years delivering M&amp;E and residential surveys across London&rsquo;s most demanding public-sector portfolios &mdash; all to audit standard.</p>
+      <p class="about-p">M&amp;E surveyor and accredited DEA with 5+ years across London&rsquo;s most demanding public-sector portfolios. I structure data so organisations can use it for long-term asset decisions.</p>
+      <p class="about-p">With 5+ years delivering M&amp;E and residential surveys across London&rsquo;s most demanding public-sector portfolios &mdash; all to audit standard.</p>
       <div class="usp-box">&ldquo;My surveys are built with future data use in mind &mdash; structured intelligence that feeds asset registers, Power BI dashboards, and long-term capital planning.&rdquo;</div>
       <div class="timeline" style="margin-top:28px">
         <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-org">Tetra Tech Europe</div><div class="tl-role">Consultant M&amp;E Surveyor <em style="font-size:10px;color:var(--g400);font-style:normal">(employed role)</em></div><div class="tl-date">January 2026 &ndash; Present</div></div></div>
@@ -3773,7 +4490,7 @@ section[id],div[id]{scroll-margin-top:64px}
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
         </form>
-      </div><div class="ct-success-t" style="color:#E84545">Submission failed</div><div class="ct-success-s">Please email <a href="/cdn-cgi/l/email-protection#a0c1c4c1cde0d3d5d2d6c5c3d4c9cfced38ec3cfcd" style="color:var(--gold)"><span class="__cf_email__" data-cfemail="4a2b2e2b270a393f383c2f293e2325243964292527">[email&#160;protected]</span></a> directly or call <a href="tel:07483341559" style="color:var(--gold)">07483 341 559</a>.</div></div></div>
+      </div></div></div>
     </div>
   </div>
 </section>
