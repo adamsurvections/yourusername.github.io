@@ -589,15 +589,42 @@ body{font-family:var(--font);background:var(--white);color:var(--g800);-webkit-f
 #chat-btn.open .icon-chat{opacity:0;transform:rotate(90deg)}
 #chat-btn.open .icon-close{opacity:1;transform:rotate(0deg)}
 #chat-notif{position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:#ff4560;border:2px solid #fff;animation:ldot 2s ease-in-out infinite}
-#chat-panel{position:fixed;bottom:86px;right:22px;z-index:9100;width:330px;background:var(--white);border-radius:16px;box-shadow:0 14px 50px rgba(0,0,0,.18);border:1px solid var(--g100);transform:scale(.92) translateY(14px);transform-origin:bottom right;opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.16,1,.3,1),opacity .28s}
+#chat-panel{position:fixed;bottom:86px;right:22px;z-index:9100;width:360px;background:#0D1B2A;border-radius:16px;box-shadow:0 14px 50px rgba(0,0,0,.5);border:1px solid rgba(0,196,167,.2);transform:scale(.92) translateY(14px);transform-origin:bottom right;opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.16,1,.3,1),opacity .28s;overflow:hidden}
 #chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
 .cp-hd{background:var(--navy);border-radius:16px 16px 0 0;padding:14px 16px;display:flex;align-items:center;gap:11px}
 .cp-av{width:34px;height:34px;border-radius:50%;background:var(--cyan-dim);border:2px solid rgba(0,212,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .cp-av svg{width:16px;height:16px;stroke:var(--cyan);fill:none;stroke-width:1.6}
 .cp-hd-name{font-size:12.5px;font-weight:700;color:#fff;margin-bottom:1px}
 .cp-hd-status{font-size:9.5px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:3px}
-.cp-hd-status::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--green);animation:ldot 2s infinite}
-.cp-body{padding:14px 16px}
+.cp-hd-status::before{content:'';display:none}
+.cp-body{padding:14px 16px;max-height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
+.cp-body::-webkit-scrollbar{width:3px}.cp-body::-webkit-scrollbar-track{background:transparent}.cp-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
+/* AI message bubbles */
+.ai-msg{display:flex;gap:8px;align-items:flex-end}
+.ai-msg.user{flex-direction:row-reverse}
+.ai-msg-av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--gold));flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ai-msg-av svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+.ai-bubble{max-width:82%;padding:9px 12px;font-size:12px;line-height:1.55;border-radius:12px;word-break:break-word}
+.ai-msg.bot .ai-bubble{background:rgba(255,255,255,.07);color:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.1);border-radius:3px 12px 12px 12px}
+.ai-msg.user .ai-bubble{background:var(--gold);color:var(--navy-dk);font-weight:500;border-radius:12px 12px 3px 12px}
+/* Quick replies */
+.ai-quickreplies{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0 2px}
+.ai-qr{background:rgba(0,196,167,.1);border:1px solid rgba(0,196,167,.3);color:var(--teal-v);font-size:11px;font-weight:600;padding:5px 11px;border-radius:980px;cursor:pointer;font-family:var(--font);transition:all .2s;white-space:nowrap}
+.ai-qr:hover{background:rgba(0,196,167,.2);border-color:rgba(0,196,167,.6)}
+/* Typing indicator */
+.ai-typing{display:flex;align-items:center;gap:4px;padding:10px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:3px 12px 12px 12px;width:fit-content}
+.ai-typing span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);animation:typingDot .9s ease-in-out infinite}
+.ai-typing span:nth-child(2){animation-delay:.15s}
+.ai-typing span:nth-child(3){animation-delay:.3s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+/* Input row */
+.cp-input-row{display:flex;gap:8px;padding:10px 14px;border-top:1px solid rgba(255,255,255,.08);background:rgba(15,25,35,.95)}
+#ai-input{flex:1;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;font-size:12.5px;color:#fff;font-family:var(--font);outline:none;transition:border-color .2s}
+#ai-input::placeholder{color:rgba(255,255,255,.3)}
+#ai-input:focus{border-color:rgba(0,196,167,.5)}
+#ai-send{width:34px;height:34px;border-radius:8px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;color:var(--navy)}
+#ai-send:hover{background:var(--gold-h);transform:scale(1.05)}
+#ai-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .cp-bubble{display:inline-block;max-width:88%;background:var(--off);border-radius:10px 10px 10px 3px;padding:9px 12px;font-size:12px;color:var(--g800);line-height:1.5;border:1px solid var(--g100);margin-bottom:8px}
 .cp-f{margin-bottom:7px}
 .cp-f input,.cp-f textarea{width:100%;background:var(--off);border:1.5px solid var(--g200);border-radius:7px;padding:8px 11px;font-size:12px;color:var(--g800);font-family:var(--font);outline:none;transition:border-color .2s;resize:none;-webkit-appearance:none}
@@ -605,8 +632,16 @@ body{font-family:var(--font);background:var(--white);color:var(--g800);-webkit-f
 .cp-f textarea{min-height:65px}
 .cp-submit{width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:7px;padding:9px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .2s;margin-top:3px}
 .cp-submit:hover{background:var(--gold-h)}
-.cp-foot{border-top:1px solid var(--g100);padding:9px 16px;text-align:center;font-size:9.5px;color:var(--g400)}
+.cp-foot{border-top:1px solid rgba(255,255,255,.06);padding:7px 16px;text-align:center;font-size:9px;color:rgba(255,255,255,.2);background:var(--navy-dk)}
 @media(max-width:400px){#chat-panel{width:calc(100vw - 24px);right:12px}#chat-btn{right:14px;bottom:14px}}
+
+/* ══ DASHBOARD GAUGE ROW ═══════════════════════════ */
+.db-ticker{display:flex;align-items:center;gap:8px;padding:8px 0 2px;font-size:11px;color:rgba(255,255,255,.45);font-family:'Courier New',monospace;letter-spacing:.03em}
+.db-ticker-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(46,204,122,.8);animation:ldot 2s infinite;flex-shrink:0}
+.db-gauge-row{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
+.db-gauge-card{flex:1;min-width:100px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 12px 10px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.db-gauge-label{font-size:10px;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.05em;text-transform:uppercase;text-align:center;margin-bottom:4px}
+.db-gauge-sub{font-size:9.5px;color:rgba(255,255,255,.25);text-align:center;margin-top:2px}
 
 /* ══ FOOTER ══════════════════════════════════ */
 footer{background:#040913;border-top:1px solid rgba(255,255,255,.05);padding:44px 24px 28px}
@@ -1036,9 +1071,115 @@ section[id],div[id]{scroll-margin-top:64px}
 .drop4 { animation: waterDrop 1.2s ease-in .75s  infinite; }
 .drop5 { animation: waterDrop 1.2s ease-in 1.0s  infinite; }
 
+/* ══ DATA CENTRE SERVER RACK ════════════════════════ */
+.mep-server {
+  position:absolute;
+  top:8%;right:2%;
+  width:64px;height:100px;
+  opacity:.3;
+}
+@keyframes serverBlink {
+  0%,94%,100%{opacity:1}95%{opacity:.1}96%{opacity:1}97%{opacity:.4}98%{opacity:1}
+}
+.srv-led { animation:serverBlink 3.8s ease-in-out infinite; }
+.srv-led:nth-child(2){animation-delay:.6s}
+.srv-led:nth-child(3){animation-delay:1.2s}
+.srv-led:nth-child(4){animation-delay:2.1s}
+@keyframes rackPulse {
+  0%,100%{filter:drop-shadow(0 0 3px rgba(0,196,167,.5))}
+  50%    {filter:drop-shadow(0 0 7px rgba(0,196,167,.85))}
+}
+.mep-server rect.rack-body { animation:rackPulse 2.4s ease-in-out infinite; }
+
+/* ══ RESIDENTIAL CONSUMER UNIT (fuse board) ════════ */
+.mep-consumer {
+  position:absolute;
+  bottom:20%;left:2%;
+  width:72px;height:96px;
+  opacity:.26;
+}
+@keyframes mcbFlicker {
+  0%,89%,100%{opacity:.9}90%{opacity:.25;filter:drop-shadow(0 0 4px rgba(255,200,0,.9))}91%{opacity:.9}93%{opacity:.5}94%{opacity:.9}
+}
+.mcu-mcb { animation:mcbFlicker 5.5s ease-in-out infinite; }
+.mcu-mcb:nth-child(odd){animation-delay:1.1s}
+.mcu-mcb:nth-child(3){animation-delay:2.3s}
+
+/* ══ HOSPITAL MEDICAL GAS PANEL ═════════════════════ */
+.mep-medgas {
+  position:absolute;
+  top:35%;left:4%;
+  width:56px;height:72px;
+  opacity:.22;
+}
+@keyframes gasFlow {
+  0%,100%{stroke-dashoffset:0}to{stroke-dashoffset:-24}
+}
+.gas-line { animation:gasFlow 2s linear infinite; stroke-dasharray:6 4; }
+.gas-line2 { animation:gasFlow 2.6s linear infinite .4s; stroke-dasharray:4 6; }
+@keyframes gasValve {
+  0%,100%{fill:rgba(0,140,255,.4)}50%{fill:rgba(0,180,255,.75)}
+}
+.gas-valve { animation:gasValve 2.8s ease-in-out infinite; }
+
+/* ══ CCTV CAMERA ════════════════════════════════════ */
+.mep-cctv {
+  position:absolute;
+  top:6%;left:38%;
+  width:52px;height:36px;
+  opacity:.28;
+}
+@keyframes cctvScan {
+  0%,100%{transform:rotate(0deg)}33%{transform:rotate(-18deg)}66%{transform:rotate(12deg)}
+}
+.cctv-head { animation:cctvScan 6s ease-in-out infinite; transform-origin:8px 12px; }
+@keyframes cctvRec {
+  0%,100%{opacity:1;fill:rgba(220,30,30,.9)}50%{opacity:.2;fill:rgba(220,30,30,.4)}
+}
+.cctv-rec { animation:cctvRec 1s ease-in-out infinite; }
+
+/* ══ AIR HANDLING UNIT (AHU) ════════════════════════ */
+.mep-ahu {
+  position:absolute;
+  bottom:8%;right:26%;
+  width:110px;height:70px;
+  opacity:.24;
+}
+@keyframes ahuFan1 { to{transform:rotate(360deg)} }
+@keyframes ahuFan2 { to{transform:rotate(-360deg)} }
+.ahu-fan1 { animation:ahuFan1 1.2s linear infinite; transform-origin:24px 34px; }
+.ahu-fan2 { animation:ahuFan2 1.6s linear infinite; transform-origin:86px 34px; }
+@keyframes ahuDuct {
+  from{stroke-dashoffset:0}to{stroke-dashoffset:-28}
+}
+.ahu-flow { animation:ahuDuct 1.5s linear infinite; stroke-dasharray:5 3; }
+.ahu-flow2 { animation:ahuDuct 2s linear infinite .5s; stroke-dasharray:4 5; }
+
+/* ══ HIGH-SECURITY ACCESS PANEL ═════════════════════ */
+.mep-access {
+  position:absolute;
+  top:18%;right:12%;
+  width:44px;height:64px;
+  opacity:.26;
+}
+@keyframes pinPad {
+  0%,80%,100%{fill:rgba(0,196,167,.35)}82%{fill:rgba(0,196,167,.9);filter:drop-shadow(0 0 4px rgba(0,196,167,1))}84%{fill:rgba(0,196,167,.35)}
+}
+.key-btn { animation:pinPad 4s ease-in-out infinite; }
+.key-btn:nth-child(2){animation-delay:.18s}
+.key-btn:nth-child(3){animation-delay:.36s}
+.key-btn:nth-child(4){animation-delay:.54s}
+.key-btn:nth-child(5){animation-delay:.72s}
+.key-btn:nth-child(6){animation-delay:.9s}
+@keyframes accessGranted {
+  0%,90%,100%{stroke:rgba(212,150,10,.4)}92%{stroke:rgba(0,220,100,.9);filter:drop-shadow(0 0 5px rgba(0,220,100,.8))}95%{stroke:rgba(212,150,10,.4)}
+}
+.access-led { animation:accessGranted 6s ease-in-out infinite; }
+
 /* ══ MOBILE: hide complex elements ══════════════════ */
 @media(max-width:768px){
-  .mep-plant,.mep-boiler,.mep-sprinkler,.mep-lighting{display:none}
+  .mep-plant,.mep-boiler,.mep-sprinkler,.mep-lighting,
+  .mep-server,.mep-consumer,.mep-medgas,.mep-cctv,.mep-ahu,.mep-access{display:none}
   .mep-brick,.mep-hvac,.mep-radiator,.mep-flame{opacity:.15}
 }
 @media(prefers-reduced-motion:reduce){
@@ -1479,28 +1620,73 @@ section[id],div[id]{scroll-margin-top:64px}
   text-transform: uppercase;
   color: var(--teal-v);
   margin-bottom: 24px;
+  background: rgba(0,196,167,.07);
+  border: 1px solid rgba(0,196,167,.2);
+  border-radius: 980px;
+  padding: 6px 16px 6px 8px;
 }
 .h2-eyebrow::before {
   content: '';
   width: 28px; height: 1.5px;
   background: var(--teal-v);
   border-radius: 1px;
+  display: none;
 }
+.h2-ew-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--teal-v);
+  box-shadow: 0 0 8px rgba(0,196,167,.9);
+  flex-shrink: 0;
+  animation: ewDot 1.8s ease-in-out infinite;
+}
+@keyframes ewDot {
+  0%,100%{opacity:1;box-shadow:0 0 8px rgba(0,196,167,.9)}
+  50%{opacity:.4;box-shadow:0 0 3px rgba(0,196,167,.3)}
+}
+.h2-ew-cursor {
+  color: var(--teal-v);
+  animation: cursorBlink .8s step-end infinite;
+  font-weight: 300;
+  line-height: 1;
+}
+@keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
 .h2-title {
-  font-size: clamp(36px, 5.5vw, 78px);
+  font-size: clamp(40px, 6.5vw, 88px);
   font-weight: 900;
   letter-spacing: -.04em;
   line-height: 1.0;
   color: #fff;
   margin-bottom: 28px;
-  max-width: 760px;
+  max-width: 820px;
+  position: relative;
+}
+/* Horizontal scan shimmer across headline */
+.h2-title::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -20%; width: 30%; height: 100%;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,.06) 45%, rgba(255,255,255,.14) 50%, rgba(255,255,255,.06) 55%, transparent 100%);
+  animation: titleScan 9s ease-in-out infinite 1s;
+  pointer-events: none;
+}
+@keyframes titleScan {
+  0%,100%{left:-30%;opacity:0}
+  5%{opacity:1}
+  60%{left:120%;opacity:1}
+  65%{opacity:0}
 }
 .h2-title em {
   font-style: normal;
-  background: linear-gradient(110deg, var(--teal-v) 0%, var(--gold) 100%);
+  background: linear-gradient(110deg, var(--teal-v) 0%, #40e8c8 30%, var(--gold) 70%, #ffd04d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 18px rgba(0,196,167,.3));
+  animation: emGlow 5s ease-in-out infinite;
+}
+@keyframes emGlow {
+  0%,100%{filter:drop-shadow(0 0 18px rgba(0,196,167,.3))}
+  50%{filter:drop-shadow(0 0 28px rgba(0,196,167,.55)) drop-shadow(0 0 50px rgba(212,150,10,.2))}
 }
 .h2-sub {
   font-size: clamp(15px, 1.5vw, 18px);
@@ -1832,6 +2018,123 @@ section[id],div[id]{scroll-margin-top:64px}
 }
 
 /* ── Why Survections strip ──────────────────────────── */
+/* ══ CLIENTS SECTION ════════════════════════════════ */
+.h2-clients {
+  background: var(--navy);
+  padding: 72px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.h2-clients::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(0,196,167,.08), transparent);
+  pointer-events: none;
+}
+.h2-clients-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.h2-clients-hd {
+  text-align: center; margin-bottom: 52px;
+}
+.h2-clients-hd .h2-sec-label { color: var(--teal-v); }
+.h2-clients-hd h2 { color: #fff; }
+.h2-clients-hd p {
+  font-size: 14px; color: rgba(255,255,255,.45); max-width: 480px;
+  margin: 10px auto 0; line-height: 1.7;
+}
+/* Client cards grid */
+.h2-client-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.h2-client-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 24px 20px 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: all .25s cubic-bezier(.16,1,.3,1);
+  position: relative; overflow: hidden;
+}
+.h2-client-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent-color, var(--teal-v));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+}
+.h2-client-card:hover { background: rgba(255,255,255,.07); transform: translateY(-3px); border-color: rgba(255,255,255,.14); }
+.h2-client-card:hover::before { transform: scaleX(1); }
+.h2-cc-sector {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent-color, var(--teal-v));
+  background: rgba(0,196,167,.08); border: 1px solid rgba(0,196,167,.2);
+  padding: 3px 9px; border-radius: 980px;
+  width: fit-content;
+}
+.h2-client-card.gold-accent { --accent-color: var(--gold); }
+.h2-client-card.gold-accent .h2-cc-sector { background: rgba(212,150,10,.1); border-color: rgba(212,150,10,.25); }
+.h2-client-card.coral-accent { --accent-color: var(--coral); }
+.h2-client-card.coral-accent .h2-cc-sector { background: rgba(196,86,42,.1); border-color: rgba(196,86,42,.25); }
+.h2-client-card.blue-accent { --accent-color: #4A9EFF; }
+.h2-client-card.blue-accent .h2-cc-sector { background: rgba(74,158,255,.1); border-color: rgba(74,158,255,.25); color: #4A9EFF; }
+.h2-cc-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.h2-cc-logo-icon {
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.h2-cc-logo-icon svg { width: 20px; height: 20px; fill: none; stroke: var(--accent-color, var(--teal-v)); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.h2-cc-name {
+  font-size: 14px; font-weight: 800; color: #fff; letter-spacing: -.02em; line-height: 1.25;
+}
+.h2-cc-body {
+  font-size: 12px; color: rgba(255,255,255,.42); line-height: 1.65; flex: 1;
+}
+.h2-cc-stat {
+  display: flex; align-items: baseline; gap: 5px;
+  padding-top: 12px; border-top: 1px solid rgba(255,255,255,.06);
+}
+.h2-cc-stat-n {
+  font-size: 22px; font-weight: 800; color: var(--accent-color, var(--teal-v));
+  letter-spacing: -.03em; line-height: 1;
+}
+.h2-cc-stat-l { font-size: 10px; color: rgba(255,255,255,.32); letter-spacing: .03em; }
+/* Testimonial strip */
+.h2-client-quote {
+  background: rgba(0,196,167,.06);
+  border: 1px solid rgba(0,196,167,.15);
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex; align-items: flex-start; gap: 18px;
+  margin-bottom: 28px;
+}
+.h2-cq-icon {
+  width: 36px; height: 36px; flex-shrink: 0; margin-top: 2px;
+  color: var(--teal-v); opacity: .7;
+}
+.h2-cq-text {
+  font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.75;
+  font-style: italic; flex: 1;
+}
+.h2-cq-attr {
+  font-size: 11px; color: rgba(255,255,255,.35); margin-top: 8px;
+  font-style: normal; font-weight: 600; letter-spacing: .04em;
+}
+/* Legal note */
+.h2-clients-note {
+  text-align: center;
+  font-size: 10.5px; color: rgba(255,255,255,.22);
+  max-width: 700px; margin: 0 auto;
+  line-height: 1.6; letter-spacing: .01em;
+}
+@media(max-width:900px){ .h2-client-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:540px){ .h2-client-grid { grid-template-columns: 1fr; } .h2-client-quote { flex-direction: column; gap: 10px; } }
+
 .h2-why {
   background: var(--white);
   padding: 80px 24px;
@@ -2356,6 +2659,34 @@ section[id],div[id]{scroll-margin-top:64px}
 .h2-deco-fan    { width:44px;  top:30%;   left:14%;   opacity:.09; }
 .h2-deco-fan circle,.h2-deco-fan path { animation:decoSpin 12s linear infinite; transform-origin:50% 50%; transform-box:fill-box; }
 .h2-deco-therm  { width:36px;  top:70%;   left:22%;   opacity:.08; animation:decoFloat 19s ease-in-out infinite 5s; }
+/* ── NEW ASSET DECOS ── */
+.h2-deco-server { width:56px;  top:22%;   right:18%;  opacity:.10; animation:decoFloat2 17s ease-in-out infinite 3s; }
+@keyframes srvBlink2{0%,92%,100%{opacity:.6}93%{opacity:1;filter:drop-shadow(0 0 3px rgba(0,196,167,.9))}95%{opacity:.2}96%{opacity:.9}}
+.h2-deco-server .sl{animation:srvBlink2 3.5s ease-in-out infinite}
+.h2-deco-server .sl:nth-child(2){animation-delay:.7s}
+.h2-deco-server .sl:nth-child(3){animation-delay:1.5s}
+.h2-deco-server .sl:nth-child(4){animation-delay:2.2s}
+.h2-deco-ahu    { width:100px; bottom:8%;  right:4%;   opacity:.09; animation:decoFloat 21s ease-in-out infinite 7s; }
+@keyframes ahuSpin2{to{transform:rotate(360deg)}}
+.h2-deco-ahu .af1{animation:ahuSpin2 1.1s linear infinite;transform-origin:22px 22px;transform-box:fill-box}
+.h2-deco-ahu .af2{animation:ahuSpin2 1.5s linear infinite reverse;transform-origin:78px 22px;transform-box:fill-box}
+.h2-deco-cctv   { width:48px;  top:8%;    left:30%;   opacity:.10; animation:decoFloat2 14s ease-in-out infinite 1s; }
+@keyframes cctvScan2{0%,100%{transform:rotate(0deg)}33%{transform:rotate(-14deg)}66%{transform:rotate(10deg)}}
+.h2-deco-cctv .cc{animation:cctvScan2 5s ease-in-out infinite;transform-origin:8px 14px;transform-box:fill-box}
+@keyframes cctvRec2{0%,100%{opacity:1}50%{opacity:.15}}
+.h2-deco-cctv .cr{animation:cctvRec2 1s ease-in-out infinite}
+.h2-deco-medgas { width:52px;  top:60%;   left:2%;    opacity:.09; animation:decoFloat 23s ease-in-out infinite 9s; }
+@keyframes gasF2{from{stroke-dashoffset:0}to{stroke-dashoffset:-24}}
+.h2-deco-medgas .gf{animation:gasF2 2s linear infinite;stroke-dasharray:6 4}
+.h2-deco-access { width:40px;  bottom:30%;right:24%;  opacity:.10; animation:decoFloat2 15s ease-in-out infinite 4s; }
+@keyframes keyFlash{0%,85%,100%{fill:rgba(0,196,167,.3)}87%{fill:rgba(0,196,167,.9);filter:drop-shadow(0 0 3px rgba(0,196,167,.9))}89%{fill:rgba(0,196,167,.3)}}
+.h2-deco-access .kb{animation:keyFlash 4.2s ease-in-out infinite}
+.h2-deco-access .kb:nth-child(2){animation-delay:.2s}
+.h2-deco-access .kb:nth-child(3){animation-delay:.4s}
+.h2-deco-access .kb:nth-child(4){animation-delay:.6s}
+.h2-deco-chiller{ width:88px;  bottom:35%;left:28%;   opacity:.07; animation:decoFloat 26s ease-in-out infinite 11s; }
+@keyframes chillerPulse{0%,100%{filter:drop-shadow(0 0 2px rgba(0,180,255,.4))}50%{filter:drop-shadow(0 0 6px rgba(0,180,255,.7))}}
+.h2-deco-chiller rect{animation:chillerPulse 3s ease-in-out infinite}
 
 
 /* ══════════════════════════════════════════════════════
@@ -2763,6 +3094,163 @@ section[id],div[id]{scroll-margin-top:64px}
 
 /* Responsive: hide on very small screens */
 @media(max-width:480px) { .elec-strip { height: 80px; } .eu-board { width:40px;height:60px; } .eu-motor,.eu-gauge{width:36px;height:36px;} }
+
+/* ══ PRICING CARD EXPAND HINT ════════════════════ */
+.pv2-expand-hint {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; color: var(--g400);
+  margin-top: 14px; letter-spacing: .03em;
+  transition: color .2s;
+}
+.pcard-v2:hover .pv2-expand-hint { color: var(--gold); }
+.pcard-v2.svc-active .pv2-expand-hint { color: var(--gold); }
+.pcard-v2.svc-active .pv2-expand-hint svg { transform: rotate(180deg); }
+.pv2-expand-hint svg { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+.pcard-v2 { cursor: pointer; }
+
+/* ══ SERVICE DETAIL DRAWER ═══════════════════════ */
+.svc-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .45s cubic-bezier(.16,1,.3,1), opacity .3s;
+  opacity: 0;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+.svc-drawer.open {
+  max-height: 900px;
+  opacity: 1;
+}
+.svc-drawer-inner {
+  background: var(--navy);
+  border-radius: 16px;
+  margin: 12px 0 4px;
+  padding: 32px 36px 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 32px;
+  position: relative;
+  border: 1px solid rgba(0,196,167,.18);
+}
+.svc-drawer-inner::before {
+  content: '';
+  position: absolute; top: -6px; left: var(--arrow-pct, 50%); transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 7px solid rgba(0,196,167,.25);
+  transition: left .3s;
+}
+.svc-d-col { padding: 0; }
+.svc-d-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.svc-d-label svg { width: 13px; height: 13px; stroke: var(--gold); fill: none; stroke-width: 2; }
+.svc-d-col h4 { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -.01em; }
+.svc-d-col p { font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 6px; }
+.svc-d-list { list-style: none; padding: 0; margin: 0; }
+.svc-d-list li {
+  font-size: 12.5px; color: rgba(255,255,255,.6); padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+}
+.svc-d-list li::before {
+  content: ''; width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+  background: rgba(0,196,167,.15);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline points='2,6 5,9 10,3' stroke='%2300C4A7' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+}
+.svc-d-list li:last-child { border-bottom: none; }
+.svc-d-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.svc-d-tag {
+  font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 980px;
+  background: rgba(0,196,167,.1); color: var(--teal-v);
+  border: 1px solid rgba(0,196,167,.2); letter-spacing: .03em;
+}
+.svc-d-ctas { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.svc-d-btn-primary {
+  background: var(--gold); color: var(--navy); border: none; border-radius: 8px;
+  padding: 11px 20px; font-size: 13px; font-weight: 700; cursor: pointer;
+  text-decoration: none; font-family: var(--font); text-align: center;
+  transition: all .2s; display: block;
+}
+.svc-d-btn-primary:hover { background: var(--gold-h); transform: translateY(-1px); }
+.svc-d-btn-ghost {
+  background: rgba(255,255,255,.06); color: rgba(255,255,255,.7);
+  border: 1px solid rgba(255,255,255,.15); border-radius: 8px;
+  padding: 10px 20px; font-size: 12px; font-weight: 500; cursor: pointer;
+  text-decoration: none; font-family: var(--font); text-align: center;
+  transition: all .2s; display: block;
+}
+.svc-d-btn-ghost:hover { background: rgba(255,255,255,.12); }
+.svc-d-close {
+  position: absolute; top: 14px; right: 16px;
+  background: rgba(255,255,255,.08); border: none; border-radius: 6px;
+  width: 28px; height: 28px; cursor: pointer; color: rgba(255,255,255,.5);
+  display: flex; align-items: center; justify-content: center; transition: all .2s;
+}
+.svc-d-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+.svc-d-divider { grid-column: 1/-1; height: 1px; background: rgba(255,255,255,.07); margin: 4px 0 20px; }
+@media(max-width:900px){
+  .svc-drawer-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+@media(max-width:600px){
+  .svc-drawer-inner { grid-template-columns: 1fr; padding: 22px 20px; }
+  .svc-drawer.open { max-height: 1400px; }
+}
+
+/* ══ FAQ SECTION ══════════════════════════════════ */
+.faq-list { display:flex; flex-direction:column; gap:2px; }
+.faq-item { border:1px solid var(--g100); border-radius:12px; overflow:hidden; background:#fff; }
+.faq-hdr {
+  width:100%; display:flex; align-items:center; justify-content:space-between;
+  padding:18px 22px; background:none; border:none; cursor:pointer;
+  font-family:var(--font); font-size:15px; font-weight:600; color:var(--navy);
+  text-align:left; gap:16px; transition:background .2s;
+}
+.faq-hdr:hover { background:var(--off); }
+.faq-item.open .faq-hdr { background:var(--off); color:var(--teal); }
+.faq-chev { width:18px; height:18px; flex-shrink:0; color:var(--g400); transition:transform .3s cubic-bezier(.16,1,.3,1); }
+.faq-item.open .faq-chev { transform:rotate(180deg); color:var(--teal); }
+.faq-body { display:none; padding:0 22px 20px; }
+.faq-item.open .faq-body { display:block; }
+.faq-body p { font-size:14px; color:var(--g600); line-height:1.78; }
+.faq-body p + p { margin-top:8px; }
+
+/* ══ DIFFERENTIATION SECTION ═════════════════════ */
+.diff-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.diff-table { display:grid; grid-template-columns:1fr 1fr 1fr; gap:3px; min-width:620px; }
+.diff-col { border-radius:12px; overflow:hidden; }
+.diff-col-hd { padding:20px 18px 16px; }
+.diff-badge { display:inline-block; background:var(--gold); color:var(--navy); font-size:11px; font-weight:800; padding:5px 14px; border-radius:980px; letter-spacing:.04em; margin-bottom:6px; }
+.diff-badge-b { display:inline-block; background:rgba(255,255,255,.08); color:rgba(255,255,255,.55); font-size:11px; font-weight:700; padding:5px 14px; border-radius:980px; letter-spacing:.04em; margin-bottom:6px; border:1px solid rgba(255,255,255,.12); }
+.diff-badge-c { display:inline-block; background:rgba(255,255,255,.05); color:rgba(255,255,255,.4); font-size:11px; font-weight:700; padding:5px 14px; border-radius:980px; letter-spacing:.04em; margin-bottom:6px; border:1px solid rgba(255,255,255,.08); }
+.diff-col-sub { font-size:11px; color:rgba(255,255,255,.38); letter-spacing:.02em; }
+.diff-col-us .diff-col-sub { color:rgba(212,150,10,.7); }
+.diff-col-us { background:rgba(212,150,10,.07); border:1px solid rgba(212,150,10,.25); }
+.diff-col-b  { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); }
+.diff-col-c  { background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.05); }
+.diff-row { padding:11px 18px; font-size:12px; font-weight:500; border-top:1px solid rgba(255,255,255,.05); display:flex; align-items:center; gap:10px; color:rgba(255,255,255,.55); }
+.diff-col-us .diff-row { border-top-color:rgba(212,150,10,.12); }
+.diff-row::before { content:''; width:16px; height:16px; border-radius:50%; flex-shrink:0; font-size:10px; display:flex; align-items:center; justify-content:center; }
+.diff-row.tick { color:rgba(255,255,255,.75); }
+.diff-col-us .diff-row.tick { color:#fff; }
+.diff-row.tick::before { background:rgba(0,196,167,.2); border:1px solid rgba(0,196,167,.5); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpolyline points='2,6 5,9 10,3' stroke='%2300C4A7' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:center; }
+.diff-col-us .diff-row.tick::before { background-color:rgba(0,196,167,.15); }
+.diff-row.cross::before { background:rgba(220,50,50,.15); border:1px solid rgba(220,50,50,.3); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cline x1='3' y1='3' x2='9' y2='9' stroke='%23E84545' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='9' y1='3' x2='3' y2='9' stroke='%23E84545' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:center; }
+.diff-row.partial::before { background:rgba(212,150,10,.12); border:1px solid rgba(212,150,10,.3); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cline x1='3' y1='6' x2='9' y2='6' stroke='%23D4960A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:center; }
+/* USP pillars */
+.diff-usps { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.diff-usp { padding:28px 22px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; transition:all .25s; }
+.diff-usp:hover { background:rgba(255,255,255,.06); transform:translateY(-3px); }
+.diff-usp-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.diff-usp-icon svg { width:22px; height:22px; }
+.diff-usp-title { font-size:15px; font-weight:700; color:#fff; margin-bottom:8px; letter-spacing:-.015em; }
+.diff-usp-desc { font-size:13px; color:rgba(255,255,255,.45); line-height:1.68; }
+@media(max-width:900px){ .diff-usps{grid-template-columns:1fr 1fr;} }
+@media(max-width:600px){ .diff-usps{grid-template-columns:1fr;} }
 </style>
 
 
@@ -2770,7 +3258,7 @@ section[id],div[id]{scroll-margin-top:64px}
      SECURITY HEADERS
 ═══════════════════════════════════════════ -->
 <!-- Content Security Policy: restrict what can load/execute -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://formsubmit.co https://fonts.googleapis.com https://fonts.gstatic.com /cdn-cgi/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src https://formsubmit.co https://api.web3forms.com; frame-ancestors 'none'; form-action 'self' https://formsubmit.co; base-uri 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://formsubmit.co https://fonts.googleapis.com https://fonts.gstatic.com /cdn-cgi/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src https://formsubmit.co https://api.web3forms.com https://api.anthropic.com; frame-ancestors 'none'; form-action 'self' https://formsubmit.co; base-uri 'self';">
 <!-- Prevent clickjacking -->
 <meta http-equiv="X-Frame-Options" content="DENY">
 <!-- Stop MIME-type sniffing -->
@@ -2826,8 +3314,8 @@ section[id],div[id]{scroll-margin-top:64px}
   <div class="nd" role="menubar">
     <a href="#" onclick="sp('home');return false" class="nav-link active" data-page="home" role="menuitem">Home</a>
     <a href="#" onclick="sp('about');return false" class="nav-link" data-page="about" role="menuitem">About</a>
-    <a href="#" onclick="sp('services');return false" class="nav-link" data-page="services" role="menuitem">Services</a>
-    <a href="#" onclick="sp('pricing');return false" class="nav-link" data-page="pricing" role="menuitem">Pricing</a>
+    <a href="#" onclick="sp('services');return false" class="nav-link" data-page="services" role="menuitem">Services &amp; Pricing</a>
+    <a href="#" onclick="sp('faq');return false" class="nav-link" data-page="faq" role="menuitem">FAQ</a>
     <a href="#" onclick="sp('contact');return false" class="nav-link" data-page="contact" role="menuitem">Contact</a>
   </div>
   <a class="ncta" href="#" onclick="sp('contact');return false" aria-label="Get in touch with Survections">Get in touch</a>
@@ -2846,15 +3334,15 @@ section[id],div[id]{scroll-margin-top:64px}
       <div class="mt-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
       <span class="mt-label">About</span>
     </button>
-    <button class="mob-tab" id="mt-services" onclick="sp('services')" aria-label="Services">
+    <button class="mob-tab" id="mt-services" onclick="sp('services')" aria-label="Services &amp; Pricing">
       <div class="mt-pip" aria-hidden="true"></div>
       <div class="mt-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
       <span class="mt-label">Services</span>
     </button>
-    <button class="mob-tab" id="mt-pricing" onclick="sp('pricing')" aria-label="Pricing">
+    <button class="mob-tab" id="mt-faq" onclick="sp('faq')" aria-label="FAQ">
       <div class="mt-pip" aria-hidden="true"></div>
-      <div class="mt-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-      <span class="mt-label">Pricing</span>
+      <div class="mt-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="3"/></svg></div>
+      <span class="mt-label">FAQ</span>
     </button>
     <button class="mob-tab" id="mt-contact" onclick="sp('contact')" aria-label="Contact">
       <div class="mt-pip" aria-hidden="true"></div>
@@ -2878,15 +3366,15 @@ section[id],div[id]{scroll-margin-top:64px}
       <div class="mt-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
       <span class="mt-label">About</span>
     </button>
-    <button class="mob-tab" id="mt-services" onclick="sp('services')" aria-label="Services">
+    <button class="mob-tab" id="mt-services" onclick="sp('services')" aria-label="Services &amp; Pricing">
       <div class="mt-pip"></div>
       <div class="mt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
       <span class="mt-label">Services</span>
     </button>
-    <button class="mob-tab" id="mt-pricing" onclick="sp('pricing')" aria-label="Pricing">
+    <button class="mob-tab" id="mt-faq" onclick="sp('faq')" aria-label="FAQ">
       <div class="mt-pip"></div>
-      <div class="mt-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-      <span class="mt-label">Pricing</span>
+      <div class="mt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="3"/></svg></div>
+      <span class="mt-label">FAQ</span>
     </button>
     <button class="mob-tab" id="mt-contact" onclick="sp('contact')" aria-label="Contact">
       <div class="mt-pip"></div>
@@ -3247,8 +3735,150 @@ section[id],div[id]{scroll-margin-top:64px}
 
   </div><!-- /mep-deco -->
 
+  <!-- NEW: extra MEP / specialised asset decos -->
+  <div class="h2-mep-deco" aria-hidden="true" style="pointer-events:none">
+
+    <!-- Data Centre Server Rack -->
+    <svg class="h2-deco h2-deco-server" viewBox="0 0 56 90">
+      <rect x="4" y="2" width="48" height="86" rx="3" stroke="rgba(0,196,167,.55)" stroke-width="1.5" fill="rgba(0,196,167,.04)"/>
+      <!-- rack units -->
+      <rect x="8"  y="8"  width="40" height="10" rx="1" stroke="rgba(0,196,167,.4)" stroke-width="1" fill="rgba(0,196,167,.06)"/>
+      <rect x="8"  y="22" width="40" height="10" rx="1" stroke="rgba(0,196,167,.4)" stroke-width="1" fill="rgba(0,196,167,.06)"/>
+      <rect x="8"  y="36" width="40" height="10" rx="1" stroke="rgba(0,196,167,.4)" stroke-width="1" fill="rgba(0,196,167,.06)"/>
+      <rect x="8"  y="50" width="40" height="10" rx="1" stroke="rgba(0,196,167,.4)" stroke-width="1" fill="rgba(0,196,167,.06)"/>
+      <rect x="8"  y="64" width="40" height="10" rx="1" stroke="rgba(212,150,10,.4)" stroke-width="1" fill="rgba(212,150,10,.04)"/>
+      <!-- status LEDs -->
+      <circle class="sl" cx="14" cy="13"  r="2" fill="rgba(0,196,167,.8)" stroke="none"/>
+      <circle class="sl" cx="14" cy="27"  r="2" fill="rgba(0,196,167,.8)" stroke="none"/>
+      <circle class="sl" cx="14" cy="41"  r="2" fill="rgba(0,196,167,.8)" stroke="none"/>
+      <circle class="sl" cx="14" cy="55"  r="2" fill="rgba(0,220,60,.8)"  stroke="none"/>
+      <!-- power LED amber -->
+      <circle cx="14" cy="69" r="2" fill="rgba(212,150,10,.9)" stroke="none" style="animation:srvBlink2 2.1s ease-in-out infinite 1.1s"/>
+      <!-- cable mgmt bottom -->
+      <path d="M18,78 C18,82 22,84 28,84 C34,84 38,82 38,78" stroke="rgba(0,196,167,.3)" stroke-width="1" fill="none"/>
+      <text x="28" y="76" text-anchor="middle" font-size="5" font-family="Courier New,monospace" fill="rgba(0,196,167,.5)" font-weight="bold">1U–5U</text>
+    </svg>
+
+    <!-- Air Handling Unit (AHU) -->
+    <svg class="h2-deco h2-deco-ahu" viewBox="0 0 100 48">
+      <rect x="2" y="4" width="96" height="40" rx="4" stroke="rgba(0,196,167,.5)" stroke-width="1.5" fill="rgba(0,196,167,.04)"/>
+      <!-- supply/return labels -->
+      <text x="10" y="16" font-size="5" font-family="Courier New,monospace" fill="rgba(0,196,167,.5)" font-weight="bold">SA</text>
+      <text x="72" y="16" font-size="5" font-family="Courier New,monospace" fill="rgba(0,196,167,.5)" font-weight="bold">RA</text>
+      <!-- Fan 1 -->
+      <circle cx="22" cy="28" r="12" stroke="rgba(0,196,167,.35)" stroke-width="1" fill="none"/>
+      <g class="af1">
+        <path d="M22,28 C22,22 19,18 22,16 C25,18 22,22 22,28Z" fill="rgba(0,196,167,.4)"/>
+        <path d="M22,28 C28,28 32,25 34,28 C32,31 28,28 22,28Z" fill="rgba(0,196,167,.4)"/>
+        <path d="M22,28 C22,34 25,38 22,40 C19,38 22,34 22,28Z" fill="rgba(0,196,167,.4)"/>
+        <path d="M22,28 C16,28 12,31 10,28 C12,25 16,28 22,28Z" fill="rgba(0,196,167,.4)"/>
+      </g>
+      <circle cx="22" cy="28" r="3" stroke="rgba(0,196,167,.7)" stroke-width="1" fill="rgba(0,196,167,.2)"/>
+      <!-- Fan 2 -->
+      <circle cx="78" cy="28" r="12" stroke="rgba(0,196,167,.35)" stroke-width="1" fill="none"/>
+      <g class="af2">
+        <path d="M78,28 C78,22 75,18 78,16 C81,18 78,22 78,28Z" fill="rgba(0,196,167,.35)"/>
+        <path d="M78,28 C84,28 88,25 90,28 C88,31 84,28 78,28Z" fill="rgba(0,196,167,.35)"/>
+        <path d="M78,28 C78,34 81,38 78,40 C75,38 78,34 78,28Z" fill="rgba(0,196,167,.35)"/>
+        <path d="M78,28 C72,28 68,31 66,28 C68,25 72,28 78,28Z" fill="rgba(0,196,167,.35)"/>
+      </g>
+      <circle cx="78" cy="28" r="3" stroke="rgba(0,196,167,.7)" stroke-width="1" fill="rgba(0,196,167,.2)"/>
+      <!-- coil section between fans -->
+      <rect x="38" y="12" width="24" height="24" rx="2" stroke="rgba(196,86,42,.4)" stroke-width="1" fill="rgba(196,86,42,.04)"/>
+      <line x1="42" y1="12" x2="42" y2="36" stroke="rgba(196,86,42,.3)" stroke-width=".8"/>
+      <line x1="48" y1="12" x2="48" y2="36" stroke="rgba(196,86,42,.3)" stroke-width=".8"/>
+      <line x1="54" y1="12" x2="54" y2="36" stroke="rgba(196,86,42,.3)" stroke-width=".8"/>
+    </svg>
+
+    <!-- CCTV Camera -->
+    <svg class="h2-deco h2-deco-cctv" viewBox="0 0 48 36">
+      <!-- mount bracket -->
+      <rect x="20" y="0" width="8" height="12" rx="1" stroke="rgba(0,196,167,.45)" stroke-width="1.2" fill="rgba(0,196,167,.06)"/>
+      <!-- camera body -->
+      <g class="cc">
+        <rect x="4" y="10" width="28" height="16" rx="3" stroke="rgba(0,196,167,.6)" stroke-width="1.4" fill="rgba(0,196,167,.07)"/>
+        <!-- lens -->
+        <circle cx="34" cy="18" r="7" stroke="rgba(0,196,167,.6)" stroke-width="1.2" fill="rgba(0,196,167,.08)"/>
+        <circle cx="34" cy="18" r="4" stroke="rgba(0,196,167,.5)" stroke-width=".8" fill="rgba(0,196,167,.12)"/>
+        <circle cx="34" cy="18" r="2" fill="rgba(0,196,167,.5)" stroke="none"/>
+        <!-- IR LEDs -->
+        <circle cx="10" cy="14" r="1.5" fill="rgba(180,0,255,.5)" stroke="none"/>
+        <circle cx="16" cy="14" r="1.5" fill="rgba(180,0,255,.5)" stroke="none"/>
+        <circle cx="22" cy="14" r="1.5" fill="rgba(180,0,255,.5)" stroke="none"/>
+      </g>
+      <!-- recording indicator -->
+      <circle class="cr" cx="8" cy="30" r="3" fill="rgba(220,30,30,.9)" stroke="none"/>
+      <text x="14" y="33" font-size="5" font-family="Courier New,monospace" fill="rgba(220,30,30,.7)" font-weight="bold">REC</text>
+    </svg>
+
+    <!-- Hospital Medical Gas Panel -->
+    <svg class="h2-deco h2-deco-medgas" viewBox="0 0 52 72">
+      <rect x="2" y="2" width="48" height="68" rx="3" stroke="rgba(0,140,255,.5)" stroke-width="1.4" fill="rgba(0,140,255,.04)"/>
+      <!-- panel label -->
+      <text x="26" y="11" text-anchor="middle" font-size="5" font-family="Courier New,monospace" fill="rgba(0,140,255,.6)" font-weight="bold">MED GAS</text>
+      <!-- O2 outlet -->
+      <circle cx="14" cy="26" r="7" stroke="rgba(0,200,80,.6)" stroke-width="1.2" fill="rgba(0,200,80,.06)"/>
+      <text x="14" y="29" text-anchor="middle" font-size="6" font-family="Courier New,monospace" fill="rgba(0,200,80,.8)" font-weight="bold">O₂</text>
+      <!-- N2O outlet -->
+      <circle cx="38" cy="26" r="7" stroke="rgba(0,140,255,.55)" stroke-width="1.2" fill="rgba(0,140,255,.06)"/>
+      <text x="38" y="29" text-anchor="middle" font-size="5" font-family="Courier New,monospace" fill="rgba(0,140,255,.8)" font-weight="bold">N₂O</text>
+      <!-- VAC outlet -->
+      <circle cx="14" cy="48" r="7" stroke="rgba(212,150,10,.55)" stroke-width="1.2" fill="rgba(212,150,10,.04)"/>
+      <text x="14" y="51" text-anchor="middle" font-size="5" font-family="Courier New,monospace" fill="rgba(212,150,10,.8)" font-weight="bold">VAC</text>
+      <!-- AIR outlet -->
+      <circle cx="38" cy="48" r="7" stroke="rgba(0,196,167,.55)" stroke-width="1.2" fill="rgba(0,196,167,.04)"/>
+      <text x="38" y="51" text-anchor="middle" font-size="5" font-family="Courier New,monospace" fill="rgba(0,196,167,.8)" font-weight="bold">AIR</text>
+      <!-- gas flow line at bottom -->
+      <line class="gf" x1="8" y1="64" x2="44" y2="64" stroke="rgba(0,140,255,.5)" stroke-width="1.5"/>
+    </svg>
+
+    <!-- High-Security Access Control Panel -->
+    <svg class="h2-deco h2-deco-access" viewBox="0 0 40 64">
+      <rect x="2" y="2" width="36" height="60" rx="3" stroke="rgba(212,150,10,.5)" stroke-width="1.4" fill="rgba(212,150,10,.04)"/>
+      <!-- display -->
+      <rect x="6" y="7" width="28" height="12" rx="2" stroke="rgba(212,150,10,.4)" stroke-width="1" fill="rgba(212,150,10,.06)"/>
+      <line class="access-led" x1="8" y1="11" x2="32" y2="11" stroke="rgba(0,220,100,.5)" stroke-width="1.5"/>
+      <text x="20" y="16" text-anchor="middle" font-size="4.5" font-family="Courier New,monospace" fill="rgba(212,150,10,.6)" font-weight="bold">SECURE</text>
+      <!-- keypad 3x3 -->
+      <rect class="kb" x="7"  y="24" width="8" height="7" rx="1" fill="rgba(0,196,167,.3)" stroke="rgba(0,196,167,.5)" stroke-width=".8"/>
+      <rect class="kb" x="16" y="24" width="8" height="7" rx="1" fill="rgba(0,196,167,.3)" stroke="rgba(0,196,167,.5)" stroke-width=".8"/>
+      <rect class="kb" x="25" y="24" width="8" height="7" rx="1" fill="rgba(0,196,167,.3)" stroke="rgba(0,196,167,.5)" stroke-width=".8"/>
+      <rect class="kb" x="7"  y="34" width="8" height="7" rx="1" fill="rgba(0,196,167,.3)" stroke="rgba(0,196,167,.5)" stroke-width=".8"/>
+      <rect class="kb" x="16" y="34" width="8" height="7" rx="1" fill="rgba(0,196,167,.3)" stroke="rgba(0,196,167,.5)" stroke-width=".8"/>
+      <rect class="kb" x="25" y="34" width="8" height="7" rx="1" fill="rgba(0,196,167,.3)" stroke="rgba(0,196,167,.5)" stroke-width=".8"/>
+      <rect x="7"  y="44" width="8"  height="7" rx="1" fill="rgba(0,196,167,.15)" stroke="rgba(0,196,167,.4)" stroke-width=".8"/>
+      <rect x="16" y="44" width="8"  height="7" rx="1" fill="rgba(212,150,10,.2)" stroke="rgba(212,150,10,.5)" stroke-width=".8"/>
+      <rect x="25" y="44" width="8"  height="7" rx="1" fill="rgba(220,40,40,.15)" stroke="rgba(220,40,40,.4)" stroke-width=".8"/>
+      <!-- card reader slot -->
+      <rect x="11" y="54" width="18" height="5" rx="1" stroke="rgba(212,150,10,.4)" stroke-width=".8" fill="rgba(212,150,10,.06)"/>
+    </svg>
+
+    <!-- Industrial Chiller Unit -->
+    <svg class="h2-deco h2-deco-chiller" viewBox="0 0 88 56">
+      <rect x="2" y="6" width="84" height="44" rx="4" stroke="rgba(0,180,255,.45)" stroke-width="1.5" fill="rgba(0,180,255,.04)"/>
+      <!-- compressor unit L -->
+      <rect x="8"  y="12" width="18" height="32" rx="2" stroke="rgba(0,180,255,.4)" stroke-width="1" fill="rgba(0,180,255,.06)"/>
+      <text x="17" y="30" text-anchor="middle" font-size="4.5" font-family="Courier New,monospace" fill="rgba(0,180,255,.6)" font-weight="bold">COMP</text>
+      <!-- condenser coil mid -->
+      <rect x="30" y="12" width="28" height="32" rx="2" stroke="rgba(0,196,167,.35)" stroke-width="1" fill="rgba(0,196,167,.04)"/>
+      <line x1="34" y1="12" x2="34" y2="44" stroke="rgba(0,196,167,.25)" stroke-width=".8"/>
+      <line x1="40" y1="12" x2="40" y2="44" stroke="rgba(0,196,167,.25)" stroke-width=".8"/>
+      <line x1="46" y1="12" x2="46" y2="44" stroke="rgba(0,196,167,.25)" stroke-width=".8"/>
+      <line x1="52" y1="12" x2="52" y2="44" stroke="rgba(0,196,167,.25)" stroke-width=".8"/>
+      <!-- evaporator unit R -->
+      <rect x="62" y="12" width="18" height="32" rx="2" stroke="rgba(0,180,255,.4)" stroke-width="1" fill="rgba(0,180,255,.06)"/>
+      <text x="71" y="30" text-anchor="middle" font-size="4" font-family="Courier New,monospace" fill="rgba(0,180,255,.6)" font-weight="bold">EVAP</text>
+      <!-- pipe connections top -->
+      <path d="M17,6 L17,0 M71,6 L71,0" stroke="rgba(0,180,255,.4)" stroke-width="1.5" fill="none"/>
+      <path d="M17,0 L71,0" stroke="rgba(0,180,255,.35)" stroke-width="1" stroke-dasharray="4 3"/>
+      <!-- status text -->
+      <text x="44" y="53" text-anchor="middle" font-size="4" font-family="Courier New,monospace" fill="rgba(0,180,255,.45)" font-weight="bold">CHILLER — RUN</text>
+    </svg>
+
+  </div><!-- /extra mep-deco -->
+
   <div class="h2-inner" style="position:relative;z-index:2">
-    <span class="h2-eyebrow">West &amp; Central London &middot; Accredited &amp; Insured</span>
+    <span class="h2-eyebrow"><span class="h2-ew-dot"></span><span id="h2-typewriter">West &amp; Central London · Accredited &amp; Insured</span><span class="h2-ew-cursor">|</span></span>
     <h1 class="h2-title">
       <span class="h2-title-l1">Know Your</span>
       <span class="h2-title-l2"><em>Building.</em></span>
@@ -3489,8 +4119,8 @@ section[id],div[id]{scroll-margin-top:64px}
 
 <!-- ── Marquee strip ── -->
 <div class="marquee"><div class="marquee-inner">
-  <span class="mi">EPC Certificates</span><span class="mi">Floor Plans</span><span class="mi">M&amp;E Condition Surveys</span><span class="mi">Snagging Surveys</span><span class="mi">Stock Condition Surveys</span><span class="mi">Asset Register Creation</span><span class="mi">PPM Schedules</span><span class="mi">Power BI Dashboards</span><span class="mi">Landlord Compliance</span><span class="mi">Portfolio Programmes</span><span class="mi">Outside IR35</span><span class="mi">West &amp; Central London</span><span class="mi">Elmhurst Accredited DEA</span><span class="mi">AXA Insured</span>
-  <span class="mi">EPC Certificates</span><span class="mi">Floor Plans</span><span class="mi">M&amp;E Condition Surveys</span><span class="mi">Snagging Surveys</span><span class="mi">Stock Condition Surveys</span><span class="mi">Asset Register Creation</span><span class="mi">PPM Schedules</span><span class="mi">Power BI Dashboards</span><span class="mi">Landlord Compliance</span><span class="mi">Portfolio Programmes</span><span class="mi">Outside IR35</span><span class="mi">West &amp; Central London</span><span class="mi">Elmhurst Accredited DEA</span><span class="mi">AXA Insured</span>
+  <span class="mi">EPC Certificates</span><span class="mi">Floor Plans</span><span class="mi">M&amp;E Condition Surveys</span><span class="mi">Snagging Surveys</span><span class="mi">Stock Condition Surveys</span><span class="mi">Asset Register Creation</span><span class="mi">PPM Schedules</span><span class="mi">Landlord Compliance</span><span class="mi">Portfolio Programmes</span><span class="mi">Outside IR35</span><span class="mi">West &amp; Central London</span><span class="mi">Elmhurst Accredited DEA</span><span class="mi">AXA Insured</span>
+  <span class="mi">EPC Certificates</span><span class="mi">Floor Plans</span><span class="mi">M&amp;E Condition Surveys</span><span class="mi">Snagging Surveys</span><span class="mi">Stock Condition Surveys</span><span class="mi">Asset Register Creation</span><span class="mi">PPM Schedules</span><span class="mi">Landlord Compliance</span><span class="mi">Portfolio Programmes</span><span class="mi">Outside IR35</span><span class="mi">West &amp; Central London</span><span class="mi">Elmhurst Accredited DEA</span><span class="mi">AXA Insured</span>
 </div></div>
 
 <!-- ══ SERVICES GRID ══════════════════════════════════ -->
@@ -3578,7 +4208,7 @@ section[id],div[id]{scroll-margin-top:64px}
         </div>
         <div class="h2-svc-tag" style="color:var(--green)">Social Housing &middot; Portfolio</div>
         <div class="h2-svc-name">Stock Condition Survey</div>
-        <div class="h2-svc-desc">Element-level condition grading, remaining useful life, HHSRS-compliant. Asset register and PPM schedule. Excel, PDF &amp; Power BI.</div>
+        <div class="h2-svc-desc">Element-level condition grading, remaining useful life, HHSRS-compliant. Asset register and PPM schedule. Excel &amp; PDF.</div>
         <div class="h2-svc-footer">
           <div class="h2-svc-price"><span class="h2-svc-price-from">from </span>&pound;88<span style="font-size:11px;font-weight:400;color:var(--g400)">/unit</span></div>
           <a href="#" onclick="showPage('contact');return false" class="h2-svc-link">Get a quote <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
@@ -3595,7 +4225,7 @@ section[id],div[id]{scroll-margin-top:64px}
         </div>
         <div class="h2-svc-tag" style="color:var(--coral)">Commercial &middot; Public Sector</div>
         <div class="h2-svc-name">M&amp;E Condition Survey</div>
-        <div class="h2-svc-desc">Full mechanical and electrical asset inventory with condition grading, photos, PPM schedule and Power BI delivery. Public-sector and audit standard.</div>
+        <div class="h2-svc-desc">Full mechanical and electrical asset inventory with condition grading, photos, PPM schedule and Excel/PDF delivery. Public-sector and audit standard.</div>
         <div class="h2-svc-footer">
           <div class="h2-svc-price"><span class="h2-svc-price-from">from </span>&pound;385</div>
           <a href="#" onclick="showPage('contact');return false" class="h2-svc-link">Get a quote <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
@@ -3649,6 +4279,112 @@ section[id],div[id]{scroll-margin-top:64px}
   </div>
 </div>
 
+<!-- ══ CLIENTS & TRACK RECORD ════════════════════════ -->
+<section class="h2-clients">
+  <div class="h2-clients-inner">
+
+    <div class="h2-clients-hd rv">
+      <span class="h2-sec-label">Track record</span>
+      <h2 class="h2-sec-h" style="color:#fff">Trusted by London&rsquo;s public sector<br>and leading property professionals.</h2>
+      <p>Survey programmes delivered for London boroughs, government estate managers, transport authorities, and commercial surveyors across the capital.</p>
+    </div>
+
+    <div class="h2-client-grid stagger">
+
+      <!-- Royal Borough of Kensington & Chelsea -->
+      <div class="h2-client-card gold-accent">
+        <div class="h2-cc-sector">
+          <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          Local Authority
+        </div>
+        <div class="h2-cc-logo">
+          <div class="h2-cc-logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="h2-cc-name">Royal Borough of Kensington &amp; Chelsea</div>
+        </div>
+        <div class="h2-cc-body">Large-scale M&amp;E condition survey programme across the Council&rsquo;s housing estate — full asset register, condition grades, and PPM scheduling.</div>
+        <div class="h2-cc-stat">
+          <span class="h2-cc-stat-n">1,000<span style="font-size:14px">+</span></span>
+          <span class="h2-cc-stat-l">assets surveyed</span>
+        </div>
+      </div>
+
+      <!-- London Borough of Ealing -->
+      <div class="h2-client-card">
+        <div class="h2-cc-sector">
+          <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          Local Authority
+        </div>
+        <div class="h2-cc-logo">
+          <div class="h2-cc-logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="h2-cc-name">London Borough of Ealing</div>
+        </div>
+        <div class="h2-cc-body">M&amp;E condition survey and asset register programme across residential and civic estate. Data structured for capital maintenance planning.</div>
+        <div class="h2-cc-stat">
+          <span class="h2-cc-stat-n">600<span style="font-size:14px">+</span></span>
+          <span class="h2-cc-stat-l">assets surveyed</span>
+        </div>
+      </div>
+
+      <!-- Transport for London -->
+      <div class="h2-client-card blue-accent">
+        <div class="h2-cc-sector">
+          <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          Transport Authority
+        </div>
+        <div class="h2-cc-logo">
+          <div class="h2-cc-logo-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="h2-cc-name">Transport for London</div>
+        </div>
+        <div class="h2-cc-body">M&amp;E survey work across TfL operational estate. Mechanical and electrical plant inspection, condition grading, and audit-ready reporting.</div>
+        <div class="h2-cc-stat">
+          <span class="h2-cc-stat-n">600<span style="font-size:14px">+</span></span>
+          <span class="h2-cc-stat-l">surveys completed</span>
+        </div>
+      </div>
+
+      <!-- Plowman Craven -->
+      <div class="h2-client-card coral-accent">
+        <div class="h2-cc-sector">
+          <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          Surveying Consultancy
+        </div>
+        <div class="h2-cc-logo">
+          <div class="h2-cc-logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="h2-cc-name">Plowman Craven</div>
+        </div>
+        <div class="h2-cc-body">Survey and measured drawing work delivered in collaboration with one of the UK&rsquo;s leading geospatial and building survey consultancies.</div>
+        <div class="h2-cc-stat">
+          <span class="h2-cc-stat-n">60<span style="font-size:14px">+</span></span>
+          <span class="h2-cc-stat-l">surveys delivered</span>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <!-- Pull-quote -->
+    <div class="h2-client-quote rv">
+      <svg class="h2-cq-icon" viewBox="0 0 40 32" fill="none">
+        <path d="M0 20C0 10 6 4 18 0l2 4C12 6 9 10 9 14h7v18H0V20zm22 0C22 10 28 4 40 0l2 4C34 6 31 10 31 14h7v18H22V20z" fill="currentColor" opacity=".4"/>
+      </svg>
+      <div>
+        <p class="h2-cq-text">Delivering to public-sector standards means every report I produce is structured for scrutiny — auditable, data-ready, and built to last beyond the initial handover. That same rigour is applied to every instruction, regardless of size.</p>
+        <p class="h2-cq-attr">— Adam Rodrigo, Director &middot; Survections Ltd</p>
+      </div>
+    </div>
+
+    <p class="h2-clients-note">Named organisations represent prior professional experience gained through employed roles and do not constitute current endorsements, affiliations, or client relationships of Survections Ltd unless expressly stated. Past performance in an employed capacity is not a guarantee of future results.</p>
+
+  </div>
+</section>
+
 <!-- ══ HOW IT WORKS ═══════════════════════════════════ -->
 <section class="h2-how">
   <div class="h2-how-inner">
@@ -3675,7 +4411,7 @@ section[id],div[id]{scroll-margin-top:64px}
       <div class="h2-step">
         <div class="h2-step-n">4</div>
         <div class="h2-step-t">Receive deliverable</div>
-        <div class="h2-step-b">EPC lodged same day. Floor plans within 24h. M&amp;E reports in Excel, PDF &amp; Power BI.</div>
+        <div class="h2-step-b">EPC lodged same day. Floor plans within 24h. M&amp;E reports in structured Excel &amp; PDF.</div>
       </div>
     </div>
   </div>
@@ -3690,7 +4426,7 @@ section[id],div[id]{scroll-margin-top:64px}
       <div class="h2-why-item">
         <div class="h2-why-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <div class="h2-why-t">Audit-ready outputs</div>
-        <div class="h2-why-b">Every survey is structured for downstream use &mdash; asset registers, PPM schedules, Power BI dashboards, and capital planning.</div>
+        <div class="h2-why-b">Every survey is structured for downstream use &mdash; asset registers, PPM schedules, and long-term capital planning.</div>
       </div>
       <div class="h2-why-item">
         <div class="h2-why-icon" style="background:rgba(212,150,10,.08);border-color:rgba(212,150,10,.18)"><svg viewBox="0 0 24 24" style="stroke:var(--gold)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -3705,7 +4441,7 @@ section[id],div[id]{scroll-margin-top:64px}
       <div class="h2-why-item">
         <div class="h2-why-icon" style="background:rgba(196,86,42,.08);border-color:rgba(196,86,42,.18)"><svg viewBox="0 0 24 24" style="stroke:var(--coral)"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <div class="h2-why-t">Data-first delivery</div>
-        <div class="h2-why-b">Surveys feed directly into Power BI dashboards and asset management systems. Structured from day one, not retrofitted.</div>
+        <div class="h2-why-b">Surveys feed directly into asset management systems. Data is structured from day one, not retrofitted.</div>
       </div>
     </div>
   </div>
@@ -3823,7 +4559,7 @@ section[id],div[id]{scroll-margin-top:64px}
       <h2 class="about-h">A surveyor built on track record, not promises.</h2>
       <p class="about-p">M&amp;E surveyor and accredited DEA with 5+ years across London&rsquo;s most demanding public-sector portfolios. I structure data so organisations can use it for long-term asset decisions.</p>
       <p class="about-p">With 5+ years delivering M&amp;E and residential surveys across London&rsquo;s most demanding public-sector portfolios &mdash; all to audit standard.</p>
-      <div class="usp-box">&ldquo;My surveys are built with future data use in mind &mdash; structured intelligence that feeds asset registers, Power BI dashboards, and long-term capital planning.&rdquo;</div>
+      <div class="usp-box">&ldquo;My surveys are built with future data use in mind &mdash; structured intelligence that feeds asset registers, PPM schedules, and long-term capital planning.&rdquo;</div>
       <div class="timeline" style="margin-top:28px">
         <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-org">Tetra Tech Europe</div><div class="tl-role">Consultant M&amp;E Surveyor <em style="font-size:10px;color:var(--g400);font-style:normal">(employed role)</em></div><div class="tl-date">January 2026 &ndash; Present</div></div></div>
         <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-org">Survections Ltd (Outside IR35)</div><div class="tl-role">DEA &amp; Stock Condition Surveyor &mdash; RBKC, 1,000+ properties</div><div class="tl-date">August 2024 &ndash; Present</div></div></div>
@@ -3832,7 +4568,7 @@ section[id],div[id]{scroll-margin-top:64px}
         <div class="tl-item"><div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-right"><div class="tl-org">DocTap Ltd, Hammersmith</div><div class="tl-role">Property Audit Manager &mdash; multi-site operations &amp; compliance</div><div class="tl-date">May 2021 &ndash; November 2022</div></div></div>
       </div>
       <div class="cpills-wrap stagger" style="margin-top:20px">
-        <span class="cpill2 dk">Qualified DEA</span><span class="cpill2 dk">Elmhurst Accredited</span><span class="cpill2">CSCS Card</span><span class="cpill2">RICS Standards</span><span class="cpill2">RdSAP</span><span class="cpill2">AutoCAD</span><span class="cpill2">Power BI</span><span class="cpill2">Python</span>
+        <span class="cpill2 dk">Qualified DEA</span><span class="cpill2 dk">Elmhurst Accredited</span><span class="cpill2">CSCS Card</span><span class="cpill2">RICS Standards</span><span class="cpill2">RdSAP</span><span class="cpill2">AutoCAD</span><span class="cpill2">Python</span>
       </div>
     </div>
     <!-- DASHBOARD -->
@@ -3846,6 +4582,11 @@ section[id],div[id]{scroll-margin-top:64px}
         <div class="db-kpi"><div class="db-kpi-n" data-count="600" data-suffix="+">0</div><div class="db-kpi-l">M&amp;E condition</div><div class="db-kpi-bar"><div class="db-kpi-fill" data-w="60" style="background:var(--green)"></div></div></div>
         <div class="db-kpi"><div class="db-kpi-n" data-count="1000" data-suffix="+">0</div><div class="db-kpi-l">Residential</div><div class="db-kpi-bar"><div class="db-kpi-fill" data-w="100" style="background:#ff9f0a"></div></div></div>
         <div class="db-kpi"><div class="db-kpi-n">24h</div><div class="db-kpi-l">EPC turnaround</div><div class="db-kpi-bar"><div class="db-kpi-fill" data-w="100" style="background:var(--cyan)"></div></div></div>
+      </div>
+      <!-- Live activity ticker -->
+      <div class="db-ticker" id="db-ticker">
+        <span class="db-ticker-dot"></span>
+        <span class="db-ticker-text" id="db-ticker-text">Loading live data…</span>
       </div>
       <div class="db-div"></div>
       <div class="db-charts">
@@ -3910,12 +4651,45 @@ section[id],div[id]{scroll-margin-top:64px}
         <div class="db-slider-hdr">Quote estimator</div>
         <div class="db-slider-grid">
           <div class="db-slider-item"><div class="db-slider-lbl">Properties <span class="db-slider-val" id="sv-props">5</span></div><input type="range" class="db-range" min="1" max="50" value="5" id="sl-props" oninput="updateCalc()"></div>
-          <div class="db-slider-item"><div class="db-slider-lbl">Service <span class="db-slider-val" id="sv-type">EPC</span></div><input type="range" class="db-range" min="1" max="3" value="1" id="sl-type" max="6" oninput="updateCalc()"></div>
+          <div class="db-slider-item"><div class="db-slider-lbl">Service <span class="db-slider-val" id="sv-type">EPC</span></div><input type="range" class="db-range" min="1" max="6" value="1" id="sl-type" oninput="updateCalc()"></div>
         </div>
         <div class="db-calc-row">
           <div class="db-calc-cell"><div class="db-calc-n" id="calc-props">5</div><div class="db-calc-l">Properties</div></div>
           <div class="db-calc-cell"><div class="db-calc-n" id="calc-type">EPC</div><div class="db-calc-l">Service</div></div>
           <div class="db-calc-cell"><div class="db-calc-n" id="calc-total">&pound;350</div><div class="db-calc-l">Est. total</div></div>
+        </div>
+        <div style="margin-top:12px;text-align:center">
+          <a href="#" onclick="showPage('contact');return false" style="font-size:11px;color:var(--gold);text-decoration:none;font-weight:600;letter-spacing:.04em">Get a precise quote &rarr;</a>
+        </div>
+      </div>
+      <!-- Satisfaction + response gauge row -->
+      <div class="db-gauge-row">
+        <div class="db-gauge-card">
+          <div class="db-gauge-label">Client satisfaction</div>
+          <svg viewBox="0 0 120 70" width="120" height="70">
+            <path d="M10,60 A50,50 0 0,1 110,60" stroke="rgba(255,255,255,.07)" stroke-width="10" fill="none"/>
+            <path id="db-sat-arc" d="M10,60 A50,50 0 0,1 110,60" stroke="var(--green)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="0 157"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="Inter,sans-serif" id="db-sat-n">0%</text>
+          </svg>
+          <div class="db-gauge-sub">Based on client feedback</div>
+        </div>
+        <div class="db-gauge-card">
+          <div class="db-gauge-label">Avg. response time</div>
+          <svg viewBox="0 0 120 70" width="120" height="70">
+            <path d="M10,60 A50,50 0 0,1 110,60" stroke="rgba(255,255,255,.07)" stroke-width="10" fill="none"/>
+            <path id="db-resp-arc" d="M10,60 A50,50 0 0,1 110,60" stroke="var(--gold)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="0 157"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="Inter,sans-serif" id="db-resp-n">—</text>
+          </svg>
+          <div class="db-gauge-sub">&lt; 4 hours typical</div>
+        </div>
+        <div class="db-gauge-card">
+          <div class="db-gauge-label">EPC cert delivery</div>
+          <svg viewBox="0 0 120 70" width="120" height="70">
+            <path d="M10,60 A50,50 0 0,1 110,60" stroke="rgba(255,255,255,.07)" stroke-width="10" fill="none"/>
+            <path id="db-epc-arc" d="M10,60 A50,50 0 0,1 110,60" stroke="var(--cyan)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="0 157"/>
+            <text x="60" y="55" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="Inter,sans-serif" id="db-epc-n">—</text>
+          </svg>
+          <div class="db-gauge-sub">Same-day lodgement</div>
         </div>
       </div>
     </div>
@@ -3936,8 +4710,9 @@ section[id],div[id]{scroll-margin-top:64px}
     <div class="co-inner"><div class="co-left"><div class="co-shield"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div><div class="co-name">Survections Ltd</div><div class="co-reg">Registered in England &amp; Wales &middot; Company No. 15926055</div></div></div><div class="co-badges"><span class="co-pill hi">PI &pound;250k</span><span class="co-pill hi">PL &pound;1m</span><span class="co-pill">Elmhurst DEA</span><span class="co-pill">ABBE Certified</span><span class="co-pill">AXA Underwritten</span><span class="co-pill">Outside IR35</span></div></div>
   </div>
 </section>
+
 <section class="mini-contact"><div class="mc-inner rv">
-  <div class="mc-left"><span class="sec-label">Work with Adam</span><h2>Ready to get started?</h2><p>EPC, floor plan, or M&amp;E &mdash; respond within one working day.</p><div class="mc-links"><a href="/cdn-cgi/l/email-protection#f29396939fb2818780849791869b9d9c81dc919d9f"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="d8b9bcb9b598abadaaaebdbbacb1b7b6abf6bbb7b5">[email&#160;protected]</span></a><a href="tel:07483341559"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07483 341 559</a></div></div>
+  <div class="mc-left"><span class="sec-label">Work with Adam</span><h2>Ready to get started?</h2><p>EPC, floor plan, or M&amp;E &mdash; respond within one working day.</p><div class="mc-links"><a href="mailto:adam@survections.com"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>adam@survections.com</a><a href="tel:07483341559"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07483 341 559</a></div></div>
   <div class="mc-form-wrap"><div <div id="amc-wrap">
       <form id="amcForm" action="https://formsubmit.co/adam@survections.com" method="POST">
         <input type="hidden" name="_subject" value="Enquiry (About) - Survections">
@@ -3997,9 +4772,9 @@ section[id],div[id]{scroll-margin-top:64px}
     </svg>
   </div>
   <div style="position:relative;z-index:1">
-    <span class="ph-eye">What We Do</span>
-    <h1 class="ph-title">Precision Surveying.<br><span style="background:linear-gradient(120deg,var(--cyan),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Every Scope. Every Scale.</span></h1>
-    <p class="ph-sub">From a single EPC to a full M&amp;E asset audit &mdash; accredited, insured, audit-ready.</p>
+    <span class="ph-eye">Services &amp; Pricing</span>
+    <h1 class="ph-title">Precision Surveying.<br><span style="background:linear-gradient(120deg,var(--cyan),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Every Scope. Transparent Pricing.</span></h1>
+    <p class="ph-sub">From a single EPC to a full M&amp;E asset audit &mdash; accredited, insured, and priced with no hidden fees.</p>
   </div>
 
   <!-- MEP strip decoration -->
@@ -4030,32 +4805,117 @@ section[id],div[id]{scroll-margin-top:64px}
     <text x="671" y="20" fill="rgba(212,150,10,.6)" font-size="5" font-family="Courier New,monospace" font-weight="bold">DB</text>
   </svg>
 </div>
-<section class="sec bg-w">
-  <div class="mw rv" style="text-align:center">
-    <span class="sec-label">Our Services</span>
-    <h2 class="sec-h">Everything under one roof</h2>
-    <p class="sec-p" style="max-width:480px;margin:0 auto">Click any service to explore scope, deliverables, and turnaround times.</p>
+
+<!-- ══ PRICING CARDS ══════════════════════════════ -->
+<section class="sec bg-w" id="service-tiers">
+  <div class="mw rv" style="text-align:center;max-width:1100px;margin:0 auto">
+    <span class="gold-bar" style="margin:0 auto 16px"></span>
+    <span class="sec-label">Transparent pricing</span>
+    <h2 class="sec-h">The right service at the right price.</h2>
+    <p class="sec-p" style="max-width:520px;margin:0 auto">Click any service to see full scope, deliverables, and turnaround. No hidden fees.</p>
   </div>
-  <div class="acc-list rv">
-    <div class="acc-item"><button class="acc-hdr" onclick="toggleAcc(this)"><div class="acc-hdr-l"><div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="acc-title">Energy Performance Certificate (EPC)</div><div class="acc-sub">Mandatory for lettings &amp; sales &middot; From &pound;70</div></div></div><svg class="acc-chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-      <div class="acc-body"><div class="acc-content"><div class="acc-cols"><div class="acc-main"><p>Legally required for any property sold or let. Lodged direct to the national register &mdash; same day for most London properties.</p><ul class="svc-list"><li>Full SAP/RdSAP energy assessment</li><li>Lodged to EPC register within 24 hours</li><li>Improvement recommendations included</li><li>Valid for 10 years from date of issue</li></ul><div class="acc-badges"><span class="abadge">Elmhurst Accredited</span><span class="abadge">DEA Certified</span><span class="abadge">24h Turnaround</span></div></div><div class="acc-side"><div class="acc-stat"><div class="asc-n" data-count="1200" data-suffix="+">0+</div><div class="asc-l">EPCs issued</div></div><div class="acc-cta"><a href="#" onclick="showPage('pricing');return false" class="btn-sm-gold">See pricing &rarr;</a><a href="#" onclick="showPage('contact');return false" class="btn-sm-out">Book now &rarr;</a></div></div></div></div></div>
+  <div style="display:flex;justify-content:center;gap:8px;margin:28px 0 8px;flex-wrap:wrap" id="tier-tabs">
+    <button class="tier-tab active" data-tier="all" onclick="filterTier('all')">All services</button>
+    <button class="tier-tab" data-tier="residential" onclick="filterTier('residential')">Residential</button>
+    <button class="tier-tab" data-tier="commercial" onclick="filterTier('commercial')">Commercial</button>
+    <button class="tier-tab" data-tier="portfolio" onclick="filterTier('portfolio')">Portfolio</button>
+  </div>
+
+  <div class="pgrid stagger" id="pricing-grid">
+    <div class="pcard-v2 pv2-bronze" data-tier="residential commercial" data-svc="epc" style="transition-delay:.05s" onclick="toggleSvcDrawer('epc',this)">
+      <div class="tier-pill t-bronze">&#x1F7EB; Bronze</div>
+      <div class="pv2-price-row"><span class="pv2-from">from £</span><span class="pv2-amount">70</span></div>
+      <div class="pv2-name">EPC Assessment</div>
+      <div class="pv2-desc">Legally-required energy rating. Lodged direct to the national register the same day.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list"><li>Full RdSAP energy assessment</li><li>Certificate lodged same day</li><li>Valid 10 years from issue</li><li>Improvement recommendations included</li><li>West &amp; Central London coverage</li></ul>
+      <div class="pv2-expand-hint">Click to see full scope <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
-    <div class="acc-item"><button class="acc-hdr" onclick="toggleAcc(this)"><div class="acc-hdr-l"><div class="acc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><div><div class="acc-title">Floor Plans &amp; Site Drawings</div><div class="acc-sub">Agent-ready &amp; planning-grade &middot; From &pound;50</div></div></div><svg class="acc-chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-      <div class="acc-body"><div class="acc-content"><div class="acc-cols"><div class="acc-main"><p>Accurate measured floor plans to RICS standards. 2D, 3D, or furnished format. Used by leading estate agents across London.</p><ul class="svc-list"><li>Measured survey on-site (laser accurate)</li><li>2D / 3D / furnished formats</li><li>DWG, PDF, and JPEG supplied</li><li>Gross internal area (GIA) included</li><li>Planning-grade on request</li></ul><div class="acc-badges"><span class="abadge">RICS Standards</span><span class="abadge">Same-Day Draft</span><span class="abadge">DWG + PDF</span></div></div><div class="acc-side"><div class="acc-stat"><div class="asc-n" data-count="800" data-suffix="+">0+</div><div class="asc-l">Plans delivered</div></div><div class="acc-cta"><a href="#" onclick="showPage('pricing');return false" class="btn-sm-gold">See pricing &rarr;</a><a href="#" onclick="showPage('contact');return false" class="btn-sm-out">Book now &rarr;</a></div></div></div></div></div>
+    <div class="pcard-v2 pv2-silver" data-tier="residential commercial" data-svc="floorplan" style="transition-delay:.12s" onclick="toggleSvcDrawer('floorplan',this)">
+      <div class="tier-pill t-silver">&#x26AA; Silver</div>
+      <div class="pv2-price-row"><span class="pv2-from">from £</span><span class="pv2-amount">50</span></div>
+      <div class="pv2-name">Floor Plan</div>
+      <div class="pv2-desc">Laser-accurate measured survey. 2D or 3D. DWG + PDF. Agent-ready in 24 hours.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list"><li>Laser-accurate measured survey</li><li>2D &amp; 3D formats available</li><li>DWG + PDF supplied</li><li>Gross internal area (GIA) calculated</li><li>Agent-ready within 24 hours</li></ul>
+      <div class="pv2-expand-hint">Click to see full scope <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
-    <div class="acc-item"><button class="acc-hdr" onclick="toggleAcc(this)"><div class="acc-hdr-l"><div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div><div class="acc-title">Compliance Bundle</div><div class="acc-sub">EPC + Floor Plan &middot; Best value &middot; From &pound;105</div></div></div><svg class="acc-chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-      <div class="acc-body"><div class="acc-content"><div class="acc-cols"><div class="acc-main"><p>The complete pre-market pack. Everything your agent, solicitor, or local authority needs in one visit. Most popular for residential landlords.</p><ul class="svc-list"><li>Full EPC lodged to national register</li><li>Measured floor plan (2D + GIA)</li><li>All documents within 48 hours</li><li>Discounted vs. buying separately</li></ul><div class="acc-badges"><span class="abadge">Most Popular</span><span class="abadge">48h Delivery</span><span class="abadge">Best Value</span></div></div><div class="acc-side"><div class="acc-stat"><div class="asc-n" data-count="600" data-suffix="+">0+</div><div class="asc-l">Bundles completed</div></div><div class="acc-cta"><a href="#" onclick="showPage('pricing');return false" class="btn-sm-gold">See pricing &rarr;</a><a href="#" onclick="showPage('contact');return false" class="btn-sm-out">Book now &rarr;</a></div></div></div></div></div>
+    <div class="pcard-v2 pv2-gold" data-tier="residential" data-svc="bundle" style="transition-delay:.19s" onclick="toggleSvcDrawer('bundle',this)">
+      <div class="tier-pill t-gold">&#x2B50; Gold &nbsp;<span style="font-size:9px;background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px;letter-spacing:.04em">BEST VALUE</span></div>
+      <div class="pv2-price-row"><span class="pv2-from">from £</span><span class="pv2-amount">105</span></div>
+      <div class="pv2-name">Compliance Bundle</div>
+      <div class="pv2-desc">EPC + Floor Plan in a single visit. Everything a landlord needs before letting.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list"><li>EPC lodged same day</li><li>Measured floor plan included</li><li>Both documents in 48 hours</li><li>Priority booking slot</li><li>Saves £15 vs. buying separately</li></ul>
+      <div class="pv2-note">Most popular for landlords</div>
+      <div class="pv2-expand-hint">Click to see full scope <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
-    <div class="acc-item"><button class="acc-hdr" onclick="toggleAcc(this)"><div class="acc-hdr-l"><div class="acc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><div><div class="acc-title">M&amp;E Consultancy &amp; Asset Survey</div><div class="acc-sub">Mechanical &amp; Electrical &middot; Infrastructure intelligence &middot; From &pound;385</div></div></div><svg class="acc-chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-      <div class="acc-body"><div class="acc-content"><div class="acc-cols"><div class="acc-main"><p>In-depth M&amp;E surveys for commercial properties and public-sector estates. Auditable asset registers and actionable PPM schedules &mdash; trusted by London boroughs and government estate managers.</p><ul class="svc-list"><li>Full M&amp;E asset inventory (all plant &amp; equipment)</li><li>Condition grading with photographic evidence</li><li>PPM schedule &amp; remaining useful life (RUL)</li><li>Excel, PDF &amp; Power BI delivery</li><li>CAD/BIM-compatible data available</li></ul><div class="acc-badges"><span class="abadge">Public Sector Proven</span><span class="abadge">Gov Estate Surveys</span><span class="abadge">CIBSE Aligned</span></div>
-        <div class="me-feats"><div class="me-feat"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>Power BI dashboards</span></div><div class="me-feat"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Asset registers</span></div><div class="me-feat"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>PPM scheduling</span></div><div class="me-feat"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Condition grading</span></div><div class="me-feat"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><span>BIM integration</span></div><div class="me-feat"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>Audit-ready</span></div></div>
-      </div><div class="acc-side"><div class="acc-stat"><div class="asc-n" data-count="600" data-suffix="+">0+</div><div class="asc-l">M&amp;E surveys</div></div><div class="acc-cta"><a href="#" onclick="showPage('pricing');return false" class="btn-sm-gold">See pricing &rarr;</a><a href="#" onclick="showPage('contact');return false" class="btn-sm-out">Book now &rarr;</a></div></div></div></div></div>
+    <div class="pcard-v2 pv2-snag" data-tier="residential" data-svc="snagging" style="transition-delay:.26s" onclick="toggleSvcDrawer('snagging',this)">
+      <div class="tier-pill t-silver">&#x1F50D; Snagging &nbsp;<span style="font-size:9px;background:rgba(46,204,122,.2);color:#2ecc7a;padding:2px 6px;border-radius:4px;letter-spacing:.04em">NEW</span></div>
+      <div class="pv2-price-row"><span class="pv2-from">from £</span><span class="pv2-amount">330</span></div>
+      <div class="pv2-name">Snagging Survey</div>
+      <div class="pv2-desc">New-build defect inspection before completion. 100+ point check. Developer-ready report.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list"><li>100+ point inspection</li><li>M&amp;E systems fully tested</li><li>Photographic defect schedule</li><li>Developer-ready report format</li><li>3+ bed from £385</li></ul>
+      <div class="pv2-expand-hint">Click to see full scope <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
-    <div class="acc-item"><button class="acc-hdr" onclick="toggleAcc(this)"><div class="acc-hdr-l"><div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="acc-title">For Agents &amp; Trade Professionals</div><div class="acc-sub">Volume pricing &middot; Priority scheduling &middot; White-label</div></div></div><svg class="acc-chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-      <div class="acc-body"><div class="acc-content"><div class="acc-cols"><div class="acc-main"><p>Letting agents, property managers, and FM companies rely on us for consistent, fast, and competitively priced surveying. We integrate directly into your workflow.</p><ul class="svc-list"><li>Dedicated account manager and priority booking</li><li>Volume discounts from 10+ instructions/month</li><li>White-label reports branded to your firm</li><li>Monthly invoicing on agreed terms</li></ul><div class="acc-badges"><span class="abadge">Volume Pricing</span><span class="abadge">Priority Slots</span><span class="abadge">White-label</span></div></div><div class="acc-side"><div class="acc-stat"><div class="asc-n" data-count="40" data-suffix="+">0+</div><div class="asc-l">Trade clients</div></div><div class="acc-cta"><a href="#" onclick="showPage('contact');return false" class="btn-sm-gold">Talk to us &rarr;</a><a href="#" onclick="showPage('pricing');return false" class="btn-sm-out">Volume rates &rarr;</a></div></div></div></div></div>
+    <div class="pcard-v2 pv2-stock" data-tier="residential portfolio" data-svc="stock" style="transition-delay:.33s" onclick="toggleSvcDrawer('stock',this)">
+      <div class="tier-pill t-portfolio">&#x1F4CB; Enterprise &nbsp;<span style="font-size:9px;background:rgba(46,204,122,.2);color:#2ecc7a;padding:2px 6px;border-radius:4px;letter-spacing:.04em">NEW</span></div>
+      <div class="pv2-price-row"><span class="pv2-from">from £</span><span class="pv2-amount">88</span><span class="pv2-unit">/unit</span></div>
+      <div class="pv2-name">Stock Condition Survey</div>
+      <div class="pv2-desc">Portfolio assessment for housing associations and local authorities. Condition grades &amp; capital works.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list"><li>Building fabric &amp; M&amp;E assessment</li><li>Condition grades 1–4</li><li>Remaining useful life estimates</li><li>Capital works priority list</li><li>HHSRS compliant reporting</li></ul>
+      <div class="pv2-note">Min. 5 units &middot; Volume discounts from 25+</div>
+      <div class="pv2-expand-hint">Click to see full scope <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+    </div>
+    <div class="pcard-v2 pv2-comm" data-tier="commercial portfolio" data-svc="me" style="transition-delay:.40s" onclick="toggleSvcDrawer('me',this)">
+      <div class="tier-pill t-commercial">&#x26A1; Commercial</div>
+      <div class="pv2-price-row"><span class="pv2-from">from £</span><span class="pv2-amount">385</span><span class="pv2-unit">+</span></div>
+      <div class="pv2-name">M&amp;E Condition Survey</div>
+      <div class="pv2-desc">Full mechanical &amp; electrical asset audit. Excel &amp; PDF outputs. Audit-ready.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list"><li>Full M&amp;E asset inventory</li><li>Condition grading &amp; photos</li><li>PPM schedule &amp; RUL estimates</li><li>Excel &amp; PDF delivery</li><li>Audit-ready &amp; public-sector standard</li></ul>
+      <div class="pv2-expand-hint">Click to see full scope <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
   </div>
+
+  <!-- Service detail drawer - populated by JS on card click -->
+  <div class="svc-drawer" id="svc-drawer" aria-hidden="true">
+    <div class="svc-drawer-inner" id="svc-drawer-inner"></div>
+  </div>
+
+  <div class="pv2-wide-row">
+    <div class="pcard-v2 pv2-port" data-tier="portfolio" data-svc="portfolio" style="transition-delay:.47s" onclick="toggleSvcDrawer('portfolio',this)">
+      <div class="tier-pill t-portfolio">&#x1F310; Portfolio</div>
+      <div class="pv2-custom">Custom rate</div>
+      <div class="pv2-name" style="margin-bottom:6px">Portfolio / Multi-site</div>
+      <div class="pv2-desc">Volume M&amp;E or EPC programmes. Dedicated account management, structured data outputs, outside IR35.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list" style="columns:2;column-gap:20px"><li>Custom rate per property</li><li>Dedicated account manager</li><li>Structured Excel data delivery</li><li>Outside IR35 available</li><li>Monthly invoicing on account</li><li>Multi-site coordination</li></ul>
+      <div class="pv2-expand-hint">Click for details <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+    </div>
+    <div class="pcard-v2 pv2-feat" data-tier="portfolio residential" data-svc="trade" style="transition-delay:.54s" onclick="toggleSvcDrawer('trade',this)">
+      <div class="tier-pill t-partner">&#x1F91D; Partner</div>
+      <div class="pv2-custom" style="color:var(--gold)">Volume pricing</div>
+      <div class="pv2-name" style="color:rgba(255,255,255,.9);margin-bottom:6px">Trade / Letting Agents</div>
+      <div class="pv2-desc">10+ instructions per month. White-label reports, priority booking, consolidated invoicing.</div>
+      <div class="pv2-div"></div>
+      <ul class="pv2-list" style="columns:2;column-gap:20px"><li>Preferential rate per instruction</li><li>White-label reports available</li><li>Priority &amp; guaranteed slots</li><li>Monthly consolidated invoice</li></ul>
+      <div class="pv2-expand-hint">Click for details <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:11.5px;color:var(--g400);margin-top:24px">All prices ex-VAT &middot; Volume discounts: 6+ props 5% &middot; 11+ props 10% &middot; 25+ props 15% &middot; Contact for a bespoke quote.</p>
 </section>
+
+<div class="trust-strip"><div class="mw"><div class="ts-row rv">
+  <div class="ts-item"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg><span>Elmhurst &amp; DEA Accredited</span></div>
+  <div class="ts-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>PI &amp; PL insured to &pound;1m</span></div>
+  <div class="ts-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>24h EPC turnaround</span></div>
+  <div class="ts-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span>2,300+ surveys delivered</span></div>
+  <div class="ts-item"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><span>Public sector &middot; Gov estates &middot; London boroughs</span></div>
+</div></div></div>
 <section class="process-sec">
   <div class="mw rv" style="text-align:center">
     <span class="sec-label" style="color:var(--gold)">How It Works</span>
@@ -4068,15 +4928,9 @@ section[id],div[id]{scroll-margin-top:64px}
     <div class="proc-step rv"><div class="proc-num">04</div><div class="proc-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><h3>Delivered &amp; lodged</h3><p>Documents in your inbox within the agreed timeframe. EPCs on the register within 24 hours.</p></div>
   </div>
 </section>
-<div class="trust-strip"><div class="mw"><div class="ts-row rv">
-  <div class="ts-item"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg><span>Elmhurst &amp; DEA Accredited</span></div>
-  <div class="ts-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>PI &amp; PL insured to &pound;1m</span></div>
-  <div class="ts-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>24h EPC turnaround</span></div>
-  <div class="ts-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span>2,300+ surveys delivered</span></div>
-  <div class="ts-item"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><span>Public sector &middot; Gov estates &middot; London boroughs</span></div>
-</div></div></div>
+
 <section class="mini-contact"><div class="mc-inner rv">
-  <div class="mc-left"><span class="sec-label">Ready to book?</span><h2>Tell us what you need.</h2><p>We&rsquo;ll send a quote within one working day.</p><div class="mc-links"><a href="/cdn-cgi/l/email-protection#fb9a9f9a96bb888e898d9e988f92949588d5989496"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="375653565a77444245415254435e5859441954585a">[email&#160;protected]</span></a><a href="tel:07483341559"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07483 341 559</a></div></div>
+  <div class="mc-left"><span class="sec-label">Ready to book?</span><h2>Tell us what you need.</h2><p>We&rsquo;ll send a quote within one working day.</p><div class="mc-links"><a href="mailto:adam@survections.com"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>adam@survections.com</a><a href="tel:07483341559"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07483 341 559</a></div></div>
   <div class="mc-form-wrap"><div <div id="smc-wrap">
       <form id="smcForm" action="https://formsubmit.co/adam@survections.com" method="POST">
         <input type="hidden" name="_subject" value="Enquiry (Services) - Survections">
@@ -4108,298 +4962,94 @@ section[id],div[id]{scroll-margin-top:64px}
 </div><!-- /page-services -->
 
 
-<!-- ════════ PRICING ════════ -->
-<div id="page-pricing" class="page-section">
+<!-- ════════ FAQ PAGE ════════ -->
+<div id="page-faq" class="page-section">
 <div class="page-hero">
-  <!-- Animated bg layers -->
   <div class="ph-grid" aria-hidden="true"></div>
-  <div class="ph-orbs" aria-hidden="true">
-    <div class="ph-orb po1"></div>
-    <div class="ph-orb po2"></div>
-  </div>
+  <div class="ph-orbs" aria-hidden="true"><div class="ph-orb po1"></div><div class="ph-orb po2"></div></div>
   <div class="ph-elec" aria-hidden="true">
     <svg viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <defs><filter id="pef"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-      <polyline filter="url(#pef)" style="fill:none;stroke:rgba(0,196,167,.55);stroke-width:1.6;stroke-dasharray:14 8;animation:elecFlow 2s linear infinite" points="0,60 80,60 120,30 220,30 260,75 380,75 420,40 540,40 580,80 700,80 740,50 800,50"/>
-      <polyline filter="url(#pef)" style="fill:none;stroke:rgba(212,150,10,.4);stroke-width:1;stroke-dasharray:8 12;animation:elecFlow 2.8s linear infinite reverse" points="0,220 100,200 200,200 260,230 360,210 480,210 560,240 660,220 800,220"/>
-      <circle style="fill:rgba(0,196,167,.9);filter:url(#pef);animation:arcFlash 3s ease-in-out infinite" cx="220" cy="30" r="3"/>
-      <circle style="fill:rgba(212,150,10,.9);filter:url(#pef);animation:arcFlash 3s ease-in-out infinite;animation-delay:.8s" cx="420" cy="40" r="3"/>
-      <circle style="fill:rgba(0,196,167,.9);filter:url(#pef);animation:arcFlash 3s ease-in-out infinite;animation-delay:1.6s" cx="580" cy="80" r="3"/>
-    </svg>
-  </div>
-  <!-- Subtle cog decoration -->
-  <div class="ph-cog" aria-hidden="true">
-    <svg width="120" height="120" viewBox="-60 -60 120 120" overflow="visible" style="position:absolute;right:6%;top:20%;opacity:.2">
-      <g style="animation:cogSpin 28s linear infinite;transform-origin:0px 0px;transform-box:fill-box">
-        <path d="M55,0 L55,8 L42,5 L38,14 L51,18 L38,38 L30,28 L22,34 L32,46 L14,55 L12,42 L4,42 L2,55 L-14,55 L-12,42 L-20,42 L-22,54 L-38,38 L-28,30 L-34,22 L-46,32 L-55,14 L-42,10 L-38,-2 L-51,-6 L-38,-38 L-30,-28 L-22,-34 L-32,-46 L-14,-55 L-12,-42 L-4,-42 L-2,-55 L14,-55 L12,-42 L20,-42 L22,-54 L38,-38 L28,-30 L34,-22 L46,-32 L55,-14 Z" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="2"/>
-      </g>
+      <defs><filter id="pef3"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <polyline filter="url(#pef3)" style="fill:none;stroke:rgba(212,150,10,.55);stroke-width:1.6;stroke-dasharray:14 8;animation:elecFlow 2.4s linear infinite" points="0,80 100,80 140,40 240,40 280,85 400,85 440,50 560,50 600,90 720,90 760,60 800,60"/>
+      <polyline filter="url(#pef3)" style="fill:none;stroke:rgba(0,196,167,.35);stroke-width:1;stroke-dasharray:8 12;animation:elecFlow 3s linear infinite reverse" points="0,200 100,180 200,180 280,210 380,190 500,190 580,220 680,200 800,200"/>
+      <circle style="fill:rgba(212,150,10,.9);filter:url(#pef3);animation:arcFlash 3.2s ease-in-out infinite" cx="240" cy="40" r="3"/>
+      <circle style="fill:rgba(0,196,167,.9);filter:url(#pef3);animation:arcFlash 3.2s ease-in-out infinite;animation-delay:1s" cx="440" cy="50" r="3"/>
     </svg>
   </div>
   <div style="position:relative;z-index:1">
-    <span class="ph-eye">Transparent pricing</span>
-    <h1 class="ph-title">The right service<br><span style="background:linear-gradient(120deg,var(--cyan),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">at the right price.</span></h1>
-    <p class="ph-sub">No hidden fees. No surprises. Volume discounts available.</p>
+    <span class="ph-eye">Got questions?</span>
+    <h1 class="ph-title">Frequently Asked<br><span style="background:linear-gradient(120deg,var(--gold),#ffd04d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Questions.</span></h1>
+    <p class="ph-sub">Everything you need to know before booking. Can't find your answer? <a href="#" onclick="showPage('contact');return false" style="color:var(--gold);text-decoration:none;font-weight:600">Get in touch directly &rarr;</a></p>
   </div>
-
-  <!-- MEP strip decoration -->
-  <svg class="ph-mep-strip" viewBox="0 0 700 36" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(700px,90%);height:36px;opacity:.22;pointer-events:none">
-    <!-- Horizontal pipe run -->
-    <line x1="0" y1="18" x2="700" y2="18" stroke="rgba(0,196,167,.5)" stroke-width=".8" stroke-dasharray="6 4"/>
-    <!-- Sprinkler symbols at intervals -->
-    <circle cx="70"  cy="18" r="6" fill="none" stroke="rgba(0,150,200,.7)" stroke-width=".9"/><line x1="64" y1="18" x2="76" y2="18" stroke="rgba(0,150,200,.6)" stroke-width=".8"/><line x1="70" y1="12" x2="70" y2="24" stroke="rgba(0,150,200,.6)" stroke-width=".8"/>
-    <circle cx="210" cy="18" r="6" fill="none" stroke="rgba(0,150,200,.7)" stroke-width=".9"/><line x1="204" y1="18" x2="216" y2="18" stroke="rgba(0,150,200,.6)" stroke-width=".8"/><line x1="210" y1="12" x2="210" y2="24" stroke="rgba(0,150,200,.6)" stroke-width=".8"/>
-    <circle cx="350" cy="18" r="6" fill="none" stroke="rgba(0,150,200,.7)" stroke-width=".9"/><line x1="344" y1="18" x2="356" y2="18" stroke="rgba(0,150,200,.6)" stroke-width=".8"/><line x1="350" y1="12" x2="350" y2="24" stroke="rgba(0,150,200,.6)" stroke-width=".8"/>
-    <circle cx="490" cy="18" r="6" fill="none" stroke="rgba(0,150,200,.7)" stroke-width=".9"/><line x1="484" y1="18" x2="496" y2="18" stroke="rgba(0,150,200,.6)" stroke-width=".8"/><line x1="490" y1="12" x2="490" y2="24" stroke="rgba(0,150,200,.6)" stroke-width=".8"/>
-    <circle cx="630" cy="18" r="6" fill="none" stroke="rgba(0,150,200,.7)" stroke-width=".9"/><line x1="624" y1="18" x2="636" y2="18" stroke="rgba(0,150,200,.6)" stroke-width=".8"/><line x1="630" y1="12" x2="630" y2="24" stroke="rgba(0,150,200,.6)" stroke-width=".8"/>
-    <!-- Fan symbols -->
-    <circle cx="140" cy="18" r="8" fill="none" stroke="rgba(0,196,167,.5)" stroke-width=".8"/>
-    <g transform="translate(140,18)" style="animation:cogSpin 2s linear infinite;transform-origin:0 0;transform-box:fill-box">
-      <path d="M0,-7 C1,-4 3,-2 0,-1 C-3,-2 -1,-4 0,-7Z" fill="rgba(0,196,167,.5)"/>
-      <path d="M7,0  C4,1  2,3  1,0  C2,-3 4,-1 7,0Z"   fill="rgba(0,196,167,.5)"/>
-      <path d="M0,7  C-1,4 -3,2 0,1  C3,2  1,4  0,7Z"   fill="rgba(0,196,167,.5)"/>
-      <path d="M-7,0 C-4,-1 -2,-3 -1,0 C-2,3 -4,1 -7,0Z" fill="rgba(0,196,167,.5)"/>
-    </g>
-    <!-- Flame symbols -->
-    <path d="M280,24 C275,20 274,15 277,11 C279,8 278,5 280,3 C281,6 280,9 282,11 C283,8 284,5 285,3 C286,7 285,10 287,12 C289,8 289,12 290,15 C292,18 291,22 285,25Z" fill="rgba(255,90,20,.65)"/>
-    <path d="M420,24 C415,20 414,15 417,11 C419,8 418,5 420,3 C421,6 420,9 422,11 C423,8 424,5 425,3 C426,7 425,10 427,12 C429,8 429,12 430,15 C432,18 431,22 425,25Z" fill="rgba(255,90,20,.65)"/>
-    <!-- LED light rectangles -->
-    <rect x="544" y="14" width="28" height="8" rx="4" fill="rgba(220,240,255,.2)" stroke="rgba(220,240,255,.6)" stroke-width=".7"/>
-    <!-- DB box -->
-    <rect x="670" y="11" width="16" height="14" rx="1" fill="rgba(212,150,10,.1)" stroke="rgba(212,150,10,.5)" stroke-width=".8"/><line x1="678" y1="11" x2="678" y2="25" stroke="rgba(212,150,10,.35)" stroke-width=".6"/>
-    <text x="671" y="20" fill="rgba(212,150,10,.6)" font-size="5" font-family="Courier New,monospace" font-weight="bold">DB</text>
-  </svg>
 </div>
-<section class="sec bg-w" id="service-tiers">
-  <div class="mw rv" style="text-align:center;max-width:1100px;margin:0 auto">
-    <span class="gold-bar" style="margin:0 auto 16px"></span>
-    <span class="sec-label">Service tiers</span>
-    <h2 class="sec-h">Every service. Transparent pricing.</h2>
-    <p class="sec-p" style="max-width:520px;margin:0 auto">From entry-level compliance to full commercial M&amp;E programmes &mdash; tiered clearly so you can choose the right level for your property.</p>
-  </div>
 
-  <!-- ── Tier filter tabs ── -->
-  <div style="display:flex;justify-content:center;gap:8px;margin:28px 0 8px;flex-wrap:wrap" id="tier-tabs">
-    <button class="tier-tab active" data-tier="all" onclick="filterTier('all')">All services</button>
-    <button class="tier-tab" data-tier="residential" onclick="filterTier('residential')">Residential</button>
-    <button class="tier-tab" data-tier="commercial" onclick="filterTier('commercial')">Commercial</button>
-    <button class="tier-tab" data-tier="portfolio" onclick="filterTier('portfolio')">Portfolio</button>
-  </div>
+<section class="sec bg-w">
+  <div class="mw" style="max-width:860px">
+    <div class="faq-list stagger">
 
-  <!-- ── 6-card grid ── -->
-  <div class="pgrid stagger" id="pricing-grid">
-
-    <!-- BRONZE — EPC -->
-    <div class="pcard-v2 pv2-bronze" data-tier="residential commercial" style="transition-delay:.05s">
-      <div class="tier-pill t-bronze">&#x1F7EB; Bronze</div>
-      <div class="pv2-price-row">
-        <span class="pv2-from">from £</span>
-        <span class="pv2-amount">70</span>
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>How much does an EPC cost?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><p>A standard domestic EPC starts from <strong>£70</strong> per property. The <strong>Compliance Bundle</strong> (EPC + floor plan, one visit) starts from <strong>£105</strong> — best value for landlords. Volume discounts from 6+ properties. See the full pricing cards above on the Services &amp; Pricing page.</p></div>
       </div>
-      <div class="pv2-name">EPC Assessment</div>
-      <div class="pv2-desc">Legally-required energy rating. Lodged direct to the national register the same day.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list">
-        <li>Full RdSAP energy assessment</li>
-        <li>Certificate lodged same day</li>
-        <li>Valid 10 years from issue</li>
-        <li>Improvement recommendations included</li>
-        <li>West &amp; Central London coverage</li>
-      </ul>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn">Book now</a>
-    </div>
 
-    <!-- SILVER — Floor Plan -->
-    <div class="pcard-v2 pv2-silver" data-tier="residential commercial" style="transition-delay:.12s">
-      <div class="tier-pill t-silver">&#x26AA; Silver</div>
-      <div class="pv2-price-row">
-        <span class="pv2-from">from £</span>
-        <span class="pv2-amount">50</span>
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>How quickly can I get my EPC?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><p>Same-day lodgement is standard for most London properties. Your EPC is lodged directly to the national register within <strong>24 hours</strong> of the survey — often the same afternoon. You'll receive the certificate by email and it's publicly searchable immediately.</p></div>
       </div>
-      <div class="pv2-name">Floor Plan</div>
-      <div class="pv2-desc">Laser-accurate measured survey. 2D or 3D. DWG + PDF. Agent-ready in 24 hours.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list">
-        <li>Laser-accurate measured survey</li>
-        <li>2D &amp; 3D formats available</li>
-        <li>DWG + PDF supplied</li>
-        <li>Gross internal area (GIA) calculated</li>
-        <li>Agent-ready within 24 hours</li>
-      </ul>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn">Book now</a>
-    </div>
 
-    <!-- GOLD — Compliance Bundle (FEATURED) -->
-    <div class="pcard-v2 pv2-gold pv2-feat" data-tier="residential" style="transition-delay:.19s">
-      <div class="pv2-badge">&#x2B50; Best value</div>
-      <div class="tier-pill t-gold">&#x1F947; Gold</div>
-      <div class="pv2-price-row">
-        <span class="pv2-from">from £</span>
-        <span class="pv2-amount">105</span>
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>Do I legally need an EPC to rent or sell my property?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><p>Yes. Under the Energy Performance of Buildings Regulations 2012, an EPC is a legal requirement before marketing any property for sale or let. From April 2025, new tenancies must achieve a minimum <strong>rating of C</strong>. A survey will identify exactly what's needed to comply and the most cost-effective improvements.</p></div>
       </div>
-      <div class="pv2-name">Compliance Bundle</div>
-      <div class="pv2-desc">EPC + floor plan in a single visit. The landlord&rsquo;s complete compliance pack.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list">
-        <li>Full EPC lodged same day</li>
-        <li>Professional 2D floor plan</li>
-        <li>One visit &mdash; zero hassle</li>
-        <li>All documents within 48 hours</li>
-        <li>Priority booking included</li>
-      </ul>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn pv2-btn-gold">Book now</a>
-    </div>
 
-    <!-- PLATINUM — Snagging Survey -->
-    <div class="pcard-v2 pv2-plat" data-tier="residential commercial" style="transition-delay:.26s">
-      <div class="pv2-badge pv2-badge-new">New service</div>
-      <div class="tier-pill t-platinum">&#x1F4A0; Platinum</div>
-      <div class="pv2-price-row">
-        <span class="pv2-from">from £</span>
-        <span class="pv2-amount">330</span>
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>What's covered in an M&amp;E condition survey?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body">
+          <p>A full M&amp;E condition survey covers all <strong>mechanical and electrical plant and equipment</strong>: HVAC (AHUs, chillers, FCUs, boilers), electrical distribution (switchgear, DBs, transformers), plumbing and drainage, fire protection, BMS systems, and any specialised equipment relevant to the building type — including data centres, hospitals, and high-security facilities.</p>
+          <p style="margin-top:8px">Deliverables include a condition-graded asset register with photographic evidence, remaining useful life (RUL) estimates, a PPM schedule. Supplied in Excel and PDF formats.</p>
+        </div>
       </div>
-      <div class="pv2-name">Snagging Survey</div>
-      <div class="pv2-desc">New build defect inspection before legal completion. Comprehensive photographic schedule.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list">
-        <li>100+ point new-build inspection</li>
-        <li>Photographic defect schedule</li>
-        <li>Developer-ready snagging report</li>
-        <li>M&amp;E systems checked &amp; tested</li>
-        <li>Report delivered within 48 hours</li>
-      </ul>
-      <div class="pv2-note">1&ndash;2 bed £330 &middot; 3+ bed £385</div>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn">Get a quote</a>
-    </div>
 
-    <!-- ENTERPRISE — Stock Condition -->
-    <div class="pcard-v2 pv2-ent" data-tier="commercial portfolio" style="transition-delay:.33s">
-      <div class="pv2-badge pv2-badge-new">New service</div>
-      <div class="tier-pill t-enterprise">&#x1F4CA; Enterprise</div>
-      <div class="pv2-price-row">
-        <span class="pv2-from">from £</span>
-        <span class="pv2-amount">88</span>
-        <span class="pv2-unit">/unit</span>
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>What's the difference between a snagging survey and a stock condition survey?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body">
+          <p>A <strong>snagging survey</strong> is for new-build properties before legal completion — it identifies defects, unfinished work, and M&amp;E installation issues for the developer to rectify at no cost to you. Best done before you move in.</p>
+          <p style="margin-top:8px">A <strong>stock condition survey</strong> is for housing associations, local authorities, and portfolio landlords. It systematically assesses the condition of building fabric and M&amp;E components across multiple existing units to plan capital maintenance budgets and prioritise spend.</p>
+        </div>
       </div>
-      <div class="pv2-name">Stock Condition Survey</div>
-      <div class="pv2-desc">Element-level condition assessment for housing stock and estates. HHSRS compliant.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list">
-        <li>Element-level condition grading</li>
-        <li>Remaining useful life estimates</li>
-        <li>Asset register &amp; PPM schedule</li>
-        <li>Excel, PDF &amp; Power BI delivery</li>
-        <li>HHSRS compliant reporting</li>
-      </ul>
-      <div class="pv2-note">Min. 5 units &middot; Volume discounts from 25+</div>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn">Get a quote</a>
-    </div>
 
-    <!-- COMMERCIAL — M&E Survey -->
-    <div class="pcard-v2 pv2-comm" data-tier="commercial portfolio" style="transition-delay:.40s">
-      <div class="tier-pill t-commercial">&#x26A1; Commercial</div>
-      <div class="pv2-price-row">
-        <span class="pv2-from">from £</span>
-        <span class="pv2-amount">385</span>
-        <span class="pv2-unit">+</span>
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>Are you fully insured and accredited?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><p>Yes. Survections Ltd holds <strong>AXA Professional Indemnity insurance of £250,000 per claim</strong> and <strong>Public Liability insurance of £1,000,000 per event</strong>. Adam Rodrigo is an Elmhurst-accredited Domestic Energy Assessor (DEA Reg. No. 0000060456, ABBE scheme). Certificates are available on request before any engagement.</p></div>
       </div>
-      <div class="pv2-name">M&amp;E Condition Survey</div>
-      <div class="pv2-desc">Full mechanical &amp; electrical asset audit. Power BI dashboards. Audit-ready outputs.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list">
-        <li>Full M&amp;E asset inventory</li>
-        <li>Condition grading &amp; photos</li>
-        <li>PPM schedule &amp; RUL estimates</li>
-        <li>Excel, PDF &amp; Power BI delivery</li>
-        <li>Audit-ready &amp; public-sector standard</li>
-      </ul>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn">Get a quote</a>
+
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>Do you work outside central London?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><p>The primary coverage area is <strong>West and Central London</strong> — Kensington, Chelsea, Westminster, Hammersmith, Fulham, and surrounding boroughs. For M&amp;E portfolio programmes and stock condition surveys, coverage extends across Greater London and beyond. Travel costs for outer areas are factored into quotes transparently.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>Can you work with letting agents or property managers at volume?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><p>Yes — trade accounts are available for agents, developers, housing associations, and FM contractors. Benefits include <strong>priority scheduling, consolidated monthly invoicing, volume pricing</strong> (discounts from 6+ properties), and optional white-label report formatting. Contact Adam to set one up.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-hdr" onclick="toggleFaq(this)"><span>How do I book and what happens next?</span><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><p>Use the <a href="#" onclick="showPage('contact');return false" style="color:var(--gold)">Contact page</a> or email <a href="mailto:adam@survections.com" style="color:var(--gold)">adam@survections.com</a> with the property address, service required, and any access notes. You'll get a confirmation and fee agreement within <strong>one working day</strong>. For EPCs, access to all habitable rooms and the loft hatch is required. For M&amp;E surveys, plant room access and any existing asset data you hold will help preparation.</p></div>
+      </div>
+
     </div>
 
-  </div><!-- /pricing-grid -->
-
-  <!-- ── Portfolio + Trade — wide row ── -->
-  <div class="pv2-wide-row">
-
-    <!-- Portfolio -->
-    <div class="pcard-v2 pv2-port" data-tier="portfolio" style="transition-delay:.47s">
-      <div class="tier-pill t-portfolio">&#x1F310; Portfolio</div>
-      <div class="pv2-custom">Custom rate</div>
-      <div class="pv2-name" style="margin-bottom:6px">Portfolio / Multi-site</div>
-      <div class="pv2-desc">Volume M&amp;E or EPC programmes. Dedicated account management, Power BI dashboards, outside IR35.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list" style="columns:2;column-gap:20px">
-        <li>Custom rate per property</li>
-        <li>Dedicated account manager</li>
-        <li>Power BI portfolio dashboards</li>
-        <li>Outside IR35 available</li>
-        <li>Monthly invoicing on account</li>
-        <li>Multi-site coordination</li>
-      </ul>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn">Talk to us</a>
+    <div style="margin-top:48px;text-align:center;padding:32px 24px;background:var(--off);border-radius:14px;border:1px solid var(--g100)">
+      <p style="font-size:15px;color:var(--g600);margin-bottom:20px">Still have a question not covered here?</p>
+      <a href="#" onclick="showPage('contact');return false" class="btn-primary">Get in touch &rarr;</a>
+      <span style="display:inline-block;margin:0 16px;color:var(--g200);font-size:13px">or</span>
+      <a href="#" onclick="showPage('services');return false" class="btn-ghost">View Services &amp; Pricing</a>
     </div>
-
-    <!-- Trade / Partner -->
-    <div class="pcard-v2 pv2-feat" data-tier="portfolio residential" style="transition-delay:.54s">
-      <div class="tier-pill t-partner">&#x1F91D; Partner</div>
-      <div class="pv2-custom" style="color:var(--gold)">Volume pricing</div>
-      <div class="pv2-name" style="color:rgba(255,255,255,.9);margin-bottom:6px">Trade / Letting Agents</div>
-      <div class="pv2-desc">10+ instructions per month. White-label reports, priority booking slots, consolidated invoicing.</div>
-      <div class="pv2-div"></div>
-      <ul class="pv2-list" style="columns:2;column-gap:20px">
-        <li>Preferential rate per instruction</li>
-        <li>White-label reports available</li>
-        <li>Priority &amp; guaranteed slots</li>
-        <li>Monthly consolidated invoice</li>
-      </ul>
-      <a href="#" onclick="showPage('contact');return false" class="pv2-btn pv2-btn-gold">Apply for a trade account</a>
-    </div>
-
-  </div><!-- /pv2-wide-row -->
-
-  <p style="text-align:center;font-size:11.5px;color:var(--g400);margin-top:24px">All prices ex-VAT &middot; 10% above London market rate &middot; Volume discounts available &middot; Contact for a bespoke quote.</p>
-</section>
-<section style="padding:60px 24px;background:var(--off)">
-  <div class="mw-sm rv" style="text-align:center">
-    <span class="sec-label">How it works</span>
-    <h2 class="sec-h">Book. Survey. Done.</h2>
-  </div>
-  <div class="steps">
-    <div class="step"><div class="step-n">1</div><div class="step-t">Book online</div><div class="step-b">Choose a time. Confirmation within the hour.</div></div>
-    <div class="step"><div class="step-n">2</div><div class="step-t">We visit</div><div class="step-b">EPC takes 30&ndash;60 min. M&amp;E scoped to site.</div></div>
-    <div class="step"><div class="step-n">3</div><div class="step-t">Receive deliverable</div><div class="step-b">EPC lodged within 24 hours. M&amp;E reports structured for your system.</div></div>
   </div>
 </section>
-<section class="mini-contact"><div class="mc-inner rv">
-  <div class="mc-left"><span class="sec-label">Not sure which plan?</span><h2>Let&rsquo;s figure it out together.</h2><p>Tell us what you need and Adam will recommend the right package.</p><div class="mc-links"><a href="/cdn-cgi/l/email-protection#58393c3935182b2d2a2e3d3b2c3137362b763b3735"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="503134313d1023252226353324393f3e237e333f3d">[email&#160;protected]</span></a><a href="tel:07483341559"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>07483 341 559</a></div></div>
-  <div class="mc-form-wrap"><div <div id="pmc-wrap">
-      <form id="pmcForm" action="https://formsubmit.co/adam@survections.com" method="POST">
-        <input type="hidden" name="_subject" value="Enquiry (Pricing) - Survections">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://survections.com/?sent=true">
-        <div class="mc-frow">
-          <div class="mc-f"><input type="text" name="name" id="pmc-name" placeholder="Your name" required></div>
-          <div class="mc-f"><input type="email" name="email" id="pmc-email" placeholder="Your email" required></div>
-        </div>
-        <div class="mc-f">
-          <select name="service" id="pmc-svc">
-            <option value="" disabled selected>Service&hellip;</option>
-            <option>EPC Assessment</option>
-            <option>Floor Plan</option>
-            <option>Compliance Bundle</option>
-            <option>Snagging Survey</option>
-            <option>Stock Condition Survey</option>
-            <option>M&amp;E Condition Survey</option>
-            <option>Portfolio / Multi-site</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="mc-f"><textarea name="message" id="pmc-msg" rows="3" placeholder="Brief description&hellip;"></textarea></div>
-        <button type="submit" class="mc-submit" id="pmcBtn">Send enquiry &rarr;</button>
-      </form>
-    </div><div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:5px">Sent!</div><div style="font-size:12px;color:rgba(255,255,255,.45)">Adam will respond within one working day.</div></div></div>
-</div></section>
-</div><!-- /page-pricing -->
+</div><!-- /page-faq -->
+
 
 <!-- ════════ CONTACT ════════ -->
 <div id="page-contact" class="page-section">
@@ -4412,7 +5062,7 @@ section[id],div[id]{scroll-margin-top:64px}
         <p class="ct-sub-txt">EPC, floor plan, or full M&amp;E survey &mdash; Adam responds within one working day. No automated replies.</p>
       </div>
       <div class="ct-info-items">
-        <div class="ct-info-item"><div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="ct-info-lbl">Email</div><div class="ct-info-val"><a href="/cdn-cgi/l/email-protection#fd9c999c90bd8e888f8b989e899492938ed39e9290"><span class="__cf_email__" data-cfemail="4b2a2f2a260b383e393d2e283f2224253865282426">[email&#160;protected]</span></a></div></div></div>
+        <div class="ct-info-item"><div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="ct-info-lbl">Email</div><div class="ct-info-val"><a href="mailto:adam@survections.com">adam@survections.com</a></div></div></div>
         <div class="ct-info-item"><div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="ct-info-lbl">Phone</div><div class="ct-info-val"><a href="tel:07483341559">07483 341 559</a></div></div></div>
         <div class="ct-info-item"><div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="ct-info-lbl">Coverage</div><div class="ct-info-val">West &amp; Central London</div></div></div>
         <div class="ct-info-item"><div class="ct-info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="ct-info-lbl">Response time</div><div class="ct-info-val">Within one working day</div></div></div>
@@ -4454,14 +5104,14 @@ section[id],div[id]{scroll-margin-top:64px}
             <div class="ct-field"><label>Service *</label>
               <select name="service" id="ct-svc" required onchange="ctCalc()">
                 <option value="" disabled selected>Select service&hellip;</option>
-                <option>EPC Assessment &mdash; from &pound;70/unit</option>
-                <option>Floor Plan &mdash; from &pound;50/unit</option>
-                <option>Compliance Bundle &mdash; from &pound;105/unit</option>
-                <option>Snagging Survey &mdash; from &pound;330</option>
-                <option>Stock Condition Survey &mdash; from &pound;88/unit</option>
-                <option>M&amp;E Condition Survey &mdash; from &pound;385+</option>
-                <option>Portfolio / Multi-site</option>
-                <option>Trade Account Enquiry</option>
+                <option value="epc">EPC Assessment &mdash; from &pound;70/unit</option>
+                <option value="floorplan">Floor Plan &mdash; from &pound;50/unit</option>
+                <option value="bundle">Compliance Bundle &mdash; from &pound;105/unit</option>
+                <option value="snagging">Snagging Survey &mdash; from &pound;330 (1&ndash;2 bed) / &pound;385 (3+ bed)</option>
+                <option value="stock">Stock Condition Survey &mdash; from &pound;88/unit</option>
+                <option value="me">M&amp;E Condition Survey &mdash; from &pound;385+</option>
+                <option value="portfolio">Portfolio / Multi-site &mdash; custom quote</option>
+                <option value="trade">Trade Account Enquiry</option>
               </select>
             </div>
             <div class="ct-field"><label>Property type</label>
@@ -4516,11 +5166,11 @@ section[id],div[id]{scroll-margin-top:64px}
     <div>
       <div class="foot-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADcANwDASIAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAUHBggCAwQBCf/EAEYQAAEDAwMBBQMHCAYLAAAAAAEAAgMEBREGEiEHEyIxQVEIFGEVFiMyN3GRFzNCdYGxtNMnVGJydqE0VVaGkpWWwdHS8f/EABsBAQACAwEBAAAAAAAAAAAAAAACAwEEBQYH/8QAMhEBAAEDAgIHBwMFAAAAAAAAAAECAxEEMRIhBRMyQVFhcQY0gaGx0fAicpEUI2LB4f/aAAwDAQACEQMRAD8A3LREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQYV1r1XddGaAqL5ZaaiqK8VdLTQsrN3ZZmnZFl20g4G/PHosLr9X9VLfXSUNfqXotSVcX5yCe41LJGcZ5aTkcc/cpj2ofsmk/XFr/joFpz7UoafaR1XkNPfZ4gf1Ri6vRHR1Ovu1W6qsYjPzj7qbtzq4y2l+f3Ub/bLob/zao/8AZfTrzqQDg6w6HDjPN2qPD8V+foazjus/ALONN2m1y22OvqKWnrJnDsjHKHFrA2FpaMM53OJOCeOF3b3sxZtU5m5P8R91FOpmqdm5Xz96j7S7549DsDxPytUf+Ubr3qO5wa3WPQ4knAAu1Rz/AJrRW/0VJQ1FbT020xh8Lg04JYS1xLc/AnH7FHW9rPf6bus/Os8h6hTo9lrVdPFFyf4J1UxOMN+arqH1NtYs1yq6rpreLPW3yktM77LU1M0kbp5A04JO0EA5wfUcK81pB0LAHQi14AH9J9s8P70C3fXlddp402oqtROcS2rdXFTEiIi1ExERAREQEREBERAREQEREBERAREQEREFXe1D9k0n64tf8dAtQPahqahntG6qYyeRrQ9mAHcf6Ixbf+1D9k0n64tf8dAtRPaZbRSe0pqeOofNCHSxh8mQWtHurOcYyvS+y/vNf7Z+sNXVdmPVUIravGfepv8AjK2J0pTWvQugtMXvVLJN92rKeadrj9IISWgNz5DYC4/Aqq9JaOttXqehguNY+O2Md29fM4jbFTsG5x4HeyOBjg5GCVM+0J1Ht2v9S03ydRVdHZ6KEMo4S5oLmkDDiMcd3Ax5L0utp/rblFijs71T9I+Mte3/AG4mqd057WGm3ac11U3W1vMdrvJjqIRFxG1+Hbw0DgA8OH3qm6Csq/f6ce8y/nW/pH1CuCTV1B1H6VQaSr4qht8ssLX0c8j2n3kMB7oPk7YMeHOFWUVroaZ8NRJUTB3bMDGd3LnbhkDjy8z5eeCcKzo+5VbtdRe7VPL1jun4wxcpzPFTsvXojLJL0KtTpZHPI6n2wZcc/pQLdxaR9Eey/IXauxEgb+U+2fXIJzug9Fu4vCdM+/XPVvWexAiIuYtEREBERAREQEREBERAREQEREBERAREQVd7UP2TSfri1/x0C1B9qGlqH+0bqqRkeWl7MHcP6oz4rb72ofsmk/XFr/joFp97TTaaT2nNTR1U7IYXTRCV/iWt91Zk4+5em9l+Wpr/AGz9Ya2p7MMXtr6u06Xp6Kp3bri4vwXN+ihae6D57XOyePDxHxjLvYqmomE1HHvIaGvYCAGgNHOfDGMHj1yPQRWo7pHdbvLVMayKABsdPFkfRxNGGN/AfiSpO2ai+TnR09QO3pxBGWBjwHs7oOAfIZyf7JO4DPj7GmzXR+uneecx+eDTmYnlKVt1G7T9Gathe6dj2klpALnjkNGf/gBz44Cjr5S1FRqOnrooyaepdHLGNzcMyRuZ4+TsqJuNxluUdRUVD4gd8YYxpAZG3vna0eQ5J+JJJ5K77VWUs1vjoKmRjZaepZNSuJzkFwD2fDPBH3FOpqpq6yec7T6T9vuZzGF/9EoZIehdqbK3aT1Pth8Qf0oPRbtrR/oVt/ITa9paf6T7Z4f3oFvAvnfTPv131dCz2IERFzFoiIgIiICIiAiIgIiICIiAiIgIiICJkIgw3rLpKv1toOosNsr6egrHVNNUxT1ERkja6Gdkoy0EEg7MeKxCp0h1hqah1RUX3ptNM/60kmmZXOPGOSZs+CuFFmKpjYwpn5j9Wf8AW3TL/paT+ch0R1aPjd+mR/3Wk/nK5kUusq8WMQpn5kdWsY+V+mWP8LSfzkGiOrQORd+mQP8AhaT+crmROsq8TEKTrem/U28S2alvOo9Fx2qgvNLdJIbbY5ad8joJA8AO7UgZxjwV2ImQozMzuyIiLAIiZCAiIgIiICIiAiIgIiICwDrlFq6bTNCNKi5vY24xOusVqnZDXSUYDt7YHvIAfu2eYJAIBBWfrH9daRtesLZT0dxlraaSlqWVdJVUU5hnppm5Aexw88EjBBBB5Cu09cW7tNVW0fFiqMwpm7alq6LoJqypsestTz11vutNE1t3hMFytgfUQZp5HHl/dcSHnOWuxkqxNVXW5QdctDWqCuqI6Cst91fU07XkRyujEGwuHmW7nY9Mle2g6Z6XptK3rT1cK27w32QvulTcKkyVFW8hrWuc8YwWhrQ3aAG7RhfNHdP7Lp6/G9yXq9326R0vu0NTd7h7w+mgJBLWcANBLRlxBJwMlb1eo085mP8ALujnxUxHynM/9QimpRvSjVWoLpdtJwWrUWs7hqWquc013p7i9zra62MqJI5ZGF4wS0BjWmMk7+D5qwL1rm49P7v1IobtWVFcYaRl80+2dxe57Z/oPd2/2W1IaAPIShZZb+melbRR6ajpaitp36bq5qigqfeQJfp3OdLE92MOjeXnLcDwHPC92s9A6Z1bqGw3y8Ryvq7HP21N2cu1rzuY4NkGO+0PjY4D1arbus01y9maf0znu575j5cvLM7oxRVEeaqNdnUtgremWmbpetb3KWa11zrsLFVH3uqqGNhduJyMta57/PgELJr9Pd7rqrSPTqhvt/sVvqLJLdK6rfMBcp2xujY2AynOx+ZNz3DvcYBHist1voi06uvFou777d7XcLYyeOkntdY2J+2Xb2gOWuz9Rv3LlqHQFmvtptNHcLjdjcLRzRXeKsMdfE4tw53atAyXD6wI2u8woRq7U00Z3jOeXfMzicbcsx+QzwzzdGn9HXW1xXiz1Gub1crTWwD3VtTNmvonHIeWVI7zmnjG4ZaR4lYX0doLiZtc3Gs1Zqe4Ps16rrXSRVlzdLEImRRuaS0jl4Lj3ln2hdFWLS89bcqWtr7rc7iGiqudxq/eKiZjPqs3cBrG5OGtAC9Vg0zZLFFf4qOeXF5uEtfWdpMDtlma1rg3jujDRgKmdTERXGc5x3RHr+d/ezw7Kg0tqHU2qdOdLdJv1Jcrcb7Y5bldbpDIPfKgQhg7KORwO1zjJuc4DdhvGM5WQQVN70V1BqdHM1Jdb3a7jp6ruVM64z9tVUE0LmtP0uA50bw8Y3ZIc3grKanpfpiTRti00H3CnZYGtbaq+CrMVZSuA27mStA5IOCMYI8Qu7THT6w2J9zrHV1zutzuVN7vVXO51nb1LoBnEbXYDWMGScNAGeTlXV6qxMTjbnyxG8zMxOfKPpjYimVE2nqNrCk6KW216gvdS2/1QtVytd0bKWyV9FNVwtlYXeckZeWPHmxzHeZWX9YJ9UW7Wd6ud6vGtrPpmKmgdaLpp4NmpqBzWkzPrIB3njdzkgt2+nis5unSvRV10bpzStW2aWl086Ca2zCcdvH2WMHdjkEDDuMHj0Caw6Y6a1JerhcZrxe7cbpEylu1Pb7kYYbgxoLWslbg/okt7paS04Vsa3TTc4ojGZnPLxmNvDlHnHOYxiUeCrDKqurL9HS11NWtqC63uljqohtEn0eQ9vpnxCxLpgys1f0G018qXq7R1lfaaaWeupqsx1Rfhri7tByCcc+oJWbut9E2zm0xsbBSCn7BscZ27I9u0AemBwFjXT3RFv0LRto6LUd9raCKBlPT01xrWyxU7GHDQwBrceniVzqblEW6oicTmJj5rMTlWOiHXmm6Bay1jJqzUtZdY6K8wwuq7i6VsPu8szYnsaR3XgRt733r1tffdEWXQ2qqXV1/u0d5rbdQ3K3XWrFSyUVQAL4iRuY9rjuwDggEEKybboawUug7nomnlqn22vFWypzMDKPeXPdJh2OOZHY4448VHab6VWK0XK219Xdb/fZLU0C2suteZoqMhu0OjjAa3cG8BxBI8sLdnWWaprmdpmeWN4xyjy/0hwTyZ6ERFyFoiIgIiICIiAiIgIiIOmspmVUQjkLgA9r+6cHIOfH9i8Qs0PYzQdrJ2c0LIXjjJa0Y/wAxwVJogh6mCnpWSRyOlmAijeQWtydjgAcnz8FympaWmqWOd226eUHOctB37x48Dk448fvUo6NjjlzGuyMcjyXySKORzXPjY4sOWkjOD6hBB08NDFLbo5HytkZJIyEOI52nnOD6jj44XJvuNwkFU0VBFQXR8OGBiMg8Zx4E/HPCmuyiyD2TMjkHaPXP7+UbFE3G2NgxyMNHpj9yCBkoaCqtrqmaSZjAX9oWta0gOAa4EDwG0c/tKbaKop53sfN9I/tcbBua5jACBk4Bwfxyp1sMLYjC2KNsZBBYGjBz48L6IYhnETOc57o8/H8UEfJPT1ZbQyvkEjnteABtxjvgZH3AcLzw0NDLWS0rKibtIKUU7hkY2OH45zg/gpkRxg5DGgjzx8MfuRscbXF7WNDj4kDlBBuitZbM8xyx7Y3wYzy0AOJOM+JDj4rhK23PFS2WSYNhqzI84GA454PPgSMY+I9VOGmpi3aaeLG7fjYPrev3/FcjDEQQYmHdgnLRzzn9/KCKrpKeZ1TI/tmtY33eQNaCcuwRj9pA/au+S1QvMrw97XSStlx5Nwc4HwJJP3le4QxBznCJgLyC47R3iPDK5oPLSUQpp5pGSHEsm8t2jA8f+5XqREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQf/9k=" alt="Survections Ltd"><span class="foot-brand">Survections Ltd</span></div>
       <div class="foot-tag">M&amp;E consultancy, EPC assessments &amp; floor plans across London.</div>
-      <div class="foot-contact"><a href="/cdn-cgi/l/email-protection#b8d9dcd9d5f8cbcdcacedddbccd1d7d6cb96dbd7d5"><span class="__cf_email__" data-cfemail="ec8d888d81ac9f999e9a898f988583829fc28f8381">[email&#160;protected]</span></a><a href="tel:07483341559">07483 341 559</a></div>
+      <div class="foot-contact"><a href="mailto:adam@survections.com">adam@survections.com</a><a href="tel:07483341559">07483 341 559</a></div>
     </div>
     <div class="foot-cols">
       <div class="fcol"><h4>Services</h4><a href="#" onclick="showPage('services');return false">EPC Assessments</a><a href="#" onclick="showPage('services');return false">Floor Plans</a><a href="#" onclick="showPage('services');return false">Snagging Surveys</a><a href="#" onclick="showPage('services');return false">Stock Condition</a><a href="#" onclick="showPage('services');return false">M&amp;E Consultancy</a><a href="#" onclick="showPage('services');return false">Trade Accounts</a></div>
-      <div class="fcol"><h4>Company</h4><a href="#" onclick="showPage('about');return false">About Adam</a><a href="#" onclick="showPage('about');return false">Insurance &amp; Credentials</a><a href="#" onclick="showPage('pricing');return false">Pricing</a><a href="#" onclick="showPage('contact');return false">Contact</a></div>
+      <div class="fcol"><h4>Company</h4><a href="#" onclick="showPage('about');return false">About Adam</a><a href="#" onclick="showPage('about');return false">Insurance &amp; Credentials</a><a href="#" onclick="showPage('services');return false">Services &amp; Pricing</a><a href="#" onclick="showPage('faq');return false">FAQ</a><a href="#" onclick="showPage('contact');return false">Contact</a></div>
     </div>
   </div>
   <div class="foot-bottom">
@@ -4529,26 +5179,41 @@ section[id],div[id]{scroll-margin-top:64px}
   </div>
 </footer>
 
-<!-- ════════ CHAT WIDGET ════════ -->
-<button id="chat-btn" aria-label="Chat with us">
+<!-- ════════ AI CHAT WIDGET ════════ -->
+<button id="chat-btn" aria-label="Chat with our AI assistant">
   <div id="chat-notif"></div>
   <svg class="icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
   <svg class="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
 </button>
 <div id="chat-panel">
-  <div class="cp-hd"><div class="cp-av"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="cp-hd-name">Adam &middot; Survections</div><div class="cp-hd-status">Typically replies within 1 day</div></div></div>
-  <div class="cp-body">
-    <div class="cp-bubble">Hi! Drop me a message and I&rsquo;ll get back to you with a quote &mdash; usually within one working day.</div>
-    <div id="chat-form-wrap"><form id="chatForm">
-<div class="cp-f"><input type="text" id="cf-name" name="name" placeholder="Your name" required></div><div class="cp-f"><input type="email" id="cf-email" name="email" placeholder="Your email" required></div><div class="cp-f"><textarea id="cf-msg" name="message" placeholder="What do you need?" rows="3" required></textarea></div><button type="submit" class="cp-submit" id="chatBtn">Send message &rarr;</button></form></div>
-    <div id="chat-ok" style="display:none;text-align:center;padding:18px 0"><div style="font-size:24px;margin-bottom:7px">&#x2705;</div><div style="font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:3px">Sent!</div><div style="font-size:11px;color:var(--g400)">Adam will reply within one working day.</div></div>
+  <div class="cp-hd">
+    <div class="cp-av" style="background:linear-gradient(135deg,var(--teal),var(--gold));position:relative">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span style="position:absolute;bottom:-2px;right:-2px;width:9px;height:9px;border-radius:50%;background:var(--green);border:1.5px solid #0F1923"></span>
+    </div>
+    <div>
+      <div class="cp-hd-name">Survections AI Assistant</div>
+      <div class="cp-hd-status"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:4px;animation:ldot 2s infinite"></span>Online · Powered by Claude</div>
+    </div>
+    <button onclick="clearChat()" title="New conversation" style="margin-left:auto;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);padding:4px;border-radius:6px;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.3)'">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+    </button>
   </div>
-  <div class="cp-foot">Survections Ltd &middot; West &amp; Central London</div>
+  <div class="cp-body" id="ai-chat-body">
+    <!-- Messages injected by JS -->
+  </div>
+  <div class="cp-input-row" id="cp-input-row">
+    <input type="text" id="ai-input" placeholder="Ask me anything…" autocomplete="off" maxlength="500">
+    <button id="ai-send" onclick="aiSend()">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+  <div class="cp-foot">Survections Ltd &middot; West &amp; Central London &middot; AI may make errors — verify key details</div>
 </div>
 
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 
 
 // ═══════════════════════════════════════════
@@ -4634,42 +5299,9 @@ document.querySelectorAll('[data-target]').forEach(function(el) { if (el.closest
 
 // Dashboard
 var dashDone = false;
-var dashObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (!e.isIntersecting || dashDone) return;
-    dashDone = true;
-    document.querySelectorAll('[data-count]').forEach(function(el) {
-      if (el.dataset.cdone) return; el.dataset.cdone = '1';
-      var t = +el.dataset.count, s = el.dataset.suffix || '', v = 0;
-      var ti = setInterval(function() { v = Math.min(v+t/80,t); el.textContent = Math.floor(v).toLocaleString()+s; if(v>=t) clearInterval(ti); }, 16);
-    });
-    setTimeout(function() { document.querySelectorAll('.db-kpi-fill[data-w]').forEach(function(el) { el.style.width = el.dataset.w+'%'; }); }, 200);
-    setTimeout(function() { document.querySelectorAll('.db-hbar-fill[data-w]').forEach(function(el,i) { setTimeout(function() { el.style.width = el.dataset.w+'%'; }, i*90); }); }, 300);
-    document.querySelectorAll('.cbar').forEach(function(bar, i) { setTimeout(function() { bar.setAttribute('y', bar.dataset.y); bar.setAttribute('height', bar.dataset.h); }, 300+i*55); });
-    setTimeout(function() {
-      var C = 276.5, segs = [{id:'d-mep',pct:.38},{id:'d-res',pct:.31},{id:'d-stk',pct:.22},{id:'d-msr',pct:.09}], off = 0;
-      segs.forEach(function(seg) {
-        var el = document.getElementById(seg.id); if (!el) return;
-        el.style.transition = 'stroke-dasharray 1.4s cubic-bezier(.16,1,.3,1)';
-        el.style.strokeDashoffset = -(off * C);
-        (function(el, pct) { setTimeout(function() { el.style.strokeDasharray = (pct*C)+' '+(C-pct*C); }, 50); })(el, seg.pct);
-        off += seg.pct;
-      });
-      var dc = 0, dt = setInterval(function() { dc = Math.min(dc+30,2300); var dn = document.getElementById('donut-n'); if(dn) dn.textContent = dc>=1000?(dc/1000).toFixed(1)+'k':dc; if(dc>=2300) clearInterval(dt); }, 16);
-    }, 400);
-    setTimeout(function() {
-      var pts = [[10,62],[28,54],[46,46],[65,38],[82,32],[100,26],[118,30],[136,18],[154,10],[172,14],[190,6]];
-      var lp = document.getElementById('line-path'), lf = document.getElementById('line-fill');
-      if (!lp) return;
-      lp.setAttribute('points', pts.map(function(p) { return p.join(','); }).join(' '));
-      var svg = lp.parentNode;
-      pts.forEach(function(p) { var ci = document.createElementNS('http://www.w3.org/2000/svg','circle'); ci.setAttribute('cx',p[0]); ci.setAttribute('cy',p[1]); ci.setAttribute('r','2.2'); ci.setAttribute('fill','var(--gold)'); svg.appendChild(ci); });
-      if (lf) lf.setAttribute('points','0,70 '+pts.map(function(p){return p.join(',');}).join(' ')+' 190,70');
-    }, 600);
-  });
-}, {threshold: 0.2});
-var dash = document.getElementById('dashboard');
-if (dash) dashObs.observe(dash);
+// Dashboard observer is defined after the AI chatbot block below
+
+
 
 // Slider calc
 var svcR = {1:{name:'EPC',rate:70},2:{name:'Floor Plan',rate:50},3:{name:'Bundle',rate:105},4:{name:'Snagging',rate:330},5:{name:'Stock Cond.',rate:88},6:{name:'M&E',rate:385}};
@@ -4715,44 +5347,774 @@ function toggleAcc(btn) {
   }
 })();
 
-// Chat widget
-(function(){
-  var btn=document.getElementById('chat-btn'),panel=document.getElementById('chat-panel'),notif=document.getElementById('chat-notif');
-  if(!btn||!panel)return;
-  btn.addEventListener('click',function(){var open=btn.classList.toggle('open');panel.classList.toggle('open',open);if(notif)notif.style.display='none';});
-  document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!panel.contains(e.target)){btn.classList.remove('open');panel.classList.remove('open');}});
-  if(!sessionStorage.getItem('sv-chat-seen')){setTimeout(function(){sessionStorage.setItem('sv-chat-seen','1');btn.classList.add('open');panel.classList.add('open');if(notif)notif.style.display='none';},4000);}
-  var cf=document.getElementById('chatForm');
-  if(!cf)return;
-  cf.addEventListener('submit',function(e){
-    e.preventDefault();
-    function val(id){var el=document.getElementById(id);return el?el.value.trim():'';}
-    var name=val('cf-name'),email=val('cf-email'),msg=val('cf-msg');
-    if(!name||!email||!msg){alert('Please fill in all fields.');return;}
-    var sb=document.getElementById('chatBtn');
-    var orig=sb?sb.textContent:'Send';
-    if(sb){sb.textContent='Sending...';sb.disabled=true;}
-    var ctrl=new AbortController();
-    var tmr=setTimeout(function(){ctrl.abort();},12000);
-    fetch('https://formsubmit.co/ajax/adam@survections.com',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({name:name,email:email,message:msg,_subject:'Chat Enquiry - Survections',_captcha:'false'}),
-      signal:ctrl.signal
-    })
-    .then(function(r){clearTimeout(tmr);if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
-    .then(function(d){
-      if(d&&(d.success==='true'||d.success===true)){
-        var fw=document.getElementById('chat-form-wrap'),co=document.getElementById('chat-ok');
-        if(fw)fw.style.display='none';if(co)co.style.display='block';
-      }else{throw new Error(d.message||'Failed');}
-    })
-    .catch(function(){
-      clearTimeout(tmr);
-      if(sb){sb.textContent=orig;sb.disabled=false;}
-      alert('Please email adam@survections.com directly — the chat widget requires the site to be fully activated first.');
+// ═══════════════════════════════════════════
+// SMART CHATBOT — fully self-contained
+// No API key needed. Pattern-matched responses
+// covering all realistic visitor questions.
+// ═══════════════════════════════════════════
+
+var AI_HISTORY = [];
+
+// ── Knowledge base ─────────────────────────
+var AI_KB = [
+  // EPC
+  { p:[/\bepc\b/,/energy perf/,/energy cert/,/epc cert/,/epc price/,/epc cost/,/how much.*epc/,/epc.*how much/],
+    r:"EPC certificates start from **£70** per property, with same-day lodgement to the national register. For 2+ properties the **Compliance Bundle** (EPC + floor plan in one visit) is just **£105** — great value for landlords. Volume discounts kick in from 6 properties.",
+    qr:["Bundle deal?","How quickly?","Book an EPC"] },
+  // Floor plan
+  { p:[/floor plan/,/floorplan/,/measured survey/,/floor drawing/,/site plan/,/how much.*floor/,/floor.*how much/],
+    r:"Floor plans start from **£50** per property. We supply laser-accurate 2D and 3D formats in DWG, PDF, and JPEG — agent-ready within 24 hours. Gross internal area (GIA) is always included. Bundle with an EPC for **£105** total.",
+    qr:["What formats supplied?","Bundle with EPC","Book a floor plan"] },
+  // Bundle
+  { p:[/bundle/,/compliance pack/,/epc.*floor/,/floor.*epc/,/both/],
+    r:"The **Compliance Bundle** covers EPC + floor plan in a single visit for **£105** — saving you £15 vs. booking separately. All documents delivered within 48 hours, with priority scheduling included. Most popular for residential landlords.",
+    qr:["Book a bundle","How long does it take?","Volume discount?"] },
+  // Snagging
+  { p:[/snagging/,/new.?build/,/defect/,/snag/,/punch.?list/],
+    r:"Snagging surveys start from **£330** (1–2 bed) or **£385** (3+ bed). We carry out a 100+ point inspection before legal completion — covering M&E systems, fabric defects, and unfinished work. A photographic report is issued that you can take straight back to the developer.",
+    qr:["What's covered?","Book a snagging survey","M&E survey instead?"] },
+  // Stock condition
+  { p:[/stock condition/,/stock survey/,/housing.*survey/,/portfolio.*survey/,/condition.*survey/,/housing association/,/local authority/,/social housing/],
+    r:"Stock condition surveys are priced from **£88 per unit**, ideal for housing associations, local authorities, and landlords with larger portfolios. We assess building fabric, M&E components, and compliance status — output includes condition grades, remaining useful life, and a capital works priority list.",
+    qr:["What's in the report?","Volume pricing?","Book a stock survey"] },
+  // M&E survey
+  { p:[/m.e survey/,/m&e survey/,/mechanical.*electrical/,/asset.*survey/,/condition.*survey/,/mep survey/,/plant.*survey/,/hvac.*survey/,/asset register/,/rul/,/ppm/],
+    r:"M&E condition surveys start from **£385** for smaller sites — larger portfolios are quoted on scope. Every survey produces a condition-graded asset register with photos, remaining useful life (RUL) estimates, a PPM schedule, and a structured Excel/PDF dataset.",
+    qr:["What plant is covered?","What's included?","Get a quote"] },
+  // What's included / scope
+  { p:[/what.*cover/,/what.*includ/,/what.*survey/,/scope/,/what do.*get/,/deliverable/,/report.*includ/],
+    r:"All surveys include a professional written report with photographic evidence. M&E surveys add an asset register, condition grades (1–4), RUL estimates, and a PPM schedule in Excel + PDF. Floor plans come in DWG + PDF. EPCs are lodged directly to the national register.",
+    qr:["M&E survey pricing","EPC pricing","Book a survey"] },
+  // Pricing / costs
+  { p:[/how much/,/what.*cost/,/price.*list/,/pricing/,/rates/,/fees/,/charge/],
+    r:"Here's the headline pricing: **EPC £70 · Floor Plan £50 · Bundle £105 · Snagging £330–£385 · Stock Condition £88/unit · M&E Survey from £385**. Volume discounts apply from 6+ properties (5% off), 11+ (10% off), 25+ (15% off). All prices ex-VAT.",
+    qr:["Volume discount?","Book a survey","See full pricing page"] },
+  // Volume / discount
+  { p:[/volume/,/discount/,/bulk/,/multi.*site/,/portfolio/,/multiple prop/,/several prop/],
+    r:"Volume discounts apply automatically: **6+ properties = 5% off, 11+ = 10% off, 25+ = 15% off**. For large M&E estate programmes or stock condition surveys across 50+ units, bespoke pricing is available — just get in touch with the portfolio size and we'll turn around a quote within one working day.",
+    qr:["Get a portfolio quote","Trade account?","Book a survey"] },
+  // Trade / agent
+  { p:[/trade/,/agent/,/letting agent/,/property manager/,/estate agent/,/developer/,/fm /,/facilities/,/white.?label/],
+    r:"Trade accounts are available for agents, developers, housing associations, and FM contractors. Benefits include **priority scheduling, consolidated monthly invoicing, volume pricing, and white-label report formatting**. Contact Adam directly to set one up.",
+    qr:["Contact Adam","Volume pricing?","Book a survey"] },
+  // How quickly / turnaround
+  { p:[/how quick/,/how long/,/turnaround/,/same.?day/,/when.*get/,/fast/,/urgent/,/next day/,/24.?hour/],
+    r:"EPCs are typically lodged to the national register **same day**, with the certificate in your inbox within 24 hours. Floor plans are issued within 24 hours. The Compliance Bundle (both) takes up to 48 hours. M&E and stock condition surveys depend on scope — we aim to deliver within 5 working days for standard sites.",
+    qr:["Book an EPC","Book a bundle","M&E survey timing"] },
+  // Legal / requirement
+  { p:[/legal/,/do i need/,/required by law/,/regulation/,/mandatory/,/must have/,/landlord.*need/,/compli/],
+    r:"Yes — an EPC is a **legal requirement** under the Energy Performance of Buildings Regulations 2012 before any property is marketed for sale or let. From April 2025, new tenancies must achieve a minimum **EPC rating of C**. If your property is currently D or below, a survey will identify exactly what's needed to comply.",
+    qr:["EPC pricing","Book an EPC","Bundle deal?"] },
+  // Insurance / accreditation
+  { p:[/insur/,/pi /,/professional indemnity/,/public liability/,/accredit/,/qualif/,/certif/,/dea /,/elmhurst/,/abbe/,/axa/,/are you.*insured/,/insured\?/],
+    r:"Survections holds **AXA Professional Indemnity insurance of £250,000** per claim and **Public Liability of £1,000,000** per event. Adam Rodrigo is an Elmhurst-accredited Domestic Energy Assessor (ABBE scheme, Reg. 0000060456). Certificates are available on request before any engagement.",
+    qr:["EPC pricing","Book a survey","Contact Adam"] },
+  // Coverage / area / location
+  { p:[/cover/,/area/,/locat/,/where.*operat/,/london/,/which.*borough/,/zone/,/travel/,/outside london/,/do you come to/],
+    r:"The primary coverage area is **West and Central London** — Kensington, Chelsea, Westminster, Hammersmith, Fulham, and surrounding boroughs. For M&E portfolio and stock condition programmes, coverage extends across Greater London and beyond. Travel costs for outer areas are factored into quotes transparently.",
+    qr:["Get a quote","Book a survey","Contact Adam"] },
+  // About Adam / who are you
+  { p:[/who are you/,/about.*adam/,/who is adam/,/experience/,/background/,/track record/,/cv/,/survey.*done/,/how many/],
+    r:"Adam Rodrigo is a senior M&E surveyor and accredited DEA with **5+ years' experience** and **2,300+ surveys delivered** — including estate programmes for the Royal Borough of Kensington & Chelsea, the London Borough of Ealing, and Transport for London. Survections Ltd is registered in England & Wales (Co. No. 15926055).",
+    qr:["Services & pricing","Book a survey","Insurance details"] },
+  // Booking / how to book
+  { p:[/book/,/how do i.*book/,/how to book/,/appoint/,/schedul/,/get started/,/next step/,/what.*next/,/enquire/,/enquiry/],
+    r:"The easiest way to book is via the **Contact page** on this site — fill in the property address, service needed, and any access notes. You'll get a confirmation and fee agreement within one working day. Alternatively, email adam@survections.com or call **07483 341 559**.",
+    qr:["Go to contact page","EPC pricing","M&E survey pricing"] },
+  // Contact / email / phone
+  { p:[/contact/,/email/,/phone/,/call/,/reach/,/get in touch/,/speak to/,/talk to/],
+    r:"You can reach Adam directly: **adam@survections.com** or **07483 341 559**. Typical response time is under 4 hours on working days. For a formal quote, the Contact page on this site has a form that captures all the detail needed.",
+    qr:["Go to contact page","Book a survey","EPC pricing"] },
+  // Greetings
+  { p:[/^hi$/,/^hello$/,/^hey$/,/^morning/,/^afternoon/,/^good/,/^howdy/],
+    r:"Hi there! I'm the Survections AI assistant — here to help with pricing, services, or booking. What are you looking to get done?",
+    qr:["EPC pricing","Floor plans","M&E survey","Book a survey"] },
+  // Thanks
+  { p:[/thank/,/cheers/,/great.*help/,/that.*help/,/perfect/],
+    r:"Happy to help! If you're ready to move forward, the Contact page is the quickest way to get a confirmed quote. Anything else I can assist with?",
+    qr:["Book a survey","Go to contact page","EPC pricing"] },
+];
+
+var AI_DEFAULT = {
+  r:"Good question — I may not have a specific answer for that. For detailed or bespoke queries, the best route is to contact Adam directly at **adam@survections.com** or **07483 341 559**. He typically responds within 4 hours.",
+  qr:["Go to contact page","EPC pricing","M&E survey pricing"]
+};
+
+// ── Markdown bold renderer ──────────────────
+function renderMd(t) {
+  return escHtml(t).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+}
+
+// ── Lookup response ─────────────────────────
+function aiLookup(text) {
+  var lo = text.toLowerCase().trim();
+  for (var i=0; i<AI_KB.length; i++) {
+    var entry = AI_KB[i];
+    for (var j=0; j<entry.p.length; j++) {
+      if (entry.p[j].test(lo)) return entry;
+    }
+  }
+  return AI_DEFAULT;
+}
+
+function aiInit() {
+  var body = document.getElementById('ai-chat-body');
+  if (!body) return;
+  body.innerHTML = '';
+  AI_HISTORY = [];
+  addAiMsg('bot', "Hi! I'm the Survections AI assistant. I can help with pricing, booking, and questions about our M&E, EPC, floor plan, and survey services. What can I help you with?");
+  addQuickReplies(["EPC pricing","Floor plans","M&E survey","Book a survey","Are you insured?"]);
+}
+
+function addAiMsg(role, text) {
+  var body = document.getElementById('ai-chat-body');
+  if (!body) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'ai-msg ' + role;
+  if (role === 'bot') {
+    wrap.innerHTML = '<div class="ai-msg-av"><svg viewBox="0 0 24 24" width="12" height="12"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="ai-bubble">' + renderMd(text) + '</div>';
+  } else {
+    wrap.innerHTML = '<div class="ai-bubble">' + escHtml(text) + '</div>';
+  }
+  body.appendChild(wrap);
+  body.scrollTop = body.scrollHeight;
+}
+
+function addQuickReplies(replies) {
+  var body = document.getElementById('ai-chat-body');
+  if (!body || !replies || !replies.length) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'ai-quickreplies';
+  var wrapId = 'ai-qr-' + Date.now();
+  wrap.id = wrapId;
+  replies.forEach(function(r) {
+    var btn = document.createElement('button');
+    btn.className = 'ai-qr';
+    btn.textContent = r;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation(); // ← prevents panel closing
+      var qrEl = document.getElementById(wrapId);
+      if (qrEl) qrEl.remove();
+      // Handle navigation shortcut
+      if (r === 'Go to contact page') {
+        var chatBtn = document.getElementById('chat-btn');
+        var chatPanel = document.getElementById('chat-panel');
+        if (chatBtn) chatBtn.classList.remove('open');
+        if (chatPanel) chatPanel.classList.remove('open');
+        if (typeof showPage === 'function') showPage('contact');
+        return;
+      }
+      if (r === 'See full pricing page') {
+        var chatBtn = document.getElementById('chat-btn');
+        var chatPanel = document.getElementById('chat-panel');
+        if (chatBtn) chatBtn.classList.remove('open');
+        if (chatPanel) chatPanel.classList.remove('open');
+        if (typeof showPage === 'function') showPage('services');
+        return;
+      }
+      aiSendText(r);
     });
+    wrap.appendChild(btn);
   });
+  body.appendChild(wrap);
+  body.scrollTop = body.scrollHeight;
+}
+
+function showTyping() {
+  var body = document.getElementById('ai-chat-body');
+  if (!body) return null;
+  var el = document.createElement('div');
+  el.className = 'ai-msg bot';
+  var tid = 'ai-typing-' + Date.now();
+  el.id = tid;
+  el.innerHTML = '<div class="ai-msg-av"><svg viewBox="0 0 24 24" width="12" height="12"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="ai-typing"><span></span><span></span><span></span></div>';
+  body.appendChild(el);
+  body.scrollTop = body.scrollHeight;
+  return tid;
+}
+
+function removeTyping(id) {
+  if (id) { var el = document.getElementById(id); if (el) el.remove(); }
+}
+
+function escHtml(t) {
+  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function aiSendText(text) {
+  if (!text) return;
+  document.querySelectorAll('.ai-quickreplies').forEach(function(el){ el.remove(); });
+  addAiMsg('user', text);
+  AI_HISTORY.push({q: text});
+  var inp = document.getElementById('ai-input');
+  var send = document.getElementById('ai-send');
+  if (inp) inp.value = '';
+  if (send) send.disabled = true;
+  var typId = showTyping();
+  // Simulate thinking delay (600–1100ms feels natural)
+  var delay = 620 + Math.floor(Math.random() * 480);
+  setTimeout(function() {
+    removeTyping(typId);
+    if (send) send.disabled = false;
+    var match = aiLookup(text);
+    addAiMsg('bot', match.r);
+    setTimeout(function() { addQuickReplies(match.qr); }, 250);
+    var body = document.getElementById('ai-chat-body');
+    if (body) body.scrollTop = body.scrollHeight;
+  }, delay);
+}
+
+function aiSend() {
+  var inp = document.getElementById('ai-input');
+  var text = inp ? inp.value.trim() : '';
+  if (!text) return;
+  aiSendText(text);
+}
+
+function clearChat() { aiInit(); }
+
+// Chat panel open/close
+(function(){
+  var btn = document.getElementById('chat-btn');
+  var panel = document.getElementById('chat-panel');
+  var notif = document.getElementById('chat-notif');
+  if (!btn || !panel) return;
+  aiInit();
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = btn.classList.toggle('open');
+    panel.classList.toggle('open', open);
+    if (notif) notif.style.display = 'none';
+    if (open) {
+      var inp = document.getElementById('ai-input');
+      if (inp) setTimeout(function(){ inp.focus(); }, 300);
+    }
+  });
+
+  // Close when clicking outside — but NOT inside the panel
+  document.addEventListener('click', function(e) {
+    if (!btn.contains(e.target) && !panel.contains(e.target)) {
+      btn.classList.remove('open');
+      panel.classList.remove('open');
+    }
+  });
+
+  // Prevent panel clicks from bubbling to document (stops accidental close)
+  panel.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  // Enter key to send
+  var inp = document.getElementById('ai-input');
+  if (inp) {
+    inp.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); aiSend(); }
+    });
+  }
+
+  // Auto-open after 4 seconds (once per session)
+  if (!sessionStorage.getItem('sv-chat-seen')) {
+    setTimeout(function() {
+      sessionStorage.setItem('sv-chat-seen', '1');
+      btn.classList.add('open');
+      panel.classList.add('open');
+      if (notif) notif.style.display = 'none';
+    }, 4000);
+  }
+})();
+
+
+// ═══════════════════════════════════════════
+// SERVICE DETAIL DRAWER
+// ═══════════════════════════════════════════
+var SVC_DATA = {
+  epc: {
+    name: 'EPC Assessment',
+    who: 'Landlords, sellers, estate agents, developers',
+    turnaround: 'Certificate lodged same day — typically within 2 hours of the survey',
+    cols: [
+      {
+        label: 'What happens on the day',
+        icon: '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+        items: [
+          'Adam assesses all habitable rooms — typically 30–60 minutes',
+          'Insulation, heating system, hot water, glazing, and lighting recorded',
+          'No specialist access required beyond normal rooms and loft hatch',
+          'Occupants need not be home — arrange key access if needed'
+        ]
+      },
+      {
+        label: 'What you receive',
+        icon: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+        items: [
+          'PDF EPC certificate (A–G rated)',
+          'National register lodgement confirmation email',
+          'Ranked improvement schedule with estimated cost–benefit',
+          'Link to publicly viewable entry on the EPC register'
+        ]
+      }
+    ],
+    note: 'EPCs are valid for 10 years. If your property currently rates D or below, the improvement schedule will show exactly what changes are needed to meet the upcoming minimum C rating for new tenancies.',
+    tags: ['Elmhurst Accredited', 'DEA Certified', '24h Turnaround', 'National Register'],
+    cta: 'Book an EPC',
+    cta2: 'Have a question?'
+  },
+  floorplan: {
+    name: 'Floor Plan',
+    who: 'Estate agents, developers, solicitors, planning applications',
+    turnaround: 'Draft within 24 hours. Final issued within 48 hours.',
+    cols: [
+      {
+        label: 'What happens on the day',
+        icon: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',
+        items: [
+          'Laser distance measurement of every room',
+          'All doors, windows, structural walls, and fixed furniture captured',
+          'Ceiling heights and step changes recorded',
+          'External dimensions measured where accessible'
+        ]
+      },
+      {
+        label: 'What you receive',
+        icon: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+        items: [
+          '2D measured plan — DWG + PDF format',
+          'Optional 3D rendered view or furnished layout',
+          'Gross Internal Area (GIA) certificate',
+          'Suitable for Rightmove, planning, and sales particulars'
+        ]
+      }
+    ],
+    note: 'Planning-grade surveys with NIA, GIA, and GEA breakdowns available on request. DWG files are AutoCAD-compatible and can be provided layered for architect use.',
+    tags: ['RICS Standards', 'DWG + PDF', 'Same-Day Draft', 'GIA Included'],
+    cta: 'Book a floor plan',
+    cta2: 'Have a question?'
+  },
+  bundle: {
+    name: 'Compliance Bundle',
+    who: 'Landlords preparing to let — the most efficient way to complete both requirements in one visit',
+    turnaround: 'EPC lodged same day. Floor plan and both final documents within 48 hours.',
+    cols: [
+      {
+        label: 'What\'s included',
+        icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',
+        items: [
+          'Full RdSAP energy assessment (EPC)',
+          'Laser-measured 2D floor plan with GIA',
+          'Both lodged and delivered within 48 hours',
+          'Single survey visit — minimum disruption',
+          'Priority booking slot guaranteed'
+        ]
+      },
+      {
+        label: 'Why it\'s better value',
+        icon: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>',
+        items: [
+          'EPC (£70) + Floor Plan (£50) = £120 separately',
+          'Bundle price: £105 — saving £15',
+          'One visit instead of two appointments',
+          'Single invoice, single point of contact',
+          'Ideal for pre-market preparation'
+        ]
+      }
+    ],
+    note: 'The most popular service for residential landlords. Everything your letting agent, solicitor, and local authority needs in one package, ready before you even list the property.',
+    tags: ['Most Popular', 'Best Value', '48h Delivery', 'Priority Booking'],
+    cta: 'Book a bundle',
+    cta2: 'Have a question?'
+  },
+  snagging: {
+    name: 'Snagging Survey',
+    who: 'New-build buyers ahead of legal completion — ideally booked 1–2 weeks before your completion date',
+    turnaround: 'Full photographic report issued within 48 hours of the survey',
+    cols: [
+      {
+        label: 'What\'s inspected',
+        icon: '<path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>',
+        items: [
+          'All electrical sockets, switches, light fittings, and consumer unit',
+          'Heating system, hot water, and thermostatic controls',
+          'Ventilation, MVHR, and extract fans',
+          'Plumbing — all outlets, taps, and drainage',
+          'Building fabric — walls, ceilings, doors, windows, finishes',
+          'External works, drainage, and communal areas'
+        ]
+      },
+      {
+        label: 'What you receive',
+        icon: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+        items: [
+          'Itemised defect schedule with reference numbers',
+          'Photographic evidence for every defect identified',
+          'Severity rating for each item',
+          'Developer-ready format for formal response',
+          'Summary letter for legal and solicitor use'
+        ]
+      }
+    ],
+    note: 'Developers are legally obliged to rectify genuine defects before handover. A professional snagging report gives you the leverage to ensure all issues are resolved at no cost to you — often saving thousands.',
+    tags: ['New Build', 'M&amp;E Tested', 'Photographic Report', 'Developer-Ready'],
+    cta: 'Get a snagging quote',
+    cta2: 'Have a question?'
+  },
+  stock: {
+    name: 'Stock Condition Survey',
+    who: 'Local authorities, housing associations, registered providers, and portfolio landlords with 5+ units',
+    turnaround: 'Data delivered within 5–10 working days per tranche of units',
+    cols: [
+      {
+        label: 'What\'s assessed',
+        icon: '<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>',
+        items: [
+          'Roof structure, coverings, gutters, and drainage',
+          'External walls, windows, and doors',
+          'Kitchens, bathrooms, and internal finishes',
+          'Heating system, hot water, and controls',
+          'Electrical installation and consumer unit',
+          'Communal areas, lifts, and shared plant'
+        ]
+      },
+      {
+        label: 'What you receive',
+        icon: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+        items: [
+          'Component-level condition register — grades 1–4',
+          'Remaining useful life (RUL) table per component',
+          'Capital works priority schedule and 30-year cost projection',
+          'HHSRS hazard classification where applicable',
+          'Excel workbook + PDF report'
+        ]
+      }
+    ],
+    note: 'Designed to meet Decent Homes Standard and HHSRS compliance requirements. Data is structured for direct import into asset management systems including Keystone, Northgate, and Civica.',
+    tags: ['Decent Homes', 'HHSRS Compliant', 'Excel + PDF', 'Capital Planning'],
+    cta: 'Get a stock survey quote',
+    cta2: 'Have a question?'
+  },
+  me: {
+    name: 'M&E Condition Survey',
+    who: 'Commercial property owners, public sector estate managers, local authorities, FM companies, and housing associations with complex plant',
+    turnaround: 'Standard site: 5–7 working days. Estate programmes: scoped and agreed per programme',
+    cols: [
+      {
+        label: 'Plant &amp; systems covered',
+        icon: '<circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>',
+        items: [
+          'Mechanical: boilers, chillers, AHUs, FCUs, pumps, heat exchangers, pressurisation units',
+          'Electrical: HV/LV switchgear, distribution boards, transformers, UPS, generators',
+          'Fire: sprinklers, suppression, alarm panels, detection heads',
+          'BMS, controls, and energy metering',
+          'Lifts, escalators, and conveyors',
+          'Specialist plant: data centre cooling, medical gas, security systems'
+        ]
+      },
+      {
+        label: 'Deliverables',
+        icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+        items: [
+          'Asset register: every item of plant with make, model, serial, age, and condition grade',
+          'Photographic evidence for each asset',
+          'Remaining useful life (RUL) and replacement cost estimates',
+          'Planned preventative maintenance (PPM) schedule',
+          'Excel workbook + PDF report',
+          'BIM/CAD-compatible data on request'
+        ]
+      }
+    ],
+    note: 'Delivered to public sector and government estate standard. Previous programmes include the Royal Borough of Kensington &amp; Chelsea (1,000+ assets), London Borough of Ealing, and Transport for London.',
+    tags: ['Public Sector Proven', 'Excel + PDF', 'BIM Compatible', 'Audit-Ready', 'PPM Schedule'],
+    cta: 'Get an M&amp;E survey quote',
+    cta2: 'Have a question?'
+  },
+  portfolio: {
+    name: 'Portfolio / Multi-site Programme',
+    who: 'Public sector bodies, housing associations, commercial landlords, and developers with 10+ properties or sites',
+    turnaround: 'Agreed per programme — typically 4–12 weeks for full estate delivery',
+    cols: [
+      {
+        label: 'How it works',
+        icon: '<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>',
+        items: [
+          'Scoping call to agree service type, access requirements, and schedule',
+          'Mobilisation: access lists, RA&M, programme of works',
+          'Structured survey delivery in agreed tranches',
+          'Rolling data submission — no waiting for full completion',
+          'Dedicated single point of contact throughout'
+        ]
+      },
+      {
+        label: 'What\'s available',
+        icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+        items: [
+          'Any combination of EPC, floor plan, snagging, stock condition, and M&E surveys',
+          'Custom per-unit rate based on scope and volume',
+          'Structured Excel data outputs per programme',
+          'Outside IR35 engagement available',
+          'Monthly invoicing on agreed terms',
+          'White-label reporting where required'
+        ]
+      }
+    ],
+    note: 'Survections Ltd has delivered large-scale programmes across London boroughs and public sector estates. Structured data output means your investment works beyond the survey — feeding directly into asset management and maintenance planning systems.',
+    tags: ['Outside IR35', 'Excel + PDF', 'Custom Rate', 'Monthly Invoicing', 'Multi-site'],
+    cta: 'Discuss a programme',
+    cta2: 'Have a question?'
+  },
+  trade: {
+    name: 'Trade Account — Agents &amp; Professionals',
+    who: 'Letting agents, estate agents, property managers, developers, FM contractors, and housing associations with recurring survey needs',
+    turnaround: 'Priority slots reserved — typically 48h from booking',
+    cols: [
+      {
+        label: 'Account benefits',
+        icon: '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>',
+        items: [
+          'Preferential per-unit rate — agreed at account setup',
+          'Dedicated priority booking slots — skip the queue',
+          'White-label report branding to your firm',
+          'Single consolidated monthly invoice',
+          'Direct WhatsApp/email line to Adam'
+        ]
+      },
+      {
+        label: 'Volume discount structure',
+        icon: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>',
+        items: [
+          '6–10 properties/month: 5% discount',
+          '11–24 properties/month: 10% discount',
+          '25+ properties/month: 15% discount',
+          'M&E and stock programmes: bespoke rate',
+          'Discounts applied automatically to your invoice'
+        ]
+      }
+    ],
+    note: 'Trade accounts are set up with a short call to agree rates and workflow. Turnaround times and report formats are standardised to your firm\'s requirements. Most agents see their per-unit cost fall below high-street provider rates within the first month.',
+    tags: ['Priority Slots', 'White-label', 'Volume Rates', 'Monthly Invoice'],
+    cta: 'Apply for a trade account',
+    cta2: 'Have a question?'
+  }
+};
+
+var currentSvc = null;
+
+function toggleSvcDrawer(svcId, card) {
+  var drawer = document.getElementById('svc-drawer');
+  var inner  = document.getElementById('svc-drawer-inner');
+  if (!drawer || !inner) return;
+
+  // Clicking the active card closes it
+  if (currentSvc === svcId && drawer.classList.contains('open')) {
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    currentSvc = null;
+    document.querySelectorAll('.pcard-v2').forEach(function(c){ c.classList.remove('svc-active'); });
+    return;
+  }
+
+  // Mark active card
+  document.querySelectorAll('.pcard-v2').forEach(function(c){ c.classList.remove('svc-active'); });
+  if (card) card.classList.add('svc-active');
+  currentSvc = svcId;
+
+  var d = SVC_DATA[svcId];
+  if (!d) return;
+
+  // Position arrow under active card
+  if (card) {
+    var grid = document.getElementById('pricing-grid') || card.closest('.pgrid, .pv2-wide-row');
+    var cardRect = card.getBoundingClientRect();
+    var drawerRect = drawer.parentNode ? drawer.parentNode.getBoundingClientRect() : null;
+    if (drawerRect) {
+      var arrowLeft = (cardRect.left + cardRect.width/2 - drawerRect.left);
+      inner.style.setProperty('--arrow-left', arrowLeft + 'px');
+      inner.style.setProperty('--arrow-pct', Math.min(Math.max((arrowLeft/drawerRect.width)*100, 5), 95) + '%');
+    }
+  }
+
+  // Build inner HTML — 3 columns: what + deliverables + summary+CTA
+  var html = '<button class="svc-d-close" onclick="event.stopPropagation();toggleSvcDrawer(\'' + svcId + '\',null)">' +
+    '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';
+
+  // Header row
+  html += '<div style="grid-column:1/-1;margin-bottom:16px">';
+  html += '<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">' + d.name + '</div>';
+  html += '<div style="font-size:12px;color:rgba(255,255,255,.4)"><strong style="color:rgba(255,255,255,.6)">Who it\'s for:</strong> ' + d.who + '</div>';
+  html += '<div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:3px"><strong style="color:rgba(255,255,255,.6)">Turnaround:</strong> ' + d.turnaround + '</div>';
+  html += '</div>';
+  html += '<div class="svc-d-divider"></div>';
+
+  // Data columns
+  d.cols.forEach(function(col) {
+    html += '<div class="svc-d-col">';
+    html += '<div class="svc-d-label"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">' + col.icon + '</svg>' + col.label + '</div>';
+    html += '<ul class="svc-d-list">';
+    col.items.forEach(function(item){ html += '<li>' + item + '</li>'; });
+    html += '</ul></div>';
+  });
+
+  // Third column — note + tags + CTAs
+  html += '<div class="svc-d-col">';
+  html += '<div class="svc-d-label"><svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>Good to know</div>';
+  html += '<p style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:12px">' + d.note + '</p>';
+  html += '<div class="svc-d-tags">';
+  d.tags.forEach(function(t){ html += '<span class="svc-d-tag">' + t + '</span>'; });
+  html += '</div>';
+  html += '<div class="svc-d-ctas">';
+  html += '<a href="#" class="svc-d-btn-primary" onclick="showPage(\'contact\');return false">' + d.cta + ' &rarr;</a>';
+  html += '<a href="#" class="svc-d-btn-ghost" onclick="showPage(\'faq\');return false">Read the FAQ</a>';
+  html += '</div></div>';
+
+  inner.innerHTML = html;
+
+  // Move drawer to correct position in DOM (after main grid or wide row)
+  if (card) {
+    var wideRow = card.closest('.pv2-wide-row');
+    var mainGrid = card.closest('#pricing-grid');
+    var parent = (wideRow || mainGrid);
+    if (parent && parent.parentNode) {
+      parent.parentNode.insertBefore(drawer, parent.nextSibling);
+    }
+  }
+
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  setTimeout(function(){
+    drawer.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  }, 80);
+}
+
+// ═══════════════════════════════════════════
+// FAQ ACCORDION
+// ═══════════════════════════════════════════
+function toggleFaq(btn) {
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// ═══════════════════════════════════════════
+// DASHBOARD TICKER + GAUGES
+// ═══════════════════════════════════════════
+(function(){
+  var messages = [
+    'EPC lodged for SW7 property — today',
+    'M&E survey completed — LB Kensington estate',
+    'Floor plan issued — W1 residential unit',
+    'Compliance bundle delivered — W6 landlord',
+    'Stock condition survey — 12-unit portfolio',
+    'Snagging report submitted — new build SW11',
+    'Asset register updated — Borough of Ealing',
+    'EPC rated C — improvement recs included',
+    'Asset condition report delivered — Excel + PDF',
+    '3+ bed EPC and floor plan — same day',
+  ];
+  var idx = 0;
+  var el = document.getElementById('db-ticker-text');
+  function cycle() {
+    if (!el) return;
+    el.style.opacity = '0';
+    setTimeout(function(){
+      el.textContent = messages[idx % messages.length];
+      el.style.transition = 'opacity .5s';
+      el.style.opacity = '1';
+      idx++;
+    }, 400);
+  }
+  if (el) { cycle(); setInterval(cycle, 4200); }
+})();
+
+// Dashboard gauge animations (on dashboard observe)
+var dashObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (!e.isIntersecting || dashDone) return;
+    dashDone = true;
+    // original counter logic
+    document.querySelectorAll('[data-count]').forEach(function(el) {
+      if (el.dataset.cdone) return; el.dataset.cdone = '1';
+      var t = +el.dataset.count, s = el.dataset.suffix || '', v = 0;
+      var ti = setInterval(function() { v = Math.min(v+t/80,t); el.textContent = Math.floor(v).toLocaleString()+s; if(v>=t) clearInterval(ti); }, 16);
+    });
+    setTimeout(function() { document.querySelectorAll('.db-kpi-fill[data-w]').forEach(function(el) { el.style.width = el.dataset.w+'%'; }); }, 200);
+    setTimeout(function() { document.querySelectorAll('.db-hbar-fill[data-w]').forEach(function(el,i) { setTimeout(function() { el.style.width = el.dataset.w+'%'; }, i*90); }); }, 300);
+    document.querySelectorAll('.cbar').forEach(function(bar, i) { setTimeout(function() { bar.setAttribute('y', bar.dataset.y); bar.setAttribute('height', bar.dataset.h); }, 300+i*55); });
+    setTimeout(function() {
+      var C = 276.5, segs = [{id:'d-mep',pct:.38},{id:'d-res',pct:.31},{id:'d-stk',pct:.22},{id:'d-msr',pct:.09}], off = 0;
+      segs.forEach(function(seg) {
+        var el = document.getElementById(seg.id); if (!el) return;
+        el.style.transition = 'stroke-dasharray 1.4s cubic-bezier(.16,1,.3,1)';
+        el.style.strokeDashoffset = -(off * C);
+        (function(el, pct) { setTimeout(function() { el.style.strokeDasharray = (pct*C)+' '+(C-pct*C); }, 50); })(el, seg.pct);
+        off += seg.pct;
+      });
+      var dc = 0, dt = setInterval(function() { dc = Math.min(dc+30,2300); var dn = document.getElementById('donut-n'); if(dn) dn.textContent = dc>=1000?(dc/1000).toFixed(1)+'k':dc; if(dc>=2300) clearInterval(dt); }, 16);
+    }, 400);
+    setTimeout(function() {
+      var pts = [[10,62],[28,54],[46,46],[65,38],[82,32],[100,26],[118,30],[136,18],[154,10],[172,14],[190,6]];
+      var lp = document.getElementById('line-path'), lf = document.getElementById('line-fill');
+      if (!lp) return;
+      lp.setAttribute('points', pts.map(function(p) { return p.join(','); }).join(' '));
+      var svg = lp.parentNode;
+      pts.forEach(function(p) { var ci = document.createElementNS('http://www.w3.org/2000/svg','circle'); ci.setAttribute('cx',p[0]); ci.setAttribute('cy',p[1]); ci.setAttribute('r','2.2'); ci.setAttribute('fill','var(--gold)'); svg.appendChild(ci); });
+      if (lf) lf.setAttribute('points','0,70 '+pts.map(function(p){return p.join(',');}).join(' ')+' 190,70');
+    }, 600);
+    // NEW: animate semicircle gauges
+    setTimeout(function(){
+      var C2 = 157; // half circumference for r=50
+      function animGauge(arcId, numId, pct, label, delay) {
+        setTimeout(function(){
+          var arc = document.getElementById(arcId), num = document.getElementById(numId);
+          if (!arc || !num) return;
+          arc.style.transition = 'stroke-dasharray 1.6s cubic-bezier(.16,1,.3,1)';
+          arc.style.strokeDasharray = (pct * C2) + ' ' + C2;
+          var v = 0, target = Math.round(pct * 100);
+          var ti = setInterval(function(){
+            v = Math.min(v + 2, target);
+            num.textContent = label === 'pct' ? v + '%' : (v === target ? label : v + '%');
+            if (v >= target) { clearInterval(ti); if (label !== 'pct') num.textContent = label; }
+          }, 20);
+        }, delay);
+      }
+      animGauge('db-sat-arc',  'db-sat-n',  0.97, 'pct',   0);
+      animGauge('db-resp-arc', 'db-resp-n', 0.88, '<4h',  200);
+      animGauge('db-epc-arc',  'db-epc-n',  0.95, '24h',  400);
+    }, 500);
+  });
+}, {threshold: 0.2});
+var dash = document.getElementById('dashboard');
+if (dash) dashObs.observe(dash);
+
+// ═══════════════════════════════════════════
+// HEADLINE TYPEWRITER
+// ═══════════════════════════════════════════
+(function(){
+  var el = document.getElementById('h2-typewriter');
+  if (!el) return;
+  var phrases = [
+    'West \u0026 Central London \u00b7 Accredited \u0026 Insured',
+    'EPC \u00b7 Floor Plans \u00b7 M\u0026E Surveys',
+    'Same-day EPC \u00b7 24h Lodgement',
+    'Public Sector Proven \u00b7 AXA Insured',
+    'Excel \u00b7 PDF \u00b7 BIM Compatible',
+  ];
+  var pi = 0, ci = 0, deleting = false, pauseTicks = 0;
+  function tick() {
+    if (pauseTicks > 0) { pauseTicks--; setTimeout(tick, 60); return; }
+    var full = phrases[pi];
+    if (!deleting) {
+      ci++;
+      el.innerHTML = full.slice(0, ci);
+      if (ci >= full.length) { deleting = true; pauseTicks = 28; }
+      setTimeout(tick, 55);
+    } else {
+      ci--;
+      el.innerHTML = full.slice(0, ci);
+      if (ci <= 0) { deleting = false; pi = (pi + 1) % phrases.length; pauseTicks = 8; }
+      setTimeout(tick, 28);
+    }
+  }
+  setTimeout(tick, 800);
 })();
 
 // Visibility guarantee
