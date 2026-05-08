@@ -102,9 +102,9 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--font);background:var(--white);color:var(--g800);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-/* ── CURSOR ── */
-#cur,#cur-r{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s}
-#cur{width:9px;height:9px;background:var(--gold);border-radius:50%}
+/* ── CURSOR — transform-only, compositor-thread, zero layout lag ── */
+#cur,#cur-r{position:fixed;top:0;left:0;pointer-events:none;will-change:transform;transition:width .15s,height .15s}
+#cur{width:9px;height:9px;background:var(--gold);border-radius:50%;z-index:9999}
 #cur-r{width:30px;height:30px;border:1.5px solid rgba(0,212,255,.6);border-radius:50%;z-index:9998}
 @media(max-width:768px){#cur,#cur-r{display:none}body{cursor:auto}}
 @media(min-width:769px){body{cursor:none}}
@@ -1552,16 +1552,54 @@ section[id],div[id]{scroll-margin-top:64px}
   flex-direction: column;
   justify-content: center;
   padding: 120px 24px 80px;
-  background: var(--navy-dk);
+  background: #04090f;
   overflow: hidden;
+}
+/* Plant room background image */
+.h2-plant-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.h2-plant-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+  opacity: 0;
+  animation: plantBgFade 1.8s ease-out 0.4s forwards;
+}
+@keyframes plantBgFade { to { opacity: 1 } }
+/* Overlay: dark vignette on left+right edges only — centre stays clear for text */
+.h2-plant-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(4,9,15,0.92) 0%,
+      rgba(4,9,15,0.60) 20%,
+      rgba(4,9,15,0.60) 80%,
+      rgba(4,9,15,0.92) 100%),
+    linear-gradient(to right,
+      rgba(4,9,15,0.98) 0%,
+      rgba(4,9,15,0.85) 18%,
+      rgba(4,9,15,0.20) 32%,
+      rgba(4,9,15,0.20) 68%,
+      rgba(4,9,15,0.85) 82%,
+      rgba(4,9,15,0.98) 100%);
 }
 .h2-hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background-image:
-    linear-gradient(rgba(0,196,167,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,196,167,.05) 1px, transparent 1px);
+    linear-gradient(rgba(0,196,167,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,196,167,.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -1570,6 +1608,7 @@ section[id],div[id]{scroll-margin-top:64px}
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 1px;
+  z-index: 2;
   background: linear-gradient(90deg, transparent, rgba(0,196,167,.3), transparent);
 }
 .h2-hero-glow {
@@ -2743,6 +2782,20 @@ section[id],div[id]{scroll-margin-top:64px}
   display: flex;
   align-items: center;
 }
+/* Continuous cable-tray backbone — runs full width behind all equipment */
+.elec-strip::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px;
+  background: rgba(4,10,18,.98);
+  border-top: 1.5px solid rgba(0,196,167,.32);
+  border-bottom: 1.5px solid rgba(0,196,167,.32);
+  box-shadow: 0 0 8px rgba(0,196,167,.08);
+  z-index: 0;
+}
 .elec-strip-top { border-bottom: 1px solid rgba(0,196,167,.15); margin-top: 64px; }
 .elec-strip-bot { border-top: 1px solid rgba(0,196,167,.15); }
 
@@ -2753,18 +2806,20 @@ section[id],div[id]{scroll-margin-top:64px}
   gap: 0;
   width: max-content;
   animation: elecScroll 40s linear infinite;
+  position: relative;
+  z-index: 1;
 }
 .elec-strip-bot .elec-track { animation-direction: reverse; }
 @keyframes elecScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-/* Each panel / machine unit */
+/* Each panel / machine unit — no padding, backbone fills gaps */
 .eu {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
   flex-shrink: 0;
-  padding: 0 6px;
+  padding: 0;
 }
 
 /* Fuse / distribution board */
@@ -2843,11 +2898,11 @@ section[id],div[id]{scroll-margin-top:64px}
 
 /* Horizontal pipe run with animated flow */
 .eu-pipe {
-  height: 8px;
+  height: 14px;
   width: 60px;
-  background: rgba(15,30,45,.9);
-  border-top: 1.5px solid rgba(0,196,167,.35);
-  border-bottom: 1.5px solid rgba(0,196,167,.35);
+  background: rgba(4,10,18,.98);
+  border-top: 1.5px solid rgba(0,196,167,.32);
+  border-bottom: 1.5px solid rgba(0,196,167,.32);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -3539,6 +3594,10 @@ section[id],div[id]{scroll-margin-top:64px}
     <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div></div>
 </div>
 <section class="h2-hero">
+  <!-- Plant room background -->
+  <div class="h2-plant-bg" aria-hidden="true">
+    <img src="plant-room-bg.svg" alt="" fetchpriority="high">
+  </div>
   <!-- Ambient glows -->
   <div class="h2-hero-glow"></div>
   <div class="h2-hero-glow2"></div>
@@ -4934,14 +4993,11 @@ function closeMob() {}
   if (window.matchMedia('(hover:none)').matches) return;
   var cur = document.getElementById('cur'), curR = document.getElementById('cur-r');
   if (!cur) return;
-  var rx = window.innerWidth / 2, ry = window.innerHeight / 2;
   document.addEventListener('mousemove', function(e) {
-    cur.style.left = e.clientX + 'px';
-    cur.style.top  = e.clientY + 'px';
-    rx += (e.clientX - rx) * 0.13;
-    ry += (e.clientY - ry) * 0.13;
+    var mx = e.clientX, my = e.clientY;
+    cur.style.transform  = 'translate(' + (mx - 4.5) + 'px,' + (my - 4.5) + 'px)';
+    curR.style.transform = 'translate(' + (mx - 15)  + 'px,' + (my - 15)  + 'px)';
   }, {passive: true});
-  (function loop() { curR.style.left = rx + 'px'; curR.style.top = ry + 'px'; requestAnimationFrame(loop); })();
   document.addEventListener('mouseover', function(e) {
     if (e.target.closest && e.target.closest('a,button')) { cur.style.width='14px'; cur.style.height='14px'; curR.style.width='38px'; curR.style.height='38px'; }
   });
