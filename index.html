@@ -1563,11 +1563,11 @@ section[id],div[id]{scroll-margin-top:64px}
   pointer-events: none;
   overflow: hidden;
 }
-.h2-plant-bg img {
+.h2-plant-bg svg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
   display: block;
   opacity: 0;
   animation: plantBgFade 1.8s ease-out 0.4s forwards;
@@ -2810,7 +2810,7 @@ section[id],div[id]{scroll-margin-top:64px}
   z-index: 1;
 }
 .elec-strip-bot .elec-track { animation-direction: reverse; }
-@keyframes elecScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes elecScroll { from{transform:translateX(0)} to{transform:translateX(-33.333%)} }
 
 /* Each panel / machine unit — no padding, backbone fills gaps */
 .eu {
@@ -3368,235 +3368,862 @@ section[id],div[id]{scroll-margin-top:64px}
 <!-- ── Electrical panel strip ABOVE hero ── -->
 <div class="elec-strip elec-strip-top" aria-hidden="true">
   <div class="elec-track">
-    <!-- Distribution board 1 -->
-    <div class="eu">
-      <div class="eu-label">HV</div>
-      <div class="eu-board">
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-      </div>
-    </div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe"></div></div>
-    <!-- junction box -->
-    <div class="eu">
-      <div class="eu-jbox">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
-          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- motor -->
-    <div class="eu">
-      <div class="eu-motor">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
-          <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
-          <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
-          <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- live dot -->
+    <!-- HV board -->
+    <div class="eu"><div class="eu-label">HV</div><div class="eu-board"><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker off"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-jbox"><svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2"><circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
     <div class="eu"><div class="eu-live"></div></div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
-    <!-- transformer -->
-    <div class="eu">
-      <div class="eu-transformer">
-        <div class="eu-coil"></div>
-        <div class="eu-coil"></div>
-      </div>
-    </div>
-    <!-- bolt -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- gauge -->
-    <div class="eu">
-      <div class="eu-gauge">
-        <svg viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
-          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
-        </svg>
-      </div>
-    </div>
-    <!-- conduit -->
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-motor"><svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2"><circle cx="12" cy="12" r="2"/><path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/><path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/><path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/><path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-gauge"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/><path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/><line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><svg class="eu-bolt" viewBox="0 0 18 28" fill="none"><polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/></svg></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
     <div class="eu"><div class="eu-conduit"></div></div>
-    <!-- DB 2 -->
-    <div class="eu">
-      <div class="eu-label">MCB</div>
-      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-      </div>
-    </div>
-    <!-- pipe + live -->
-    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <!-- MCB board -->
+    <div class="eu"><div class="eu-label">MCB</div><div class="eu-board" style="border-color:rgba(212,150,10,.35)"><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker off"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-transformer"><div class="eu-coil"></div><div class="eu-coil"></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
     <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
-    <!-- motor 2 (slower) -->
-    <div class="eu">
-      <div class="eu-motor" style="border-color:rgba(0,196,167,.35)">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:6s">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
-          <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
-          <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
-          <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- spacer pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
-    <!-- bolt 2 -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- jbox 2 -->
-    <div class="eu">
-      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
-          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- label -->
-    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div>
-    <!-- Distribution board 1 -->
-    <div class="eu">
-      <div class="eu-label">HV</div>
-      <div class="eu-board">
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-      </div>
-    </div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe"></div></div>
-    <!-- junction box -->
-    <div class="eu">
-      <div class="eu-jbox">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
-          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- motor -->
-    <div class="eu">
-      <div class="eu-motor">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
-          <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
-          <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
-          <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- live dot -->
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-motor" style="border-color:rgba(0,196,167,.35)"><svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:6s"><circle cx="12" cy="12" r="2"/><path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/><path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/><path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/><path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-gauge" style="border-color:rgba(0,196,167,.35)"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="rgba(0,196,167,.25)" stroke-width="1"/><path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(0,196,167,.3)" stroke-width="2" fill="none" stroke-linecap="round"/><line class="eu-needle" x1="16" y1="22" x2="22" y2="12" stroke="rgba(0,196,167,.9)" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="22" r="2" fill="rgba(0,196,167,.7)"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s"><polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/></svg></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-jbox" style="border-color:rgba(212,150,10,.4)"><svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2"><rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <!-- LV board -->
+    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div><div class="eu-board"><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div><div class="eu-breaker off"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-motor" style="border-color:rgba(0,196,167,.35)"><svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:8s;animation-delay:1s"><circle cx="12" cy="12" r="2"/><path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/><path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/><path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/><path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-conduit"></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-jbox"><svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2"><circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
     <div class="eu"><div class="eu-live"></div></div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
-    <!-- transformer -->
-    <div class="eu">
-      <div class="eu-transformer">
-        <div class="eu-coil"></div>
-        <div class="eu-coil"></div>
-      </div>
-    </div>
-    <!-- bolt -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- gauge -->
-    <div class="eu">
-      <div class="eu-gauge">
-        <svg viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
-          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
-        </svg>
-      </div>
-    </div>
-    <!-- conduit -->
-    <div class="eu"><div class="eu-conduit"></div></div>
-    <!-- DB 2 -->
-    <div class="eu">
-      <div class="eu-label">MCB</div>
-      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-      </div>
-    </div>
-    <!-- pipe + live -->
-    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
-    <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
-    <!-- motor 2 (slower) -->
-    <div class="eu">
-      <div class="eu-motor" style="border-color:rgba(0,196,167,.35)">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:6s">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
-          <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
-          <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
-          <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- spacer pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
-    <!-- bolt 2 -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- jbox 2 -->
-    <div class="eu">
-      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
-          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- label -->
-    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:1.5s"><polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/></svg></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-transformer"><div class="eu-coil"></div><div class="eu-coil"></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+  </div>
 </div>
 <section class="h2-hero">
   <!-- Plant room background -->
   <div class="h2-plant-bg" aria-hidden="true">
-    <img src="plant-room-bg.svg" alt="" fetchpriority="high">
+    <svg viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bgWall" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#03070d"/>
+    <stop offset="100%" stop-color="#040a14"/>
+  </linearGradient>
+  <linearGradient id="ceilGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#020509"/>
+    <stop offset="100%" stop-color="#05101e"/>
+  </linearGradient>
+  <linearGradient id="concreteFloor" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#141c24"/>
+    <stop offset="40%" stop-color="#111820"/>
+    <stop offset="100%" stop-color="#0a1018"/>
+  </linearGradient>
+  <linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#122030"/>
+    <stop offset="100%" stop-color="#1a3048"/>
+  </linearGradient>
+  <linearGradient id="panelFace" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0e1c2c"/>
+    <stop offset="100%" stop-color="#142438"/>
+  </linearGradient>
+  <linearGradient id="chillerBody" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#091624"/>
+    <stop offset="35%" stop-color="#112035"/>
+    <stop offset="70%" stop-color="#162840"/>
+    <stop offset="100%" stop-color="#08141e"/>
+  </linearGradient>
+  <linearGradient id="ductGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#1a2e3e"/>
+    <stop offset="50%" stop-color="#142430"/>
+    <stop offset="100%" stop-color="#0e1c28"/>
+  </linearGradient>
+  <linearGradient id="pipeGoldV" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#f0b818"/>
+    <stop offset="40%" stop-color="#d4960a"/>
+    <stop offset="75%" stop-color="#b07808"/>
+    <stop offset="100%" stop-color="#7a5404"/>
+  </linearGradient>
+  <linearGradient id="pipeGoldH" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#e8b010"/>
+    <stop offset="40%" stop-color="#d4960a"/>
+    <stop offset="75%" stop-color="#b07808"/>
+    <stop offset="100%" stop-color="#7a5404"/>
+  </linearGradient>
+  <linearGradient id="pipeTealV" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#00dcc0"/>
+    <stop offset="40%" stop-color="#00c4a7"/>
+    <stop offset="100%" stop-color="#006e5c"/>
+  </linearGradient>
+  <linearGradient id="pipeTealH" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#00dcc0"/>
+    <stop offset="40%" stop-color="#00c4a7"/>
+    <stop offset="100%" stop-color="#006e5c"/>
+  </linearGradient>
+  <linearGradient id="hpGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#0e1e2e"/>
+    <stop offset="100%" stop-color="#182c40"/>
+  </linearGradient>
+  <linearGradient id="dxGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#182838"/>
+    <stop offset="100%" stop-color="#0e1c2a"/>
+  </linearGradient>
+  <radialGradient id="ledGlow" cx="50%" cy="0%" r="100%">
+    <stop offset="0%" stop-color="rgba(210,235,255,0.18)"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+  </radialGradient>
+  <radialGradient id="pumpGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="rgba(0,196,167,0.28)"/>
+    <stop offset="100%" stop-color="rgba(0,196,167,0)"/>
+  </radialGradient>
+  <radialGradient id="screenGlow" cx="50%" cy="50%" r="60%">
+    <stop offset="0%" stop-color="rgba(0,196,167,0.9)"/>
+    <stop offset="100%" stop-color="rgba(0,60,50,0.2)"/>
+  </radialGradient>
+  <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="2.5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+
+<!-- ═══ BACKGROUND ═══ -->
+<rect width="1440" height="810" fill="url(#bgWall)"/>
+<rect x="0" y="0" width="1440" height="110" fill="url(#ceilGrad)"/>
+
+<!-- Structural ceiling beams -->
+<rect x="0" y="95" width="1440" height="15" fill="#040c18"/>
+<g fill="#040a14" stroke="#07121e" stroke-width="1" opacity="0.7">
+  <rect x="96"  y="0" width="20" height="110"/>
+  <rect x="330" y="0" width="20" height="110"/>
+  <rect x="570" y="0" width="20" height="110"/>
+  <rect x="780" y="0" width="20" height="110"/>
+  <rect x="920" y="0" width="20" height="110"/>
+  <rect x="1140" y="0" width="20" height="110"/>
+  <rect x="1330" y="0" width="20" height="110"/>
+</g>
+
+<!-- ══ LED BATTEN LIGHTS ══ -->
+<!-- Left bay -->
+<rect x="130" y="80" width="380" height="13" rx="3" fill="#07121e" stroke="#0d1e2e" stroke-width="1"/>
+<rect x="130" y="80" width="380" height="4"  rx="2" fill="rgba(230,245,255,0.85)"/>
+<rect x="80"  y="93" width="480" height="380" fill="url(#ledGlow)" opacity="0.7"/>
+<!-- Right bay -->
+<rect x="930" y="80" width="380" height="13" rx="3" fill="#07121e" stroke="#0d1e2e" stroke-width="1"/>
+<rect x="930" y="80" width="380" height="4"  rx="2" fill="rgba(230,245,255,0.85)"/>
+<rect x="880" y="93" width="480" height="380" fill="url(#ledGlow)" opacity="0.6"/>
+<!-- Centre bay -->
+<rect x="560" y="80" width="300" height="13" rx="3" fill="#07121e" stroke="#0d1e2e" stroke-width="1"/>
+<rect x="560" y="80" width="300" height="4"  rx="2" fill="rgba(230,245,255,0.75)"/>
+<rect x="490" y="93" width="440" height="300" fill="url(#ledGlow)" opacity="0.4"/>
+
+<!-- Back wall -->
+<rect x="88" y="110" width="1352" height="610" fill="#040810"/>
+<g stroke="#060e18" stroke-width="1" opacity="0.4">
+  <line x1="88"  y1="280" x2="1440" y2="280"/>
+  <line x1="88"  y1="450" x2="1440" y2="450"/>
+  <line x1="88"  y1="600" x2="1440" y2="600"/>
+  <line x1="350" y1="110" x2="350" y2="720"/>
+  <line x1="720" y1="110" x2="720" y2="720"/>
+  <line x1="1090" y1="110" x2="1090" y2="720"/>
+</g>
+<!-- Left side wall -->
+<rect x="0" y="0" width="88" height="810" fill="#060d1a"/>
+
+
+<!-- ══ RECTANGULAR DUCTWORK ══ -->
+<!-- Main supply duct — top face -->
+<rect x="0"   y="110" width="1440" height="52" rx="0" fill="url(#ductGrad)" stroke="#1a3040" stroke-width="1.5"/>
+<rect x="0"   y="110" width="1440" height="6"  fill="rgba(100,160,200,0.12)"/>
+<rect x="0"   y="158" width="1440" height="4"  fill="rgba(0,0,0,0.5)"/>
+<!-- Duct front face (perspective) -->
+<rect x="0"   y="162" width="1440" height="16" fill="#0d1c28" stroke="#122030" stroke-width="1"/>
+<!-- Duct stiffener ribs -->
+<g fill="none" stroke="#1a3040" stroke-width="1.5" opacity="0.7">
+  <line x1="220"  y1="110" x2="220"  y2="178"/>
+  <line x1="440"  y1="110" x2="440"  y2="178"/>
+  <line x1="660"  y1="110" x2="660"  y2="178"/>
+  <line x1="880"  y1="110" x2="880"  y2="178"/>
+  <line x1="1100" y1="110" x2="1100" y2="178"/>
+  <line x1="1320" y1="110" x2="1320" y2="178"/>
+</g>
+
+<!-- ── FIRE DAMPERS on main duct ── -->
+<!-- FD symbol: box with crossed blades -->
+<g fill="#0a1826" stroke="#1e4060" stroke-width="1.5">
+  <rect x="194" y="112" width="36" height="56" rx="2"/>
+  <rect x="524" y="112" width="36" height="56" rx="2"/>
+  <rect x="854" y="112" width="36" height="56" rx="2"/>
+  <rect x="1184" y="112" width="36" height="56" rx="2"/>
+</g>
+<!-- FD blade detail (diagonal lines = fusible link blades) -->
+<g stroke="#d4960a" stroke-width="1.5" opacity="0.8">
+  <line x1="198" y1="116" x2="226" y2="164"/><line x1="226" y1="116" x2="198" y2="164"/>
+  <line x1="528" y1="116" x2="556" y2="164"/><line x1="556" y1="116" x2="528" y2="164"/>
+  <line x1="858" y1="116" x2="886" y2="164"/><line x1="886" y1="116" x2="858" y2="164"/>
+  <line x1="1188" y1="116" x2="1216" y2="164"/><line x1="1216" y1="116" x2="1188" y2="164"/>
+</g>
+<!-- FD actuator heads -->
+<g fill="#1a3a54" stroke="#1e4a64" stroke-width="1">
+  <rect x="202" y="104" width="28" height="12" rx="2"/>
+  <rect x="532" y="104" width="28" height="12" rx="2"/>
+  <rect x="862" y="104" width="28" height="12" rx="2"/>
+  <rect x="1192" y="104" width="28" height="12" rx="2"/>
+</g>
+<g fill="#00c4a7" opacity="0.6">
+  <circle cx="216" cy="110" r="3"/><circle cx="546" cy="110" r="3"/>
+  <circle cx="876" cy="110" r="3"/><circle cx="1206" cy="110" r="3"/>
+</g>
+<!-- FD labels -->
+<g font-family="'Courier New',monospace" font-size="7" fill="rgba(212,150,10,0.7)" text-anchor="middle">
+  <text x="212" y="174">FD-01</text><text x="542" y="174">FD-02</text>
+  <text x="872" y="174">FD-03</text><text x="1202" y="174">FD-04</text>
+</g>
+
+<!-- ── VAV BOXES dropping from main duct ── -->
+<!-- VAV 1 (left section) -->
+<rect x="280" y="162" width="30" height="28" rx="2" fill="#0c1c2c" stroke="#1a3a50" stroke-width="1.5"/>
+<rect x="284" y="190" width="22" height="40" rx="1" fill="#081624" stroke="#122030" stroke-width="1"/>
+<!-- VAV actuator (round motor on top) -->
+<circle cx="295" cy="160" r="10" fill="#102030" stroke="#1e3a52" stroke-width="1.5"/>
+<circle cx="295" cy="160" r="6"  fill="#0a1826"/>
+<circle cx="295" cy="160" r="2"  fill="#d4960a"/>
+<text x="295" y="242" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="rgba(0,196,167,0.6)">VAV-01</text>
+
+<!-- VAV 2 -->
+<rect x="620" y="162" width="30" height="28" rx="2" fill="#0c1c2c" stroke="#1a3a50" stroke-width="1.5"/>
+<rect x="624" y="190" width="22" height="40" rx="1" fill="#081624" stroke="#122030" stroke-width="1"/>
+<circle cx="635" cy="160" r="10" fill="#102030" stroke="#1e3a52" stroke-width="1.5"/>
+<circle cx="635" cy="160" r="6"  fill="#0a1826"/>
+<circle cx="635" cy="160" r="2"  fill="#d4960a"/>
+<text x="635" y="242" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="rgba(0,196,167,0.6)">VAV-02</text>
+
+<!-- VAV 3 -->
+<rect x="960" y="162" width="30" height="28" rx="2" fill="#0c1c2c" stroke="#1a3a50" stroke-width="1.5"/>
+<rect x="964" y="190" width="22" height="40" rx="1" fill="#081624" stroke="#122030" stroke-width="1"/>
+<circle cx="975" cy="160" r="10" fill="#102030" stroke="#1e3a52" stroke-width="1.5"/>
+<circle cx="975" cy="160" r="6"  fill="#0a1826"/>
+<circle cx="975" cy="160" r="2"  fill="#d4960a"/>
+<text x="975" y="242" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="rgba(0,196,167,0.6)">VAV-03</text>
+
+<!-- VAV 4 -->
+<rect x="1270" y="162" width="30" height="28" rx="2" fill="#0c1c2c" stroke="#1a3a50" stroke-width="1.5"/>
+<rect x="1274" y="190" width="22" height="40" rx="1" fill="#081624" stroke="#122030" stroke-width="1"/>
+<circle cx="1285" cy="160" r="10" fill="#102030" stroke="#1e3a52" stroke-width="1.5"/>
+<circle cx="1285" cy="160" r="6"  fill="#0a1826"/>
+<circle cx="1285" cy="160" r="2"  fill="#d4960a"/>
+<text x="1285" y="242" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="rgba(0,196,167,0.6)">VAV-04</text>
+
+
+<!-- ══ OVERHEAD PIPE RUNS (below ductwork) ══ -->
+<!-- PRIMARY GOLD PIPE -->
+<rect x="0"    y="178" width="1440" height="40" rx="20" fill="url(#pipeGoldH)"/>
+<rect x="0"    y="178" width="1440" height="9"  rx="4"  fill="rgba(255,225,90,0.26)"/>
+<rect x="0"    y="212" width="1440" height="6"  rx="3"  fill="rgba(0,0,0,0.45)"/>
+<!-- Gold pipe flanges -->
+<g fill="#a87008" stroke="#7a5004" stroke-width="1">
+  <rect x="178"  y="174" width="20" height="48" rx="3"/>
+  <rect x="368"  y="174" width="20" height="48" rx="3"/>
+  <rect x="598"  y="174" width="20" height="48" rx="3"/>
+  <rect x="788"  y="174" width="20" height="48" rx="3"/>
+  <rect x="928"  y="174" width="20" height="48" rx="3"/>
+  <rect x="1108" y="174" width="20" height="48" rx="3"/>
+  <rect x="1298" y="174" width="20" height="48" rx="3"/>
+</g>
+<g fill="#604004">
+  <circle cx="183" cy="188" r="3"/><circle cx="194" cy="188" r="3"/>
+  <circle cx="183" cy="214" r="3"/><circle cx="194" cy="214" r="3"/>
+  <circle cx="603" cy="188" r="3"/><circle cx="614" cy="188" r="3"/>
+  <circle cx="603" cy="214" r="3"/><circle cx="614" cy="214" r="3"/>
+  <circle cx="933" cy="188" r="3"/><circle cx="944" cy="188" r="3"/>
+  <circle cx="933" cy="214" r="3"/><circle cx="944" cy="214" r="3"/>
+  <circle cx="1303" cy="188" r="3"/><circle cx="1314" cy="188" r="3"/>
+  <circle cx="1303" cy="214" r="3"/><circle cx="1314" cy="214" r="3"/>
+</g>
+
+<!-- TEAL RETURN PIPE -->
+<rect x="0"    y="223" width="1440" height="30" rx="15" fill="url(#pipeTealH)" opacity="0.90"/>
+<rect x="0"    y="223" width="1440" height="7"  rx="3"  fill="rgba(0,255,220,0.18)"/>
+<rect x="0"    y="248" width="1440" height="5"  rx="2"  fill="rgba(0,0,0,0.4)"/>
+<g fill="#006e5c" stroke="#004e40" stroke-width="1">
+  <rect x="250"  y="219" width="16" height="38" rx="2"/>
+  <rect x="480"  y="219" width="16" height="38" rx="2"/>
+  <rect x="700"  y="219" width="16" height="38" rx="2"/>
+  <rect x="860"  y="219" width="16" height="38" rx="2"/>
+  <rect x="1040" y="219" width="16" height="38" rx="2"/>
+  <rect x="1230" y="219" width="16" height="38" rx="2"/>
+</g>
+
+<!-- SMALLER GOLD PIPE -->
+<rect x="88"   y="258" width="1352" height="20" rx="10" fill="url(#pipeGoldH)" opacity="0.62"/>
+<rect x="88"   y="258" width="1352" height="5"  rx="2"  fill="rgba(255,215,70,0.14)"/>
+
+<!-- INSULATED PIPE (grey lagging) -->
+<rect x="88"   y="282" width="1352" height="14" rx="7" fill="#0d1c2c" stroke="#14263a" stroke-width="1" opacity="0.7"/>
+<!-- Insulation bands -->
+<g fill="#182c3e" opacity="0.6">
+  <rect x="200"  y="282" width="8" height="14" rx="1"/>
+  <rect x="400"  y="282" width="8" height="14" rx="1"/>
+  <rect x="600"  y="282" width="8" height="14" rx="1"/>
+  <rect x="800"  y="282" width="8" height="14" rx="1"/>
+  <rect x="1000" y="282" width="8" height="14" rx="1"/>
+  <rect x="1200" y="282" width="8" height="14" rx="1"/>
+</g>
+
+
+<!-- ══ LEFT SIDE — FULL INSTRUMENTAL CONTROL PANEL ══ -->
+
+<!-- Vertical pipe drop L1 (gold) -->
+<rect x="136" y="178" width="34" height="540" fill="url(#pipeGoldV)"/>
+<rect x="136" y="178" width="8"  height="540" fill="rgba(255,215,70,0.18)"/>
+<!-- Actuator on valve L1 -->
+<g transform="translate(153,440)">
+  <!-- valve body -->
+  <rect x="-11" y="-16" width="22" height="32" rx="3" fill="#9a6e08" stroke="#7a5406" stroke-width="1.5"/>
+  <rect x="-17" y="-5"  width="34" height="10" rx="2" fill="#b87a0a"/>
+  <!-- actuator body (electric) -->
+  <rect x="-10" y="-38" width="20" height="24" rx="3" fill="#1a3a54" stroke="#1e4a64" stroke-width="1.5"/>
+  <rect x="-7"  y="-35" width="14" height="6"  rx="1" fill="#122c42"/>
+  <circle cx="0" cy="-23" r="4" fill="#00c4a7" opacity="0.8"/>
+  <!-- actuator indicator light -->
+  <circle cx="6" cy="-32" r="2" fill="#2ecc7a"/>
+</g>
+<!-- Teal drop L2 -->
+<rect x="88"  y="178" width="24" height="400" fill="url(#pipeTealV)" opacity="0.80"/>
+<rect x="88"  y="178" width="6"  height="400" fill="rgba(0,225,200,0.16)"/>
+
+<!-- Elbow from L1 into panel -->
+<rect x="136" y="608" width="88" height="26" rx="13" fill="url(#pipeGoldH)"/>
+<rect x="136" y="608" width="88" height="7"  rx="3"  fill="rgba(255,215,70,0.18)"/>
+
+<!-- ── PANEL OUTER CABINET ── -->
+<rect x="88"  y="298" width="270" height="422" rx="5" fill="url(#panelGrad)" stroke="#1a3a52" stroke-width="2"/>
+<rect x="96"  y="306" width="254" height="406" rx="3" fill="url(#panelFace)" stroke="#102030" stroke-width="1"/>
+<rect x="88"  y="298" width="270" height="18"  rx="5" fill="#1e3c54"/>
+<rect x="88"  y="698" width="270" height="22"  rx="3" fill="#0a1a28"/>
+<!-- Panel section dividers -->
+<line x1="96"  y1="400" x2="358" y2="400" stroke="#0c1e32" stroke-width="2"/>
+<line x1="96"  y1="500" x2="358" y2="500" stroke="#0c1e32" stroke-width="2"/>
+<line x1="96"  y1="600" x2="358" y2="600" stroke="#0c1e32" stroke-width="2"/>
+
+<!-- ── Mimic / P&ID screen (top section) ── -->
+<rect x="108" y="316" width="238" height="72" rx="4" fill="#030810" stroke="#1a3a52" stroke-width="1.5"/>
+<rect x="112" y="320" width="230" height="64" fill="#020610"/>
+<!-- Mimic pipe lines -->
+<g stroke="#00c4a7" stroke-width="1.2" fill="none">
+  <animate attributeName="opacity" values="0.7;0.4;0.7" dur="4.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+  <line x1="118" y1="336" x2="200" y2="336"/>
+  <line x1="200" y1="336" x2="200" y2="350"/>
+  <line x1="200" y1="350" x2="280" y2="350"/>
+  <line x1="280" y1="336" x2="335" y2="336"/>
+  <line x1="118" y1="360" x2="335" y2="360"/>
+  <line x1="240" y1="336" x2="240" y2="320"/>
+</g>
+<!-- Mimic valve symbols -->
+<g fill="#d4960a" opacity="0.8">
+  <polygon points="196,330 204,330 200,336" />
+  <polygon points="196,356 204,356 200,350" />
+</g>
+<!-- Mimic pump circles -->
+<circle cx="155" cy="348" r="8" fill="none" stroke="#00c4a7" stroke-width="1.2" opacity="0.7"/>
+<circle cx="155" cy="348" r="3" fill="#00c4a7" opacity="0.5"/>
+<!-- Mimic readings -->
+<text x="168" y="374" font-family="'Courier New',monospace" font-size="8" fill="#00c4a7" opacity="0.8">FL:12.4  PR:3.2  TMP:7.2°</text>
+
+<!-- ── Analogue gauges row ── -->
+<g transform="translate(108,400)">
+  <!-- Gauge 1 -->
+  <circle cx="30"  cy="30" r="24" fill="#030c18" stroke="#1e3a52" stroke-width="1.5"/>
+  <circle cx="30"  cy="30" r="18" fill="#020810" stroke="#0e2030" stroke-width="1"/>
+  <path d="M30,30 L38,14" stroke="#d4960a" stroke-width="2" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" values="-9 30 30;7 30 30;-3 30 30;-9 30 30" dur="5.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </path>
+  <circle cx="30"  cy="30" r="3"  fill="#d4960a"/>
+  <text x="30" y="60" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">kPa</text>
+  <!-- Gauge 2 -->
+  <circle cx="88"  cy="30" r="24" fill="#030c18" stroke="#1e3a52" stroke-width="1.5"/>
+  <circle cx="88"  cy="30" r="18" fill="#020810" stroke="#0e2030" stroke-width="1"/>
+  <path d="M88,30 L98,16" stroke="#00c4a7" stroke-width="2" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" values="-4 88 30;5 88 30;-4 88 30" dur="8.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </path>
+  <circle cx="88"  cy="30" r="3"  fill="#00c4a7"/>
+  <text x="88" y="60" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">°C</text>
+  <!-- Gauge 3 -->
+  <circle cx="146" cy="30" r="24" fill="#030c18" stroke="#1e3a52" stroke-width="1.5"/>
+  <circle cx="146" cy="30" r="18" fill="#020810" stroke="#0e2030" stroke-width="1"/>
+  <path d="M146,30 L154,14" stroke="#2ecc7a" stroke-width="2" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" values="-11 146 30;8 146 30;-5 146 30;-11 146 30" dur="4.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </path>
+  <circle cx="146" cy="30" r="3"  fill="#2ecc7a"/>
+  <text x="146" y="60" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">A</text>
+  <!-- Gauge 4 -->
+  <circle cx="210" cy="30" r="24" fill="#030c18" stroke="#1e3a52" stroke-width="1.5"/>
+  <circle cx="210" cy="30" r="18" fill="#020810" stroke="#0e2030" stroke-width="1"/>
+  <path d="M210,30 L222,20" stroke="#d4960a" stroke-width="2" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" values="-3 210 30;3 210 30;-3 210 30" dur="12.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </path>
+  <circle cx="210" cy="30" r="3"  fill="#d4960a"/>
+  <text x="210" y="60" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">V</text>
+</g>
+
+<!-- ── Digital readouts ── -->
+<rect x="108" y="468" width="116" height="24" rx="3" fill="#020810" stroke="#1a3a52" stroke-width="1"/>
+<text x="166" y="484" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#00c4a7">12.4 kW</text>
+<rect x="232" y="468" width="116" height="24" rx="3" fill="#020810" stroke="#1a3a52" stroke-width="1"/>
+<text x="290" y="484" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#d4960a">415 V</text>
+
+<!-- ── LED alarm annunciator ── -->
+<rect x="108" y="500" width="238" height="18" rx="2" fill="#060e1a" stroke="#0e2030" stroke-width="1"/>
+<g>
+  <circle cx="120" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="136" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="152" cy="509" r="5" fill="#d4960a">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="3.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </circle>
+  <circle cx="168" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="184" cy="509" r="5" fill="#e84545">
+    <animate attributeName="opacity" values="0.85;0.1;0.85;0.85;0.1;0.85" dur="2.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </circle>
+  <circle cx="200" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="216" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="232" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="248" cy="509" r="5" fill="#d4960a">
+    <animate attributeName="opacity" values="0.8;0.25;0.8" dur="6.2s" begin="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </circle>
+  <circle cx="264" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="280" cy="509" r="5" fill="#2ecc7a" opacity="0.9"/>
+  <circle cx="296" cy="509" r="5" fill="#2ecc7a" opacity="0.85"/>
+  <circle cx="330" cy="509" r="5" fill="#e84545">
+    <animate attributeName="opacity" values="0.6;0.08;0.6" dur="4.5s" begin="0.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </circle>
+  <circle cx="346" cy="509" r="5" fill="#2ecc7a" opacity="0.85"/>
+</g>
+
+<!-- ── MCB breakers ── -->
+<g fill="#07101a" stroke="#142030" stroke-width="1">
+  <rect x="108" y="524" width="50" height="66" rx="3"/>
+  <rect x="164" y="524" width="50" height="66" rx="3"/>
+  <rect x="220" y="524" width="50" height="66" rx="3"/>
+  <rect x="280" y="524" width="66" height="66" rx="3"/>
+</g>
+<rect x="128" y="531" width="10" height="30" rx="2" fill="#d4960a"/>
+<rect x="184" y="531" width="10" height="30" rx="2" fill="#d4960a"/>
+<rect x="240" y="531" width="10" height="44" rx="2" fill="#b07808"/>
+<rect x="302" y="531" width="10" height="30" rx="2" fill="#d4960a"/>
+<g font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.25)" text-anchor="middle">
+  <text x="133" y="601">CH-01</text><text x="189" y="601">CH-02</text>
+  <text x="245" y="601">PMP</text><text x="313" y="601">AHU-01</text>
+</g>
+
+<!-- ── E-stop + key switches ── -->
+<circle cx="130" cy="636" r="22" fill="#0e0408" stroke="#1e0810" stroke-width="2"/>
+<circle cx="130" cy="636" r="15" fill="#c4562a"/>
+<circle cx="124" cy="630" r="5"  fill="rgba(255,160,100,0.35)"/>
+<text x="130" y="667" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">E-STOP</text>
+<circle cx="210" cy="634" r="16" fill="#07101a" stroke="#1a3a52" stroke-width="1.5"/>
+<circle cx="210" cy="634" r="6"  fill="#b07808"/>
+<rect x="205" y="624" width="10" height="18" rx="3" fill="#8a5c04"/>
+<text x="210" y="660" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">KEY SW</text>
+<!-- Selector rotary -->
+<circle cx="290" cy="634" r="16" fill="#07101a" stroke="#1a3a52" stroke-width="1.5"/>
+<circle cx="290" cy="634" r="10" fill="#0c1826" stroke="#142030" stroke-width="1"/>
+<line x1="290" y1="634" x2="290" y2="624" stroke="#d4960a" stroke-width="2.5" stroke-linecap="round"/>
+<text x="290" y="660" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.3)">AUTO/MAN</text>
+
+<!-- ── Cable glands (bottom) ── -->
+<g fill="#07101a" stroke="#0e1c28" stroke-width="1">
+  <rect x="108" y="676" width="238" height="20" rx="2"/>
+</g>
+<g stroke="#12243a" stroke-width="1" fill="none">
+  <line x1="124" y1="676" x2="124" y2="696"/><line x1="138" y1="676" x2="138" y2="696"/>
+  <line x1="152" y1="676" x2="152" y2="696"/><line x1="166" y1="676" x2="166" y2="696"/>
+  <line x1="180" y1="676" x2="180" y2="696"/><line x1="194" y1="676" x2="194" y2="696"/>
+  <line x1="208" y1="676" x2="208" y2="696"/><line x1="222" y1="676" x2="222" y2="696"/>
+  <line x1="236" y1="676" x2="236" y2="696"/><line x1="250" y1="676" x2="250" y2="696"/>
+  <line x1="264" y1="676" x2="264" y2="696"/><line x1="278" y1="676" x2="278" y2="696"/>
+  <line x1="292" y1="676" x2="292" y2="696"/><line x1="306" y1="676" x2="306" y2="696"/>
+  <line x1="320" y1="676" x2="320" y2="696"/><line x1="334" y1="676" x2="334" y2="696"/>
+</g>
+<!-- Panel shadow -->
+<ellipse cx="223" cy="724" rx="120" ry="8" fill="rgba(0,0,0,0.5)"/>
+
+
+<!-- ══ RIGHT SIDE — CHILLER + DX SPLITS ══ -->
+
+<!-- Far-right vertical gold pipe column -->
+<rect x="1390" y="178" width="38" height="542" fill="url(#pipeGoldV)"/>
+<rect x="1390" y="178" width="9"  height="542" fill="rgba(255,215,70,0.20)"/>
+<g fill="#a87008" stroke="#7a5004" stroke-width="1">
+  <rect x="1386" y="270" width="46" height="18" rx="3"/>
+  <rect x="1386" y="380" width="46" height="18" rx="3"/>
+  <rect x="1386" y="490" width="46" height="18" rx="3"/>
+  <rect x="1386" y="600" width="46" height="18" rx="3"/>
+</g>
+<!-- Actuators on right column valves -->
+<g fill="#1a3a54" stroke="#1e4a64" stroke-width="1">
+  <rect x="1392" y="256" width="26" height="16" rx="2"/>
+  <rect x="1392" y="366" width="26" height="16" rx="2"/>
+  <rect x="1392" y="476" width="26" height="16" rx="2"/>
+  <rect x="1392" y="586" width="26" height="16" rx="2"/>
+</g>
+<g fill="#2ecc7a" opacity="0.7">
+  <circle cx="1412" cy="261" r="2"/><circle cx="1412" cy="371" r="2"/>
+  <circle cx="1412" cy="481" r="2"/><circle cx="1412" cy="591" r="2"/>
+</g>
+
+<!-- Teal drop R -->
+<rect x="1352" y="178" width="26" height="420" fill="url(#pipeTealV)" opacity="0.80"/>
+<rect x="1352" y="178" width="6"  height="420" fill="rgba(0,225,200,0.16)"/>
+<!-- Gate valve + actuator on teal drop -->
+<g transform="translate(1365,360)">
+  <rect x="-11" y="-16" width="22" height="32" rx="3" fill="#006058" stroke="#004848" stroke-width="1.5"/>
+  <rect x="-17" y="-5"  width="34" height="10" rx="2" fill="#007868"/>
+  <rect x="-10" y="-38" width="20" height="24" rx="3" fill="#1a3a54" stroke="#1e4a64" stroke-width="1.5"/>
+  <rect x="-7"  y="-35" width="14" height="6"  rx="1" fill="#122c42"/>
+  <circle cx="0" cy="-23" r="4" fill="#00c4a7" opacity="0.8"/>
+  <circle cx="6" cy="-32" r="2" fill="#2ecc7a"/>
+</g>
+
+<!-- Mid-right gold drop -->
+<rect x="1300" y="178" width="26" height="340" fill="url(#pipeGoldV)" opacity="0.75"/>
+<rect x="1300" y="178" width="6"  height="340" fill="rgba(255,215,70,0.16)"/>
+
+<!-- Supply header right section -->
+<rect x="1090" y="348" width="310" height="32" rx="16" fill="url(#pipeGoldH)"/>
+<rect x="1090" y="348" width="310" height="8"  rx="4"  fill="rgba(255,225,80,0.22)"/>
+<g fill="#a87008" stroke="#7a5004" stroke-width="1">
+  <rect x="1140" y="344" width="18" height="40" rx="2"/>
+  <rect x="1220" y="344" width="18" height="40" rx="2"/>
+  <rect x="1300" y="344" width="18" height="40" rx="2"/>
+</g>
+<!-- Actuators on right supply header valves -->
+<g fill="#1a3a54" stroke="#1e4a64" stroke-width="1">
+  <rect x="1143" y="330" width="18" height="16" rx="2"/>
+  <rect x="1223" y="330" width="18" height="16" rx="2"/>
+  <rect x="1303" y="330" width="18" height="16" rx="2"/>
+</g>
+<g fill="#d4960a" opacity="0.7">
+  <circle cx="1155" cy="336" r="2.5"/><circle cx="1235" cy="336" r="2.5"/><circle cx="1315" cy="336" r="2.5"/>
+</g>
+
+<!-- Return header right section -->
+<rect x="1090" y="692" width="310" height="22" rx="11" fill="url(#pipeTealH)" opacity="0.88"/>
+<rect x="1090" y="692" width="310" height="6"  rx="3"  fill="rgba(0,255,220,0.15)"/>
+
+<!-- ── DX SPLIT — Indoor unit (wall mounted right) ── -->
+<rect x="1092" y="230" width="200" height="60" rx="5" fill="url(#dxGrad)" stroke="#1a3a52" stroke-width="1.5"/>
+<!-- Louvres -->
+<g fill="#0c1a28" stroke="#102030" stroke-width="1">
+  <rect x="1098" y="252" width="188" height="5"  rx="1"/>
+  <rect x="1098" y="261" width="188" height="5"  rx="1"/>
+  <rect x="1098" y="270" width="188" height="5"  rx="1"/>
+  <rect x="1098" y="279" width="188" height="5"  rx="1"/>
+</g>
+<!-- Air outlet grille -->
+<rect x="1098" y="235" width="188" height="14" rx="2" fill="#0a1620" stroke="#122030" stroke-width="1"/>
+<g fill="#00c4a7" opacity="0.4">
+  <rect x="1100" y="237" width="4" height="10" rx="1"/>
+  <rect x="1108" y="237" width="4" height="10" rx="1"/>
+  <rect x="1116" y="237" width="4" height="10" rx="1"/>
+  <rect x="1124" y="237" width="4" height="10" rx="1"/>
+  <rect x="1132" y="237" width="4" height="10" rx="1"/>
+  <rect x="1140" y="237" width="4" height="10" rx="1"/>
+  <rect x="1148" y="237" width="4" height="10" rx="1"/>
+  <rect x="1156" y="237" width="4" height="10" rx="1"/>
+  <rect x="1164" y="237" width="4" height="10" rx="1"/>
+  <rect x="1172" y="237" width="4" height="10" rx="1"/>
+  <rect x="1180" y="237" width="4" height="10" rx="1"/>
+</g>
+<!-- DX unit control panel -->
+<rect x="1260" y="235" width="22" height="20" rx="2" fill="#040c18"/>
+<circle cx="1268" cy="240" r="3" fill="#2ecc7a" opacity="0.9"/>
+<circle cx="1276" cy="240" r="3" fill="#d4960a" opacity="0.8"/>
+<text x="1192" y="300" font-family="'Courier New',monospace" font-size="7" fill="rgba(0,196,167,0.6)">DX-01 — SPLIT AC — COOL</text>
+
+<!-- DX refrigerant pipes -->
+<rect x="1170" y="290" width="6"  height="60" fill="#8a6005" stroke="#604004" stroke-width="1"/>
+<rect x="1180" y="290" width="4"  height="60" fill="#006058" stroke="#004040" stroke-width="1"/>
+
+<!-- ── MAIN CHILLER VESSEL ── -->
+<rect x="1090" y="720" width="310" height="12" rx="2" fill="#091826" stroke="#0e2030" stroke-width="1"/>
+<!-- Vessel body -->
+<rect x="1090" y="380" width="310" height="342" rx="8" fill="url(#chillerBody)" stroke="#14283e" stroke-width="2"/>
+<!-- End caps -->
+<ellipse cx="1092" cy="551" rx="22" ry="171" fill="#0e1c2e" stroke="#14283e" stroke-width="1.5"/>
+<ellipse cx="1092" cy="551" rx="14" ry="146" fill="#081620" stroke="#0c2030" stroke-width="1"/>
+<ellipse cx="1398" cy="551" rx="22" ry="171" fill="#091620" stroke="#14283e" stroke-width="1.5"/>
+<ellipse cx="1398" cy="551" rx="14" ry="146" fill="#060f1a" stroke="#0a1828" stroke-width="1"/>
+<!-- Fin detail -->
+<g stroke="#102030" stroke-width="1" fill="none" opacity="0.60">
+  <line x1="1098" y1="400" x2="1392" y2="400"/>
+  <line x1="1098" y1="418" x2="1392" y2="418"/>
+  <line x1="1098" y1="436" x2="1392" y2="436"/>
+  <line x1="1098" y1="454" x2="1392" y2="454"/>
+  <line x1="1098" y1="472" x2="1392" y2="472"/>
+  <line x1="1098" y1="490" x2="1392" y2="490"/>
+  <line x1="1098" y1="508" x2="1392" y2="508"/>
+  <line x1="1098" y1="526" x2="1392" y2="526"/>
+  <line x1="1098" y1="544" x2="1392" y2="544"/>
+  <line x1="1098" y1="562" x2="1392" y2="562"/>
+  <line x1="1098" y1="580" x2="1392" y2="580"/>
+  <line x1="1098" y1="598" x2="1392" y2="598"/>
+  <line x1="1098" y1="616" x2="1392" y2="616"/>
+  <line x1="1098" y1="634" x2="1392" y2="634"/>
+  <line x1="1098" y1="652" x2="1392" y2="652"/>
+  <line x1="1098" y1="670" x2="1392" y2="670"/>
+  <line x1="1098" y1="688" x2="1392" y2="688"/>
+  <line x1="1098" y1="706" x2="1392" y2="706"/>
+</g>
+<g stroke="#182e48" stroke-width="2.2" fill="none" opacity="0.80">
+  <line x1="1098" y1="454" x2="1392" y2="454"/>
+  <line x1="1098" y1="544" x2="1392" y2="544"/>
+  <line x1="1098" y1="634" x2="1392" y2="634"/>
+</g>
+<!-- Data plate -->
+<rect x="1180" y="510" width="160" height="82" rx="4" fill="#060f1a" stroke="#10243a" stroke-width="1.5"/>
+<rect x="1184" y="514" width="152" height="74" fill="#040a14"/>
+<text x="1260" y="535" text-anchor="middle" font-family="'Courier New',monospace" font-size="13" fill="#00c4a7" font-weight="bold">CH-01</text>
+<text x="1260" y="552" text-anchor="middle" font-family="'Courier New',monospace" font-size="9"  fill="#d4960a">CHILLER — RUN</text>
+<text x="1260" y="568" text-anchor="middle" font-family="'Courier New',monospace" font-size="8"  fill="rgba(0,196,167,0.6)">T: 7.2°C  |  48.3 kW</text>
+<text x="1260" y="582" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="rgba(212,150,10,0.5)">RCC-01 CHILLED WATER</text>
+<!-- Chiller top nozzles -->
+<rect x="1164" y="366" width="28" height="22" rx="4" fill="#0c1a2c" stroke="#14283e" stroke-width="1.5"/>
+<rect x="1156" y="358" width="44" height="14" rx="3" fill="#162c42" stroke="#14283e" stroke-width="1"/>
+<rect x="1280" y="366" width="28" height="22" rx="4" fill="#0c1a2c" stroke="#14283e" stroke-width="1.5"/>
+<rect x="1272" y="358" width="44" height="14" rx="3" fill="#162c42" stroke="#14283e" stroke-width="1"/>
+
+<!-- Chiller shadow -->
+<ellipse cx="1244" cy="728" rx="158" ry="8" fill="rgba(0,0,0,0.5)"/>
+
+
+<!-- ══ CENTRE SECTION ══
+     Upper (y 178–612): clear for hero text
+     Lower (y 612–720): plant equipment
+══════════════════════ -->
+
+<!-- Conduit tray back wall (very faint) -->
+<rect x="350" y="300" width="740" height="7" rx="3" fill="#07121e" stroke="#0a1828" stroke-width="1" opacity="0.35"/>
+
+<!-- Vertical pipe drops into centre lower equipment (kept faint — text zone above) -->
+<rect x="486" y="178" width="26" height="434" fill="url(#pipeGoldV)" opacity="0.22"/>
+<rect x="486" y="178" width="7"  height="434" fill="rgba(255,215,70,0.05)"/>
+<!-- Gate valve + actuator on centre-left drop -->
+<g transform="translate(499,440)" opacity="0.30">
+  <rect x="-11" y="-16" width="22" height="32" rx="3" fill="#9a6e08" stroke="#7a5406" stroke-width="1.5"/>
+  <rect x="-17" y="-5"  width="34" height="10" rx="2" fill="#b87a0a"/>
+  <rect x="-10" y="-38" width="20" height="24" rx="3" fill="#1a3a54" stroke="#1e4a64" stroke-width="1.5"/>
+  <circle cx="0" cy="-23" r="4" fill="#00c4a7" opacity="0.8"/>
+  <circle cx="6" cy="-32" r="2" fill="#2ecc7a"/>
+</g>
+
+<rect x="716" y="178" width="22" height="460" fill="url(#pipeTealV)" opacity="0.18"/>
+<rect x="716" y="178" width="6"  height="460" fill="rgba(0,225,200,0.04)"/>
+<!-- Actuator on centre teal drop -->
+<g transform="translate(727,470)" opacity="0.28">
+  <rect x="-11" y="-16" width="22" height="32" rx="3" fill="#006058" stroke="#004848" stroke-width="1.5"/>
+  <rect x="-17" y="-5"  width="34" height="10" rx="2" fill="#007868"/>
+  <rect x="-10" y="-38" width="20" height="24" rx="3" fill="#1a3a54" stroke="#1e4a64" stroke-width="1.5"/>
+  <circle cx="0" cy="-23" r="4" fill="#00c4a7" opacity="0.8"/>
+  <circle cx="6" cy="-32" r="2" fill="#d4960a"/>
+</g>
+
+<rect x="940" y="178" width="26" height="434" fill="url(#pipeGoldV)" opacity="0.22"/>
+<rect x="940" y="178" width="7"  height="434" fill="rgba(255,215,70,0.05)"/>
+<!-- Actuator on centre-right drop -->
+<g transform="translate(953,430)" opacity="0.30">
+  <rect x="-11" y="-16" width="22" height="32" rx="3" fill="#9a6e08" stroke="#7a5406" stroke-width="1.5"/>
+  <rect x="-17" y="-5"  width="34" height="10" rx="2" fill="#b87a0a"/>
+  <rect x="-10" y="-38" width="20" height="24" rx="3" fill="#1a3a54" stroke="#1e4a64" stroke-width="1.5"/>
+  <circle cx="0" cy="-23" r="4" fill="#00c4a7" opacity="0.8"/>
+  <circle cx="6" cy="-32" r="2" fill="#2ecc7a"/>
+</g>
+
+<!-- ── CENTRE SUPPLY HEADER (gold) — starts at y=612 ── -->
+<rect x="358" y="612" width="732" height="28" rx="14" fill="url(#pipeGoldH)"/>
+<rect x="358" y="612" width="732" height="7"  rx="3"  fill="rgba(255,225,80,0.20)"/>
+<rect x="358" y="634" width="732" height="5"  rx="2"  fill="rgba(0,0,0,0.42)"/>
+<g fill="#a87008" stroke="#7a5004" stroke-width="1">
+  <rect x="418" y="608" width="16" height="36" rx="2"/>
+  <rect x="520" y="608" width="16" height="36" rx="2"/>
+  <rect x="630" y="608" width="16" height="36" rx="2"/>
+  <rect x="730" y="608" width="16" height="36" rx="2"/>
+  <rect x="840" y="608" width="16" height="36" rx="2"/>
+  <rect x="950" y="608" width="16" height="36" rx="2"/>
+  <rect x="1040" y="608" width="16" height="36" rx="2"/>
+</g>
+
+<!-- ── CENTRE RETURN HEADER (teal) at y=706 ── -->
+<rect x="358" y="706" width="732" height="20" rx="10" fill="url(#pipeTealH)" opacity="0.85"/>
+<rect x="358" y="706" width="732" height="5"  rx="3"  fill="rgba(0,255,220,0.15)"/>
+<g fill="#006e5c" stroke="#004e40" stroke-width="1">
+  <rect x="430" y="703" width="14" height="26" rx="2"/>
+  <rect x="580" y="703" width="14" height="26" rx="2"/>
+  <rect x="720" y="703" width="14" height="26" rx="2"/>
+  <rect x="870" y="703" width="14" height="26" rx="2"/>
+  <rect x="1010" y="703" width="14" height="26" rx="2"/>
+</g>
+
+<!-- ── HEAT PUMP UNITS (floor mounted, centre) ── -->
+<!-- HP-01 Left -->
+<rect x="368" y="642" width="110" height="80" rx="4" fill="url(#hpGrad)" stroke="#1a3a52" stroke-width="1.5"/>
+<!-- Fan grilles -->
+<circle cx="406" cy="672" r="20" fill="#07101a" stroke="#142030" stroke-width="1.5"/>
+<circle cx="406" cy="672" r="14" fill="#060e18" stroke="#0e1c2a" stroke-width="1"/>
+<circle cx="406" cy="672" r="5"  fill="#0a1620"/>
+<!-- Fan blade indicators -->
+<g stroke="#00c4a7" stroke-width="1" opacity="0.5" fill="none">
+  <animateTransform attributeName="transform" type="rotate" from="0 406 672" to="360 406 672" dur="7s" repeatCount="indefinite"/>
+  <path d="M406,658 Q414,666 406,672 Q398,666 406,658"/>
+  <path d="M420,672 Q412,680 406,672 Q412,664 420,672"/>
+  <path d="M406,686 Q398,678 406,672 Q414,678 406,686"/>
+  <path d="M392,672 Q400,664 406,672 Q400,680 392,672"/>
+</g>
+<!-- HP control -->
+<rect x="428" y="648" width="42" height="28" rx="2" fill="#040c18" stroke="#1a3a52" stroke-width="1"/>
+<text x="449" y="660" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#00c4a7">HP-01</text>
+<text x="449" y="671" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#2ecc7a">RUN</text>
+<circle cx="432" cy="680" r="3" fill="#2ecc7a" opacity="0.9"/>
+<circle cx="442" cy="680" r="3" fill="#d4960a" opacity="0.8"/>
+<!-- HP pipe stubs -->
+<rect x="380" y="638" width="8"  height="10" fill="url(#pipeGoldV)"/>
+<rect x="393" y="638" width="6"  height="10" fill="url(#pipeTealV)" opacity="0.8"/>
+<text x="423" y="730" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="rgba(255,255,255,0.2)">HP-01</text>
+
+<!-- HP-02 Right -->
+<rect x="962" y="642" width="110" height="80" rx="4" fill="url(#hpGrad)" stroke="#1a3a52" stroke-width="1.5"/>
+<circle cx="1000" cy="672" r="20" fill="#07101a" stroke="#142030" stroke-width="1.5"/>
+<circle cx="1000" cy="672" r="14" fill="#060e18" stroke="#0e1c2a" stroke-width="1"/>
+<circle cx="1000" cy="672" r="5"  fill="#0a1620"/>
+<g stroke="#00c4a7" stroke-width="1" opacity="0.5" fill="none">
+  <animateTransform attributeName="transform" type="rotate" from="0 1000 672" to="360 1000 672" dur="9.5s" repeatCount="indefinite"/>
+  <path d="M1000,658 Q1008,666 1000,672 Q992,666 1000,658"/>
+  <path d="M1014,672 Q1006,680 1000,672 Q1006,664 1014,672"/>
+  <path d="M1000,686 Q992,678 1000,672 Q1008,678 1000,686"/>
+  <path d="M986,672 Q994,664 1000,672 Q994,680 986,672"/>
+</g>
+<rect x="1022" y="648" width="42" height="28" rx="2" fill="#040c18" stroke="#1a3a52" stroke-width="1"/>
+<text x="1043" y="660" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#00c4a7">HP-02</text>
+<text x="1043" y="671" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#d4960a">STBY</text>
+<circle cx="1026" cy="680" r="3" fill="#d4960a" opacity="0.9"/>
+<circle cx="1036" cy="680" r="3" fill="#2ecc7a" opacity="0.8"/>
+<rect x="974" y="638" width="8"  height="10" fill="url(#pipeGoldV)"/>
+<rect x="987" y="638" width="6"  height="10" fill="url(#pipeTealV)" opacity="0.8"/>
+
+<!-- ── PUMP SETS (centre, between heat pumps) ── -->
+<!-- Pump L -->
+<circle cx="556" cy="668" r="22" fill="url(#pumpGlow)">
+  <animate attributeName="opacity" values="1;0.4;1" dur="2.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+</circle>
+<circle cx="556" cy="668" r="22" fill="#07182a" stroke="#122e48" stroke-width="1.5"/>
+<circle cx="556" cy="668" r="14" fill="#0a1c2e" stroke="#0e2438" stroke-width="1"/>
+<circle cx="556" cy="668" r="6"  fill="#060f1e"/>
+<circle cx="553" cy="665" r="3"  fill="rgba(0,196,167,0.38)"/>
+<rect x="530" y="682" width="52" height="16" rx="3" fill="#07182a" stroke="#0e2438" stroke-width="1"/>
+<!-- Pump pipe stubs -->
+<rect x="550" y="640" width="12" height="28" fill="url(#pipeGoldV)" opacity="0.75"/>
+<rect x="550" y="698" width="12" height="10" fill="url(#pipeTealV)" opacity="0.65"/>
+
+<!-- Pump R -->
+<circle cx="884" cy="668" r="22" fill="url(#pumpGlow)">
+  <animate attributeName="opacity" values="1;0.4;1" dur="2.8s" begin="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+</circle>
+<circle cx="884" cy="668" r="22" fill="#07182a" stroke="#122e48" stroke-width="1.5"/>
+<circle cx="884" cy="668" r="14" fill="#0a1c2e" stroke="#0e2438" stroke-width="1"/>
+<circle cx="884" cy="668" r="6"  fill="#060f1e"/>
+<circle cx="881" cy="665" r="3"  fill="rgba(0,196,167,0.38)"/>
+<rect x="858" y="682" width="52" height="16" rx="3" fill="#07182a" stroke="#0e2438" stroke-width="1"/>
+<rect x="878" y="640" width="12" height="28" fill="url(#pipeGoldV)" opacity="0.75"/>
+<rect x="878" y="698" width="12" height="10" fill="url(#pipeTealV)" opacity="0.65"/>
+
+<!-- ── SMALL INSTRUMENT PANEL (centre) ── -->
+<rect x="666" y="628" width="108" height="84" rx="4" fill="#0a1624" stroke="#142840" stroke-width="1.5"/>
+<rect x="670" y="632" width="100" height="76" fill="#060f1a"/>
+<!-- Two analogue gauges -->
+<circle cx="700" cy="656" r="16" fill="#040c18" stroke="#102030" stroke-width="1.5"/>
+<circle cx="700" cy="656" r="11" fill="#030810" stroke="#0c1c28" stroke-width="1"/>
+<path d="M700,656 L708,644" stroke="#d4960a" stroke-width="1.8" stroke-linecap="round">
+  <animateTransform attributeName="transform" type="rotate" values="-8 700 656;6 700 656;-8 700 656" dur="6.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+</path>
+<circle cx="700" cy="656" r="3"  fill="#d4960a"/>
+<text x="700" y="676" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(212,150,10,0.55)">BAR</text>
+
+<circle cx="740" cy="656" r="16" fill="#040c18" stroke="#102030" stroke-width="1.5"/>
+<circle cx="740" cy="656" r="11" fill="#030810" stroke="#0c1c28" stroke-width="1"/>
+<path d="M740,656 L750,646" stroke="#00c4a7" stroke-width="1.8" stroke-linecap="round">
+  <animateTransform attributeName="transform" type="rotate" values="-5 740 656;4 740 656;-5 740 656" dur="10.2s" begin="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+</path>
+<circle cx="740" cy="656" r="3"  fill="#00c4a7"/>
+<text x="740" y="676" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(0,196,167,0.55)">°C</text>
+
+<!-- Digital display -->
+<rect x="672" y="681" width="96" height="16" rx="2" fill="#020810" stroke="#0c1e2e" stroke-width="1"/>
+<text x="720" y="692" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#00c4a7">3.2b · 7.4°C</text>
+<!-- Status LEDs -->
+<circle cx="676" cy="703" r="3" fill="#2ecc7a"/>
+<circle cx="686" cy="703" r="3" fill="#2ecc7a"/>
+<circle cx="696" cy="703" r="3" fill="#d4960a"/>
+<circle cx="706" cy="703" r="3" fill="#2ecc7a"/>
+<circle cx="716" cy="703" r="3" fill="#2ecc7a"/>
+<circle cx="726" cy="703" r="3" fill="#2ecc7a"/>
+<circle cx="736" cy="703" r="3" fill="#e84545">
+  <animate attributeName="opacity" values="0.7;0.08;0.7" dur="3.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+</circle>
+<circle cx="746" cy="703" r="3" fill="#2ecc7a"/>
+<text x="720" y="717" text-anchor="middle" font-family="'Courier New',monospace" font-size="6.5" fill="rgba(255,255,255,0.2)">PLANT CTRL 2F</text>
+
+<!-- Shadows under centre equipment -->
+<ellipse cx="423" cy="726" rx="66"  ry="6" fill="rgba(0,0,0,0.45)"/>
+<ellipse cx="556" cy="726" rx="50"  ry="6" fill="rgba(0,0,0,0.40)"/>
+<ellipse cx="720" cy="726" rx="58"  ry="6" fill="rgba(0,0,0,0.40)"/>
+<ellipse cx="884" cy="726" rx="50"  ry="6" fill="rgba(0,0,0,0.40)"/>
+<ellipse cx="1017" cy="726" rx="66" ry="6" fill="rgba(0,0,0,0.45)"/>
+
+
+<!-- ══ CONCRETE FLOOR — drawn last to clip all below-grade geometry ══ -->
+<rect x="0" y="720" width="1440" height="90" fill="url(#concreteFloor)"/>
+<!-- Concrete expansion joints (grid) -->
+<g stroke="#0d1520" stroke-width="1.2" fill="none" opacity="0.65">
+  <line x1="0"    y1="720" x2="1440" y2="720"/>
+  <line x1="0"    y1="760" x2="1440" y2="760"/>
+  <line x1="0"    y1="800" x2="1440" y2="800"/>
+  <line x1="180"  y1="720" x2="180"  y2="810"/>
+  <line x1="360"  y1="720" x2="360"  y2="810"/>
+  <line x1="540"  y1="720" x2="540"  y2="810"/>
+  <line x1="720"  y1="720" x2="720"  y2="810"/>
+  <line x1="900"  y1="720" x2="900"  y2="810"/>
+  <line x1="1080" y1="720" x2="1080" y2="810"/>
+  <line x1="1260" y1="720" x2="1260" y2="810"/>
+  <line x1="1440" y1="720" x2="1440" y2="810"/>
+</g>
+<!-- Concrete surface texture marks -->
+<g stroke="#0f1c28" stroke-width="0.7" opacity="0.3" fill="none">
+  <line x1="90"  y1="730" x2="150" y2="748"/>
+  <line x1="310" y1="738" x2="340" y2="752"/>
+  <line x1="620" y1="732" x2="680" y2="745"/>
+  <line x1="820" y1="740" x2="870" y2="750"/>
+  <line x1="1020" y1="728" x2="1060" y2="742"/>
+  <line x1="1300" y1="735" x2="1350" y2="748"/>
+</g>
+<!-- Floor LED strip reflections from overhead lights -->
+<rect x="130" y="720" width="380" height="3" fill="rgba(200,230,255,0.06)"/>
+<rect x="930" y="720" width="380" height="3" fill="rgba(200,230,255,0.05)"/>
+<!-- Equipment floor shadows -->
+<ellipse cx="223"  cy="724" rx="120" ry="7" fill="rgba(0,0,0,0.45)"/>
+<ellipse cx="1244" cy="724" rx="155" ry="7" fill="rgba(0,0,0,0.45)"/>
+</svg>
   </div>
   <!-- Ambient glows -->
   <div class="h2-hero-glow"></div>
@@ -3624,230 +4251,52 @@ section[id],div[id]{scroll-margin-top:64px}
 </section><!-- ── Electrical panel strip BELOW hero ── -->
 <div class="elec-strip elec-strip-bot" aria-hidden="true">
   <div class="elec-track">
-    <!-- Distribution board 1 -->
-    <div class="eu">
-      <div class="eu-label">HV</div>
-      <div class="eu-board">
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-      </div>
-    </div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe"></div></div>
-    <!-- junction box -->
-    <div class="eu">
-      <div class="eu-jbox">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
-          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- motor -->
-    <div class="eu">
-      <div class="eu-motor">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
-          <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
-          <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
-          <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- live dot -->
+    <!-- HV board -->
+    <div class="eu"><div class="eu-label">HV</div><div class="eu-board"><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker off"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-jbox"><svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2"><circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
     <div class="eu"><div class="eu-live"></div></div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
-    <!-- transformer -->
-    <div class="eu">
-      <div class="eu-transformer">
-        <div class="eu-coil"></div>
-        <div class="eu-coil"></div>
-      </div>
-    </div>
-    <!-- bolt -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- gauge -->
-    <div class="eu">
-      <div class="eu-gauge">
-        <svg viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
-          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
-        </svg>
-      </div>
-    </div>
-    <!-- conduit -->
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-motor"><svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2"><circle cx="12" cy="12" r="2"/><path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/><path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/><path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/><path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-gauge"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/><path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/><line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><svg class="eu-bolt" viewBox="0 0 18 28" fill="none"><polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/></svg></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
     <div class="eu"><div class="eu-conduit"></div></div>
-    <!-- DB 2 -->
-    <div class="eu">
-      <div class="eu-label">MCB</div>
-      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-      </div>
-    </div>
-    <!-- pipe + live -->
-    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <!-- MCB board -->
+    <div class="eu"><div class="eu-label">MCB</div><div class="eu-board" style="border-color:rgba(212,150,10,.35)"><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker off"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div><div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-transformer"><div class="eu-coil"></div><div class="eu-coil"></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
     <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
-    <!-- motor 2 (slower) -->
-    <div class="eu">
-      <div class="eu-motor" style="border-color:rgba(0,196,167,.35)">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:6s">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
-          <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
-          <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
-          <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- spacer pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
-    <!-- bolt 2 -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- jbox 2 -->
-    <div class="eu">
-      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
-          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- label -->
-    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div>
-    <!-- Distribution board 1 -->
-    <div class="eu">
-      <div class="eu-label">HV</div>
-      <div class="eu-board">
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on"><div class="eu-breaker-dot"></div></div>
-      </div>
-    </div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe"></div></div>
-    <!-- junction box -->
-    <div class="eu">
-      <div class="eu-jbox">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2">
-          <circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- motor -->
-    <div class="eu">
-      <div class="eu-motor">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(196,86,42,.7)" stroke-width="1.2">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 12 C12 7 9 4 12 2 C15 4 12 7 12 12Z"/>
-          <path d="M12 12 C17 12 20 9 22 12 C20 15 17 12 12 12Z"/>
-          <path d="M12 12 C12 17 15 20 12 22 C9 20 12 17 12 12Z"/>
-          <path d="M12 12 C7 12 4 15 2 12 C4 9 7 12 12 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- live dot -->
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-motor" style="border-color:rgba(0,196,167,.35)"><svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:6s"><circle cx="12" cy="12" r="2"/><path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/><path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/><path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/><path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-gauge" style="border-color:rgba(0,196,167,.35)"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="rgba(0,196,167,.25)" stroke-width="1"/><path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(0,196,167,.3)" stroke-width="2" fill="none" stroke-linecap="round"/><line class="eu-needle" x1="16" y1="22" x2="22" y2="12" stroke="rgba(0,196,167,.9)" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="22" r="2" fill="rgba(0,196,167,.7)"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s"><polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/></svg></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px;border-color:rgba(212,150,10,.32)"></div></div>
+    <div class="eu"><div class="eu-jbox" style="border-color:rgba(212,150,10,.4)"><svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2"><rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <!-- LV board -->
+    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div><div class="eu-board"><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on flicker"><div class="eu-breaker-dot"></div></div><div class="eu-breaker off"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div><div class="eu-breaker on"><div class="eu-breaker-dot"></div></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-motor" style="border-color:rgba(0,196,167,.35)"><svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:8s;animation-delay:1s"><circle cx="12" cy="12" r="2"/><path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/><path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/><path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/><path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-conduit"></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-jbox"><svg viewBox="0 0 12 12" fill="none" stroke="rgba(0,196,167,.7)" stroke-width="1.2"><circle cx="6" cy="6" r="3"/><line x1="6" y1="0" x2="6" y2="3"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="0" y1="6" x2="3" y2="6"/><line x1="9" y1="6" x2="12" y2="6"/></svg></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
     <div class="eu"><div class="eu-live"></div></div>
-    <!-- pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:80px"></div></div>
-    <!-- transformer -->
-    <div class="eu">
-      <div class="eu-transformer">
-        <div class="eu-coil"></div>
-        <div class="eu-coil"></div>
-      </div>
-    </div>
-    <!-- bolt -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- gauge -->
-    <div class="eu">
-      <div class="eu-gauge">
-        <svg viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="13" stroke="rgba(212,150,10,.25)" stroke-width="1"/>
-          <path d="M6 22 A12 12 0 0 1 26 22" stroke="rgba(212,150,10,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line class="eu-needle" x1="16" y1="22" x2="16" y2="10" stroke="rgba(212,150,10,.9)" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="16" cy="22" r="2" fill="rgba(212,150,10,.7)"/>
-        </svg>
-      </div>
-    </div>
-    <!-- conduit -->
-    <div class="eu"><div class="eu-conduit"></div></div>
-    <!-- DB 2 -->
-    <div class="eu">
-      <div class="eu-label">MCB</div>
-      <div class="eu-board" style="border-color:rgba(212,150,10,.35)">
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold);box-shadow:0 0 4px rgba(212,150,10,.8)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on flicker" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker off"><div class="eu-breaker-dot"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-        <div class="eu-breaker on" style="border-color:rgba(212,150,10,.5);background:rgba(212,150,10,.2)"><div class="eu-breaker-dot" style="background:var(--gold)"></div></div>
-      </div>
-    </div>
-    <!-- pipe + live -->
-    <div class="eu"><div class="eu-pipe" style="width:50px"></div></div>
-    <div class="eu"><div class="eu-live" style="background:var(--gold);box-shadow:0 0 6px rgba(212,150,10,.8)"></div></div>
-    <!-- motor 2 (slower) -->
-    <div class="eu">
-      <div class="eu-motor" style="border-color:rgba(0,196,167,.35)">
-        <svg class="eu-motor-fan" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,167,.6)" stroke-width="1.2" style="animation-duration:6s">
-          <circle cx="12" cy="12" r="2"/>
-          <path d="M12 10C12 6 10 4 12 2C14 4 12 6 12 10Z"/>
-          <path d="M14 12C18 12 20 10 22 12C20 14 18 12 14 12Z"/>
-          <path d="M12 14C12 18 14 20 12 22C10 20 12 18 12 14Z"/>
-          <path d="M10 12C6 12 4 14 2 12C4 10 6 12 10 12Z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- spacer pipe -->
-    <div class="eu"><div class="eu-pipe" style="width:40px;border-color:rgba(212,150,10,.35)"></div></div>
-    <!-- bolt 2 -->
-    <div class="eu">
-      <svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:2.5s">
-        <polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(212,150,10,.8)" stroke-width="1.5" fill="rgba(212,150,10,.1)" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <!-- jbox 2 -->
-    <div class="eu">
-      <div class="eu-jbox" style="border-color:rgba(212,150,10,.4)">
-        <svg viewBox="0 0 12 12" fill="none" stroke="rgba(212,150,10,.7)" stroke-width="1.2">
-          <rect x="2" y="2" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/>
-        </svg>
-      </div>
-    </div>
-    <!-- label -->
-    <div class="eu"><div class="eu-label" style="color:rgba(0,196,167,.7)">LV</div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><svg class="eu-bolt" viewBox="0 0 18 28" fill="none" style="animation-delay:1.5s"><polyline points="11,2 5,15 9,15 7,26 15,11 10,11 13,2" stroke="rgba(0,196,167,.8)" stroke-width="1.5" fill="rgba(0,196,167,.1)" stroke-linejoin="round"/></svg></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+    <div class="eu"><div class="eu-transformer"><div class="eu-coil"></div><div class="eu-coil"></div></div></div>
+    <div class="eu"><div class="eu-pipe" style="width:10px"></div></div>
+  </div>
 </div>
 
 
@@ -4986,6 +5435,14 @@ function closeMob() {}
   window.addEventListener('scroll', function() {
     nav.classList.toggle('solid', window.scrollY > 30);
   }, {passive: true});
+})();
+
+// Fill elec-strip tracks: clone content until 3× viewport width for gapless loop
+(function() {
+  document.querySelectorAll('.elec-track').forEach(function(t) {
+    var orig = t.innerHTML;
+    t.innerHTML = orig + orig + orig;
+  });
 })();
 
 // Custom cursor (mouse only)
